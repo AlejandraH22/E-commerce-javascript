@@ -99,3 +99,27 @@ li {
       font-family: "Oswald", sans-serif; }
     .seccion4 .form .links {
       color: white; }
+
+.productos {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 0.3fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "aside principal";
+  font-family: "Oswald", sans-serif; }
+  .productos .aside {
+    grid-area: aside; }
+    .productos .aside .inputsUl {
+      font-size: larger; }
+  .productos .principal {
+    grid-area: principal; }
+    .productos .principal .card {
+      margin-bottom: 3rem; }
+    .productos .principal .btn-primary {
+      border-radius: 30px;
+      background-color: #D74E09;
+      border-color: #D74E09; }
+      .productos .principal .btn-primary:focus {
+        box-shadow: none; }
