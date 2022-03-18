@@ -63,13 +63,13 @@ const botonCompra = (compra, cantidad) => {
             if (buscador === true) {
                 for (let el of carrito) {
                     if (el.producto === compra.nombre) {
-                        el.cantidades += cantidad;
+                        el.cantidades += parseInt(cantidad);
                         el.precio += precioParcial;
                     }
                 }
             } else {
                 carrito.push({
-                    cantidades: cantidad,
+                    cantidades: parseInt(cantidad),
                     producto: compra.nombre,
                     precio: precioParcial
                 });
@@ -147,139 +147,112 @@ const buscadorPorPalabra = () => {
     }
 }
 
-let body = document.body;
-let divPadre = document.querySelector(".divPadre");
-let divHijo = document.querySelectorAll(".divHijo");
-let producto = document.querySelectorAll(".nombre");
-let descripcion = document.querySelectorAll(".descripcion");
-let boton = document.querySelectorAll(".boton");
-let divPadre2 = document.querySelectorAll(".divPadre2");
-let compra = document.getElementById("compras");
-let cantidad = document.querySelectorAll(".cantidad");
-let precio = document.querySelectorAll(".precio");
 
+let botonCarrito = document.querySelectorAll(".boton");
+let ventaProducto = document.querySelectorAll(".ventaProducto");
+let botonCantidad = document.querySelectorAll(".botonCantidad");
+let listaContador = document.querySelectorAll(".listaContador");
+let seccionPrecio = document.querySelectorAll(".precios")
+let final = [];
 
-// body.style.margin = "0";
-// body.style.padding = "0";
-// divPadre.style.display = "flex";
-// divPadre.style.flexWrap = "wrap";
-// divPadre.style.justifyContent = "space-around";
-
-
-// const productoComprado = carrito.map ((el) =>{
-//     let productoComprado = el.producto;
-//       return `<li> ${productoComprado} </li>`;
-//   })
-// productoComprado.join("")
-//   const cantidadComprada = carrito.map ((el) =>{
-//      let cantidadComprada = el.cantidades;
-//        return `<li> ${cantidadComprada} </li>`;
-//    })
-// cantidadComprada.join("")
-//    const precioComprado = carrito.map ((el) =>{
-//      let precioComprado = el.precio;
-//        return `<li> ${precioComprado} </li>`;
-//    })
-// precioComprado.join("")
+for (let i = 0; i < stock.length; i++){
+    botonCarrito[i].addEventListener("click", agregarCarrito)
+    function agregarCarrito(){
+        botonCompra(stock[i],botonCantidad[i].value);
+            let productoComprado = stock[i].nombre;
+            let cantidadComprada = botonCantidad[i].value;
+            let precioComprado = stock[i].precio;
+           
+            final.push(`<div class="d-flex justify-content-around recuadro"> <p>${productoComprado}</p> <p>${cantidadComprada}</p> <p>${precioComprado}</p> </div>`);
+            final.join("")
+            return seccionPrecio[0].innerHTML = final;          
+    }
+}
 
 
 
-// for (let el of divHijo) {
-//     el.style.margin = "2rem 4rem"
-//     el.style.textAlign = "center"
-//     el.style.fontFamily = "sans-serif"
+
+
+
+
+
+// let consulta = (prompt("desea realizar una compra")).toLowerCase();
+
+// while (consulta === "si") {
+//     let prenda = (prompt("que prenda desea comprar")).toLowerCase();
+//     let verdadero = stock.some((el) => el.nombre === prenda);
+//     let cantidadPrenda = parseInt(prompt("Cuantas prendas desea comprar"));
+//     if (verdadero === true) {
+//         for (let el of stock) {
+//             if (el.nombre === prenda) {
+//                 if (el.cantidad > cantidadPrenda) {
+//                     botonCompra(el, cantidadPrenda);
+
+//                     alert(`agregaste ${el.nombre} a tu carrito`)
+//                 } else {
+//                     alert(`solo contamos con ${el.cantidad} prendas de este tipo`)
+//                 }
+//             }
+//         }
+//     } else {
+//         alert("No contamos con ese producto")
+//     }
+//     consulta = prompt("desea realizar otra compra")
+// };
+
+// let consulta2 = (prompt("Querés saber cuantos productos estas llevando carrito")).toLowerCase();
+
+// if (consulta2 === "si") {
+
+//     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
+//     alert(`Llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
+
 // }
 
+// let consulta4 = (prompt(`Desea eliminar algún producto de su carrito`)).toLowerCase();
 
-// for (let el of boton) {
-//     el.style.backgroundColor = "#FF861C";
-//     el.style.color = "white";
-//     el.style.height = "3rem";
-//     el.style.borderRadius = "30px";
-//     el.style.border = "none";
-//     el.style.fontSize = "large";
-//     el.style.fontweigh = "bold";
-//     el.style.boxShadow = "-2px 4px 10px 4px rgba(0,0,0,0.19);"
+// while (consulta4 === "si") {
+
+//     let prenda = (prompt("Qué prenda desea eliminar")).toLowerCase();
+//     let verdadero = carrito.some((el) => el.producto === prenda);
+
+//     let cantidadPrenda = parseInt(prompt("Cuanta cantidad"));
+//     let verdadero2 = carrito.some((el) => el.cantidades >= cantidadPrenda);
+//     if (verdadero === true) {
+//         if (verdadero2 === true) {
+//             for (let el of stock) {
+//                 if (prenda === el.nombre && el.cantidades >= cantidadPrenda) {
+
+//                     botonQuitarCompra(el, cantidadPrenda);
+//                     alert(`sacaste ${cantidadPrenda} ${prenda} de tu carrito`)
+
+//                     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
+//                     alert(`Ahora llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
+
+//                 }
+//             }
+//         } else {
+//             alert("No contas con esa cantidad de producto en tu carrito")
+//         }
+//     } else {
+//         alert("Ese producto no se encuentra en el carrito")
+//     }
+//     consulta4 = (prompt("Desea eliminar otro producto")).toLowerCase()
 // }
 
+// let consulta3 = (prompt("queres aplicar algún descuento")).toLowerCase();
 
-let consulta = (prompt("desea realizar una compra")).toLowerCase();
+// if (consulta3 === "si") {
 
-while (consulta === "si") {
-    let prenda = (prompt("que prenda desea comprar")).toLowerCase();
-    let verdadero = stock.some((el) => el.nombre === prenda);
-    let cantidadPrenda = parseInt(prompt("Cuantas prendas desea comprar"));
-    if (verdadero === true) {
-        for (let el of stock) {
-            if (el.nombre === prenda) {
-                if (el.cantidad > cantidadPrenda) {
-                    botonCompra(el, cantidadPrenda);
+//     let codigo = (prompt("Decinos tu código de descuento")).toLowerCase();
 
-                    alert(`agregaste ${el.nombre} a tu carrito`)
-                } else {
-                    alert(`solo contamos con ${el.cantidad} prendas de este tipo`)
-                }
-            }
-        }
-    } else {
-        alert("No contamos con ese producto")
-    }
-    consulta = prompt("desea realizar otra compra")
-};
-
-let consulta2 = (prompt("Querés saber cuantos productos estas llevando carrito")).toLowerCase();
-
-if (consulta2 === "si") {
-
-    let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
-    alert(`Llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
-
-}
-
-let consulta4 = (prompt(`Desea eliminar algún producto de su carrito`)).toLowerCase();
-
-while (consulta4 === "si") {
-
-    let prenda = (prompt("Qué prenda desea eliminar")).toLowerCase();
-    let verdadero = carrito.some((el) => el.producto === prenda);
-
-    let cantidadPrenda = parseInt(prompt("Cuanta cantidad"));
-    let verdadero2 = carrito.some((el) => el.cantidades >= cantidadPrenda);
-    if (verdadero === true) {
-        if (verdadero2 === true) {
-            for (let el of stock) {
-                if (prenda === el.nombre && el.cantidades >= cantidadPrenda) {
-
-                    botonQuitarCompra(el, cantidadPrenda);
-                    alert(`sacaste ${cantidadPrenda} ${prenda} de tu carrito`)
-
-                    let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
-                    alert(`Ahora llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
-
-                }
-            }
-        } else {
-            alert("No contas con esa cantidad de producto en tu carrito")
-        }
-    } else {
-        alert("Ese producto no se encuentra en el carrito")
-    }
-    consulta4 = (prompt("Desea eliminar otro producto")).toLowerCase()
-}
-
-let consulta3 = (prompt("queres aplicar algún descuento")).toLowerCase();
-
-if (consulta3 === "si") {
-
-    let codigo = (prompt("Decinos tu código de descuento")).toLowerCase();
-
-    descuento(codigo);
+//     descuento(codigo);
 
 
-    if (total != subtotal()) {
-        alert(`Tu monto anterior era de ${subtotal()}$`)
-        alert(`Tu monto con el descuento es del ${total}$`)
-    } else {
-        alert(`El codigo no es válido`)
-    }
-}
+//     if (total != subtotal()) {
+//         alert(`Tu monto anterior era de ${subtotal()}$`)
+//         alert(`Tu monto con el descuento es del ${total}$`)
+//     } else {
+//         alert(`El codigo no es válido`)
+//     }
+// }

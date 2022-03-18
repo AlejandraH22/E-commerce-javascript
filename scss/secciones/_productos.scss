@@ -1,13 +1,15 @@
 .productos {
 
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-auto-rows: 1fr;
-    grid-template-columns: 0.3fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-        "aside principal";
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-auto-rows: 1fr; 
+    grid-template-columns: 0.3fr 1.2fr; 
+    grid-template-rows: 1.5fr 0.5fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "aside principal"
+      "precios precios"; 
+  
         font-family: $fuentePrincipal;
 
     .aside {
@@ -27,14 +29,29 @@
             margin-bottom: 3rem;
         }
 
-        .btn-primary {
+        .boton {
             border-radius: 30px;
             background-color: #D74E09;
             border-color: #D74E09;
+            width: 53px;
+            text-align: center;
 
             &:focus{
                 box-shadow: none;
             }
         }
     }
+
+  .precios{
+      grid-area: precios;
+
+      .recuadro{
+          border: solid 2px;
+          p{
+              margin-bottom: 0;
+          }
+      }
+  }
+
+
 }
