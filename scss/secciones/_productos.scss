@@ -40,13 +40,24 @@
                 box-shadow: none;
             }
         }
+
+        .botonCantidad{
+            border: solid 1px;
+            text-align: center;
+            width: 60px;
+        }
     }
 
   .precios{
       grid-area: precios;
+     
 
       .recuadro{
           border: solid 2px;
+          background-color:#D74E09;
+          color: white;
+          padding: 0 2rem;
+          text-align: center;
           p{
               margin-bottom: 0;
           }

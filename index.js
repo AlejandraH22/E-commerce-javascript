@@ -37,11 +37,17 @@ const stock = [
     poleraBeige
 ];
 
+
+
+
 const carrito = [];
-
-
 const subtotal = () => carrito.reduce((acc, el) => acc + el.precio, 0);
 let total = subtotal;
+
+
+// Funciones
+
+
 const basePorcentaje = (n) => {
     return (m) => (m * n) / 100
 }
@@ -74,13 +80,8 @@ const botonCompra = (compra, cantidad) => {
                     precio: precioParcial
                 });
             }
-        } else {
-            alert(`Solo contamos con ${compra.cantidad} prendas de este producto`);
+        } 
 
-        }
-
-    } else {
-        alert(`Solo contamos con ${compra.cantidad} prendas de este producto`);
     }
 }
 
@@ -147,6 +148,7 @@ const buscadorPorPalabra = () => {
     }
 }
 
+// EMPARENTAMIENTO DOM
 
 let botonCarrito = document.querySelectorAll(".boton");
 let ventaProducto = document.querySelectorAll(".ventaProducto");
@@ -154,21 +156,60 @@ let botonCantidad = document.querySelectorAll(".botonCantidad");
 let listaContador = document.querySelectorAll(".listaContador");
 let seccionPrecio = document.querySelectorAll(".precios")
 let final = [];
+let subtotalPantalla = document.getElementById("subtotal");
+let iconoCuenta = document.getElementById("cuenta");
+let formularioIngreso = document.getElementById("formulario");
+
+
+// EVENTOS
+
+// Botones de compra/ agregar a carrito
 
 for (let i = 0; i < stock.length; i++){
     botonCarrito[i].addEventListener("click", agregarCarrito)
     function agregarCarrito(){
         botonCompra(stock[i],botonCantidad[i].value);
+        if (stock[i].stock === "si"){
+            if (botonCantidad[i].value > 0){
             let productoComprado = stock[i].nombre;
             let cantidadComprada = botonCantidad[i].value;
             let precioComprado = stock[i].precio;
-           
             final.push(`<div class="d-flex justify-content-around recuadro"> <p>${productoComprado}</p> <p>${cantidadComprada}</p> <p>${precioComprado}</p> </div>`);
-            final.join("")
-            return seccionPrecio[0].innerHTML = final;          
+            final.join();
+            
+            return seccionPrecio[0].innerHTML = `${final} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div>`
+        }} else {
+            ventaProducto[i].innerHTML = `${ventaProducto[i].innerHTML} <p>Fuera de stock</p>`
+        }     
     }
 }
 
+iconoCuenta.onclick = () => {
+    iconoCuenta.innerHTML = ` <div class="posBotonCuenta me-auto">
+    <h3> Ingreso a cuenta </h3>
+    <form id = "formulario">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Usuario</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="usuario" placeholder="Usuario">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" value="contraseña" placeholder="contraseña">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" value="recordarme">
+      <label class="form-check-label" for="exampleCheck1" >Recordarme</label>
+    </div>
+    <button type="submit" class="btn btn-primary boton">Ingresar</button>
+  </form> </div>`;
+
+  formularioIngreso.addEventListener("submit", submitFormulario);
+
+  function submitFormulario(e){
+      e.preventDefault();
+
+  }
+}
 
 
 
