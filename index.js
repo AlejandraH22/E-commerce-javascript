@@ -160,6 +160,10 @@ let subtotalPantalla = document.getElementById("subtotal");
 let iconoCuenta = document.getElementById("cuenta");
 let formularioIngreso = document.getElementById("formulario");
 let contenedorForm = document.getElementById("contenedorForm");
+let botonSubmit = document.getElementById("boton2");
+let usuario = document.getElementById("usuario");
+let contraseña = document.getElementById("contraseña")
+
 
 
 // EVENTOS
@@ -209,12 +213,14 @@ contenedorForm.style.display = "block";
 
 
 formularioIngreso.onsubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    let usuarioId = usuario.value;
+let contraseñaId = contraseña.value;
+if (usuarioId === "Nano" && contraseñaId === "1234"){
+    alert("contraseña correcta")
 }
-contenedorForm.onchange = () => {
-     contenedorForm.style.display = "none";
+}
 
-  }
 
 
 }
