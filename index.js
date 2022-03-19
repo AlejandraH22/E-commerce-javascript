@@ -159,6 +159,7 @@ let final = [];
 let subtotalPantalla = document.getElementById("subtotal");
 let iconoCuenta = document.getElementById("cuenta");
 let formularioIngreso = document.getElementById("formulario");
+let contenedorForm = document.getElementById("contenedorForm");
 
 
 // EVENTOS
@@ -185,30 +186,37 @@ for (let i = 0; i < stock.length; i++){
 }
 
 iconoCuenta.onclick = () => {
-    iconoCuenta.innerHTML = ` <div class="posBotonCuenta me-auto">
-    <h3> Ingreso a cuenta </h3>
-    <form id = "formulario">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Usuario</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="usuario" placeholder="Usuario">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" value="contraseña" placeholder="contraseña">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" value="recordarme">
-      <label class="form-check-label" for="exampleCheck1" >Recordarme</label>
-    </div>
-    <button type="submit" class="btn btn-primary boton">Ingresar</button>
-  </form> </div>`;
 
-  formularioIngreso.addEventListener("submit", submitFormulario);
+//     iconoCuenta.innerHTML = ` <div class="posBotonCuenta me-auto">
+//     <h3> Ingreso a cuenta </h3>
+//     <form id="formulario">
+//     <div class="mb-3">
+//       <label for="exampleInputEmail1" class="form-label">Usuario</label>
+//       <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario" name="usuario">
+//     </div>
+//     <div class="mb-3">
+//       <label for="exampleInputPassword1" class="form-label" name= "contraseña">Contraseña</label>
+//       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="contraseña">
+//     </div>
+//     <div class="mb-3 form-check">
+//       <input type="checkbox" class="form-check-input" id="exampleCheck1" value="recordarme">
+//       <label class="form-check-label" for="exampleCheck1" >Recordarme</label>
+//     </div>
+//     <button type="submit" class="btn btn-primary boton">Ingresar</button>
+//   </form> </div>`;
 
-  function submitFormulario(e){
-      e.preventDefault();
+contenedorForm.style.display = "block";
+
+
+formularioIngreso.onsubmit = (e) => {
+    e.preventDefault()
+}
+contenedorForm.onchange = () => {
+     contenedorForm.style.display = "none";
 
   }
+
+
 }
 
 

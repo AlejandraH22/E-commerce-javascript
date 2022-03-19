@@ -36,6 +36,7 @@ li {
         position: relative;
         z-index: 1; }
         .header .navbar .navbar-collapse #cuenta .posBotonCuenta {
+          display: none;
           padding: 1rem 1rem;
           position: absolute;
           z-index: 2;

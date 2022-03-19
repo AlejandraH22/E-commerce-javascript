@@ -25,20 +25,38 @@
         </form>
         <a class="navbar-brand" href="#">
           <!--<img src="https://e7.pngegg.com/pngimages/170/834/png-clipart-flower-design-leaf-logo.png" alt="" class="logo">  -->
-          TIENDA DE ROPA</a>
+          TIENDA DE ROPA
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item text-center"  id="cuenta">
+            <li class="nav-item text-center" id="cuenta">
               <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                   class="bi bi-person" viewBox="0 0 16 16">
                   <path
                     d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                 </svg></a>
               <a class="nav-link active" aria-current="page" href="#">Cuenta</a>
+              <div class="posBotonCuenta me-auto" id="contenedorForm">
+                <h3> Ingreso a cuenta </h3>
+                <form id="formulario">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario" name="usuario">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label" name= "contraseña">Contraseña</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="contraseña">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" value="recordarme">
+                  <label class="form-check-label" for="exampleCheck1" >Recordarme</label>
+                </div>
+                <button type="submit" class="btn btn-primary boton">Ingresar</button>
+              </form> </div>
             </li>
             <li class="nav-item text-center" id="carrito">
               <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -191,12 +209,14 @@
           </div>
         </div>
       </div>
-    
+
     </section>
     <section class="precios">
       <div id="subtotal"></div>
-  </section>
-  
+    </section>
+    
+  </main>
+
 
   <footer class="container-fluid footer">
     <div class="row">
@@ -222,7 +242,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="./index.js"></script>
 </body>
 
