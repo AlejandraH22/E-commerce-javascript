@@ -27,6 +27,28 @@ li {
       .header .navbar .navbar-brand .logo {
         width: 80px;
         height: auto; }
+    .header .navbar #linkCargaProducto {
+      display: none; }
+    .header .navbar #cargarProducto {
+      color: #D74E09; }
+    .header .navbar #ventanaCargaProducto {
+      display: none;
+      background-color: white;
+      position: absolute;
+      z-index: 2;
+      width: 50vw;
+      right: 24vw;
+      box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
+      text-align: center;
+      padding: 3rem; }
+      .header .navbar #ventanaCargaProducto #botonCargaProducto {
+        border-radius: 30px;
+        background-color: #D74E09;
+        border-color: #D74E09; }
+      .header .navbar #ventanaCargaProducto .divInput {
+        padding: 0rem 5rem; }
     .header .navbar .links_nav {
       margin: 0 1rem; }
     .header .navbar .navbar-collapse {

@@ -80,7 +80,7 @@ const botonCompra = (compra, cantidad) => {
                     precio: precioParcial
                 });
             }
-        } 
+        }
 
     }
 }
@@ -160,9 +160,11 @@ let subtotalPantalla = document.getElementById("subtotal");
 let iconoCuenta = document.getElementById("cuenta");
 let formularioIngreso = document.getElementById("formulario");
 let contenedorForm = document.getElementById("contenedorForm");
-let botonSubmit = document.getElementById("boton2");
+let botonSubmit = document.getElementsByClassName("boton2");
 let usuario = document.getElementById("usuario");
-let contraseña = document.getElementById("contraseña")
+let contraseña = document.getElementById("contraseña");
+let linkCargaProducto = document.getElementById("linkCargaProducto");
+
 
 
 
@@ -170,61 +172,163 @@ let contraseña = document.getElementById("contraseña")
 
 // Botones de compra/ agregar a carrito
 
-for (let i = 0; i < stock.length; i++){
+for (let i = 0; i < stock.length; i++) {
     botonCarrito[i].addEventListener("click", agregarCarrito)
-    function agregarCarrito(){
-        botonCompra(stock[i],botonCantidad[i].value);
-        if (stock[i].stock === "si"){
-            if (botonCantidad[i].value > 0){
-            let productoComprado = stock[i].nombre;
-            let cantidadComprada = botonCantidad[i].value;
-            let precioComprado = stock[i].precio;
-            final.push(`<div class="d-flex justify-content-around recuadro"> <p>${productoComprado}</p> <p>${cantidadComprada}</p> <p>${precioComprado}</p> </div>`);
-            final.join();
-            
-            return seccionPrecio[0].innerHTML = `${final} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div>`
-        }} else {
+
+    function agregarCarrito() {
+        botonCompra(stock[i], botonCantidad[i].value);
+        if (stock[i].stock === "si") {
+            if (botonCantidad[i].value > 0) {
+                let productoComprado = stock[i].nombre;
+                let cantidadComprada = botonCantidad[i].value;
+                let precioComprado = stock[i].precio;
+                final.push(`<div class="d-flex justify-content-around recuadro"> <p>${productoComprado}</p> <p>${cantidadComprada}</p> <p>${precioComprado}</p> </div>`);
+                final.join();
+
+                return seccionPrecio[0].innerHTML = `${final} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div>`
+            }
+        } else {
             ventaProducto[i].innerHTML = `${ventaProducto[i].innerHTML} <p>Fuera de stock</p>`
-        }     
+        }
     }
 }
 
 iconoCuenta.onclick = () => {
 
-//     iconoCuenta.innerHTML = ` <div class="posBotonCuenta me-auto">
-//     <h3> Ingreso a cuenta </h3>
-//     <form id="formulario">
-//     <div class="mb-3">
-//       <label for="exampleInputEmail1" class="form-label">Usuario</label>
-//       <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Usuario" name="usuario">
-//     </div>
-//     <div class="mb-3">
-//       <label for="exampleInputPassword1" class="form-label" name= "contraseña">Contraseña</label>
-//       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="contraseña">
-//     </div>
-//     <div class="mb-3 form-check">
-//       <input type="checkbox" class="form-check-input" id="exampleCheck1" value="recordarme">
-//       <label class="form-check-label" for="exampleCheck1" >Recordarme</label>
-//     </div>
-//     <button type="submit" class="btn btn-primary boton">Ingresar</button>
-//   </form> </div>`;
-
-contenedorForm.style.display = "block";
+    contenedorForm.style.display = "block";
 
 
-formularioIngreso.onsubmit = (e) => {
-    e.preventDefault();
-    let usuarioId = usuario.value;
-let contraseñaId = contraseña.value;
-if (usuarioId === "Nano" && contraseñaId === "1234"){
-    alert("contraseña correcta")
-}
-}
-
-
+    formularioIngreso.onsubmit = (e) => {
+        e.preventDefault();
+        let usuarioId = usuario.value;
+        let contraseñaId = contraseña.value;
+        if (usuarioId === "Nano" && contraseñaId === "1234") {
+            
+            linkCargaProducto.style.display = "block";
+        }
+    }
 
 }
 
+
+// CARGAR PRODUCTO
+
+
+// Enlace con DOM
+
+
+let cargarProducto = document.getElementById("cargarProducto");
+let ventanaCargaProducto = document.getElementById("ventanaCargaProducto");
+let formularioCargaProducto = document.getElementById("formularioCargaProducto");
+let botonCargaProducto = document.getElementById("botonCargaProducto");
+let DatosCarga;
+let datosi = [];
+
+
+
+
+// EVENTOS
+
+cargarProducto.onclick = () => {
+  ventanaCargaProducto.style.display = "block";
+ 
+  formularioCargaProducto.onsubmit = (e) =>{
+    DatosCarga = e.target;
+    let nombreStock = (DatosCarga[0].value).replace(" ", "");
+ 
+   for (let i = 0; i < DatosCarga.length; i++){
+       datosi.push(DatosCarga[i].value)
+} 
+ nombreStock = new Prendas (datosi);
+ }
+
+}
+
+
+
+
+
+
+// let consulta = (prompt("desea realizar una compra")).toLowerCase();
+
+// while (consulta === "si") {
+//     let prenda = (prompt("que prenda desea comprar")).toLowerCase();
+//     let verdadero = stock.some((el) => el.nombre === prenda);
+//     let cantidadPrenda = parseInt(prompt("Cuantas prendas desea comprar"));
+//     if (verdadero === true) {
+//         for (let el of stock) {
+//             if (el.nombre === prenda) {
+//                 if (el.cantidad > cantidadPrenda) {
+//                     botonCompra(el, cantidadPrenda);
+
+//                     alert(`agregaste ${el.nombre} a tu carrito`)
+//                 } else {
+//                     alert(`solo contamos con ${el.cantidad} prendas de este tipo`)
+//                 }
+//             }
+//         }
+//     } else {
+//         alert("No contamos con ese producto")
+//     }
+//     consulta = prompt("desea realizar otra compra")
+// };
+
+// let consulta2 = (prompt("Querés saber cuantos productos estas llevando carrito")).toLowerCase();
+
+// if (consulta2 === "si") {
+
+//     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
+//     alert(`Llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
+
+// }
+
+// let consulta4 = (prompt(`Desea eliminar algún producto de su carrito`)).toLowerCase();
+
+// while (consulta4 === "si") {
+
+//     let prenda = (prompt("Qué prenda desea eliminar")).toLowerCase();
+//     let verdadero = carrito.some((el) => el.producto === prenda);
+
+//     let cantidadPrenda = parseInt(prompt("Cuanta cantidad"));
+//     let verdadero2 = carrito.some((el) => el.cantidades >= cantidadPrenda);
+//     if (verdadero === true) {
+//         if (verdadero2 === true) {
+//             for (let el of stock) {
+//                 if (prenda === el.nombre && el.cantidades >= cantidadPrenda) {
+
+//                     botonQuitarCompra(el, cantidadPrenda);
+//                     alert(`sacaste ${cantidadPrenda} ${prenda} de tu carrito`)
+
+//                     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
+//                     alert(`Ahora llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
+
+//                 }
+//             }
+//         } else {
+//             alert("No contas con esa cantidad de producto en tu carrito")
+//         }
+//     } else {
+//         alert("Ese producto no se encuentra en el carrito")
+//     }
+//     consulta4 = (prompt("Desea eliminar otro producto")).toLowerCase()
+// }
+
+// let consulta3 = (prompt("queres aplicar algún descuento")).toLowerCase();
+
+// if (consulta3 === "si") {
+
+//     let codigo = (prompt("Decinos tu código de descuento")).toLowerCase();
+
+//     descuento(codigo);
+
+
+//     if (total != subtotal()) {
+//         alert(`Tu monto anterior era de ${subtotal()}$`)
+//         alert(`Tu monto con el descuento es del ${total}$`)
+//     } else {
+//         alert(`El codigo no es válido`)
+//     }
+// }
 
 
 
