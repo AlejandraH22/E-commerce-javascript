@@ -200,7 +200,7 @@ iconoCuenta.onclick = () => {
         e.preventDefault();
         let usuarioId = (usuario.value).toLowerCase();
         let contraseñaId = contraseña.value;
-        if (usuarioId === "Nano" && contraseñaId === "1234" || usuarioId === "stefano" && contraseñaId === "1234") {
+        if (usuarioId === "nano" && contraseñaId === "1234" || usuarioId === "stefano" && contraseñaId === "1234") {
 
             linkCargaProducto.style.display = "block";
         }

@@ -93,7 +93,7 @@ li {
   .seccion1 .imagen__portada {
     width: 100%;
     height: 60vh; }
-  .seccion1 .productos {
+  .seccion1 .productos__titulo {
     font-size: medium;
     font-weight: bold;
     line-height: 0;
