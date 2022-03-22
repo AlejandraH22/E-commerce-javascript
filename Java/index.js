@@ -148,6 +148,8 @@ const buscadorPorPalabra = () => {
     }
 }
 
+// Botones de compra/ agregar a carrito
+
 // EMPARENTAMIENTO DOM
 
 let botonCarrito = document.querySelectorAll(".boton");
@@ -168,47 +170,38 @@ let linkCargaProducto = document.getElementById("linkCargaProducto");
 
 
 
+
 // EVENTOS
 
-// Botones de compra/ agregar a carrito
 
 for (let i = 0; i < stock.length; i++) {
-    botonCarrito[i].addEventListener("click", agregarCarrito)
 
+    
+    botonCarrito[i].addEventListener("click", agregarCarrito);
     function agregarCarrito() {
-        botonCompra(stock[i], botonCantidad[i].value);
-        if (stock[i].stock === "si") {
+        if (stock[i].cantidad >= 1 && stock[i].cantidad >= botonCantidad[i].value) {
+            botonCompra(stock[i], botonCantidad[i].value);
             if (botonCantidad[i].value > 0) {
-                let productoComprado = stock[i].nombre;
-                let cantidadComprada = botonCantidad[i].value;
-                let precioComprado = stock[i].precio;
-                final.push(`<div class="d-flex justify-content-around recuadro"> <p>${productoComprado}</p> <p>${cantidadComprada}</p> <p>${precioComprado}</p> </div>`);
-                final.join();
+                final.length = 0;
+                for (let el of carrito) {
+                    final.push(`<div class="d-flex justify-content-around recuadro"> <p>${el.producto}</p> <p>${el.cantidades}</p> <p>${el.precio}</p> </div>`);
+                    final.join();
+                    seccionPrecio[0].innerHTML = `${final} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div> `;
 
-                return seccionPrecio[0].innerHTML = `${final} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div>`
+                }
             }
         } else {
-            ventaProducto[i].innerHTML = `${ventaProducto[i].innerHTML} <p>Fuera de stock</p>`
+            ventaProducto[i].innerHTML = "";
+
+            ventaProducto[i].innerHTML = `${ventaProducto[i].innerHTML} <p>Fuera de stock</p> <br> Stock: ${stock[i].cantidad}`
         }
-    }
-}
-
-iconoCuenta.onclick = () => {
-
-    contenedorForm.style.display = "block";
+    }}
 
 
-    formularioIngreso.onsubmit = (e) => {
-        e.preventDefault();
-        let usuarioId = usuario.value;
-        let contraseñaId = contraseña.value;
-        if (usuarioId === "Nano" && contraseñaId === "1234") {
-            
-            linkCargaProducto.style.display = "block";
-        }
-    }
 
-}
+
+
+
 
 
 // CARGAR PRODUCTO
@@ -222,196 +215,79 @@ let ventanaCargaProducto = document.getElementById("ventanaCargaProducto");
 let formularioCargaProducto = document.getElementById("formularioCargaProducto");
 let botonCargaProducto = document.getElementById("botonCargaProducto");
 let DatosCarga;
-let datosi = [];
+let contador = 0;
+let nombre2;
+let tarjetanueva = document.createElement("div");
+let padreTarjeta = document.getElementById("padreTarjeta")
+
+
+
 
 
 
 
 // EVENTOS
 
-cargarProducto.onclick = () => {
-  ventanaCargaProducto.style.display = "block";
- 
-  formularioCargaProducto.onsubmit = (e) =>{
-    DatosCarga = e.target;
-    let nombreStock = (DatosCarga[0].value).replace(" ", "");
- 
-   for (let i = 0; i < DatosCarga.length; i++){
-       datosi.push(DatosCarga[i].value)
-} 
- nombreStock = new Prendas (datosi);
- }
+iconoCuenta.onclick = () => {
 
+    contenedorForm.style.display = "block";
+
+
+    formularioIngreso.onsubmit = (e) => {
+        e.preventDefault();
+        let usuarioId = usuario.value;
+        let contraseñaId = contraseña.value;
+        if (usuarioId === "Nano" && contraseñaId === "1234") {
+
+            linkCargaProducto.style.display = "block";
+        }
+    }
+
+}
+
+cargarProducto.onclick = () => {
+    ventanaCargaProducto.style.display = "block";
+
+    formularioCargaProducto.onsubmit = (e) => {
+
+        e.preventDefault();
+    
+        DatosCarga = e.target;
+
+
+        let nombre = DatosCarga[0].value;
+            let tipo = DatosCarga[1].value;
+            let talle = DatosCarga[2].value;
+            let categoria = DatosCarga[3].value;
+            let precio = DatosCarga[4].value;
+            let cantidad = DatosCarga[5].value;
+            let imagen = DatosCarga [6].value;
+            let nombre2 = "producto" + DatosCarga[0].value;
+        
+        
+
+     nombre2 = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
+
+
+     tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
+     <img
+       src="${imagen}"
+       class="card-img-top" alt="...">
+     <div class="card-body d-flex justify-content-between align-items-center">
+       <p class="card-text ventaProducto">${nombre}</p>
+       <input type="number" class="botonCantidad" value="0">
+       <input type="button" value="Boton" class="boton btn-primary" name="Agregar">
+     </div>
+   </div>`
+
+   padreTarjeta.append(tarjetanueva);
+
+    }
+
+    
 }
 
 
 
 
 
-
-// let consulta = (prompt("desea realizar una compra")).toLowerCase();
-
-// while (consulta === "si") {
-//     let prenda = (prompt("que prenda desea comprar")).toLowerCase();
-//     let verdadero = stock.some((el) => el.nombre === prenda);
-//     let cantidadPrenda = parseInt(prompt("Cuantas prendas desea comprar"));
-//     if (verdadero === true) {
-//         for (let el of stock) {
-//             if (el.nombre === prenda) {
-//                 if (el.cantidad > cantidadPrenda) {
-//                     botonCompra(el, cantidadPrenda);
-
-//                     alert(`agregaste ${el.nombre} a tu carrito`)
-//                 } else {
-//                     alert(`solo contamos con ${el.cantidad} prendas de este tipo`)
-//                 }
-//             }
-//         }
-//     } else {
-//         alert("No contamos con ese producto")
-//     }
-//     consulta = prompt("desea realizar otra compra")
-// };
-
-// let consulta2 = (prompt("Querés saber cuantos productos estas llevando carrito")).toLowerCase();
-
-// if (consulta2 === "si") {
-
-//     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
-//     alert(`Llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
-
-// }
-
-// let consulta4 = (prompt(`Desea eliminar algún producto de su carrito`)).toLowerCase();
-
-// while (consulta4 === "si") {
-
-//     let prenda = (prompt("Qué prenda desea eliminar")).toLowerCase();
-//     let verdadero = carrito.some((el) => el.producto === prenda);
-
-//     let cantidadPrenda = parseInt(prompt("Cuanta cantidad"));
-//     let verdadero2 = carrito.some((el) => el.cantidades >= cantidadPrenda);
-//     if (verdadero === true) {
-//         if (verdadero2 === true) {
-//             for (let el of stock) {
-//                 if (prenda === el.nombre && el.cantidades >= cantidadPrenda) {
-
-//                     botonQuitarCompra(el, cantidadPrenda);
-//                     alert(`sacaste ${cantidadPrenda} ${prenda} de tu carrito`)
-
-//                     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
-//                     alert(`Ahora llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
-
-//                 }
-//             }
-//         } else {
-//             alert("No contas con esa cantidad de producto en tu carrito")
-//         }
-//     } else {
-//         alert("Ese producto no se encuentra en el carrito")
-//     }
-//     consulta4 = (prompt("Desea eliminar otro producto")).toLowerCase()
-// }
-
-// let consulta3 = (prompt("queres aplicar algún descuento")).toLowerCase();
-
-// if (consulta3 === "si") {
-
-//     let codigo = (prompt("Decinos tu código de descuento")).toLowerCase();
-
-//     descuento(codigo);
-
-
-//     if (total != subtotal()) {
-//         alert(`Tu monto anterior era de ${subtotal()}$`)
-//         alert(`Tu monto con el descuento es del ${total}$`)
-//     } else {
-//         alert(`El codigo no es válido`)
-//     }
-// }
-
-
-
-
-
-
-// let consulta = (prompt("desea realizar una compra")).toLowerCase();
-
-// while (consulta === "si") {
-//     let prenda = (prompt("que prenda desea comprar")).toLowerCase();
-//     let verdadero = stock.some((el) => el.nombre === prenda);
-//     let cantidadPrenda = parseInt(prompt("Cuantas prendas desea comprar"));
-//     if (verdadero === true) {
-//         for (let el of stock) {
-//             if (el.nombre === prenda) {
-//                 if (el.cantidad > cantidadPrenda) {
-//                     botonCompra(el, cantidadPrenda);
-
-//                     alert(`agregaste ${el.nombre} a tu carrito`)
-//                 } else {
-//                     alert(`solo contamos con ${el.cantidad} prendas de este tipo`)
-//                 }
-//             }
-//         }
-//     } else {
-//         alert("No contamos con ese producto")
-//     }
-//     consulta = prompt("desea realizar otra compra")
-// };
-
-// let consulta2 = (prompt("Querés saber cuantos productos estas llevando carrito")).toLowerCase();
-
-// if (consulta2 === "si") {
-
-//     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
-//     alert(`Llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
-
-// }
-
-// let consulta4 = (prompt(`Desea eliminar algún producto de su carrito`)).toLowerCase();
-
-// while (consulta4 === "si") {
-
-//     let prenda = (prompt("Qué prenda desea eliminar")).toLowerCase();
-//     let verdadero = carrito.some((el) => el.producto === prenda);
-
-//     let cantidadPrenda = parseInt(prompt("Cuanta cantidad"));
-//     let verdadero2 = carrito.some((el) => el.cantidades >= cantidadPrenda);
-//     if (verdadero === true) {
-//         if (verdadero2 === true) {
-//             for (let el of stock) {
-//                 if (prenda === el.nombre && el.cantidades >= cantidadPrenda) {
-
-//                     botonQuitarCompra(el, cantidadPrenda);
-//                     alert(`sacaste ${cantidadPrenda} ${prenda} de tu carrito`)
-
-//                     let cantidad = carrito.reduce((acc, el) => acc + parseInt(el.cantidades), 0);
-//                     alert(`Ahora llevás en tu carrito ${cantidad} productos con un total de ${subtotal()}$`);
-
-//                 }
-//             }
-//         } else {
-//             alert("No contas con esa cantidad de producto en tu carrito")
-//         }
-//     } else {
-//         alert("Ese producto no se encuentra en el carrito")
-//     }
-//     consulta4 = (prompt("Desea eliminar otro producto")).toLowerCase()
-// }
-
-// let consulta3 = (prompt("queres aplicar algún descuento")).toLowerCase();
-
-// if (consulta3 === "si") {
-
-//     let codigo = (prompt("Decinos tu código de descuento")).toLowerCase();
-
-//     descuento(codigo);
-
-
-//     if (total != subtotal()) {
-//         alert(`Tu monto anterior era de ${subtotal()}$`)
-//         alert(`Tu monto con el descuento es del ${total}$`)
-//     } else {
-//         alert(`El codigo no es válido`)
-//     }
-// }
