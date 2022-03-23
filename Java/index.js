@@ -1,7 +1,3 @@
-
-
-
-
 const carrito = [];
 const subtotal = () => carrito.reduce((acc, el) => acc + el.precio, 0);
 let total = subtotal;
@@ -9,7 +5,7 @@ let total = subtotal;
 
 // Funciones
 
-const guardarStorage = (clave, valor) =>{
+const guardarStorage = (clave, valor) => {
     localStorage.setItem(clave, valor)
 }
 const basePorcentaje = (n) => {
@@ -137,10 +133,26 @@ let linkCargaProducto = document.getElementById("linkCargaProducto");
 
 // EVENTOS
 
+window.onload = () =>{
+    let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
+    if (productoCarritoGuardado != null){
+    productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
+    seccionPrecio[0].innerHTML = `${productoCarritoGuardado}`;
+    final.push(productoCarritoGuardado);
+}
+    let carritoGuardado = localStorage.getItem("carritoStorage");
+    carritoGuardado = JSON.parse(carritoGuardado);
+    
+}
+
+
+
+
 
 for (let i = 0; i < stock.length; i++) {
 
     botonCarrito[i].addEventListener("click", agregarCarrito);
+
     function agregarCarrito() {
         if (stock[i].cantidad >= 1 && stock[i].cantidad >= botonCantidad[i].value) {
             botonCompra(stock[i], botonCantidad[i].value);
@@ -150,15 +162,22 @@ for (let i = 0; i < stock.length; i++) {
                     final.push(`<div class="d-flex justify-content-around recuadro"> <p>${el.producto}</p> <p>${el.cantidades}</p> <p>${el.precio}</p> </div>`);
 
                     seccionPrecio[0].innerHTML = `${final.join("")} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div> `;
-
+                    let ProductosCarritoStorage = JSON.stringify(seccionPrecio[0].innerHTML);
+                    guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                    let carritoStorage = JSON.stringify(carrito);
+                    guardarStorage("carritoStorage", carritoStorage) 
                 }
             }
         } else {
             ventaProducto[i].innerHTML = "";
 
             ventaProducto[i].innerHTML = `${ventaProducto[i].innerHTML} <p>Fuera de stock</p> <br> Stock: ${stock[i].cantidad}`
+
         }
-    }}
+
+
+    }
+}
 
 
 
@@ -214,24 +233,24 @@ cargarProducto.onclick = () => {
     formularioCargaProducto.onsubmit = (e) => {
 
         e.preventDefault();
-    
+
         DatosCarga = e.target;
 
 
         let nombre = DatosCarga[0].value;
-            let tipo = DatosCarga[1].value;
-            let talle = DatosCarga[2].value;
-            let categoria = DatosCarga[3].value;
-            let precio = DatosCarga[4].value;
-            let cantidad = DatosCarga[5].value;
-            let imagen = DatosCarga [6].value;
-        
-        
-
-     nombre2 = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
+        let tipo = DatosCarga[1].value;
+        let talle = DatosCarga[2].value;
+        let categoria = DatosCarga[3].value;
+        let precio = DatosCarga[4].value;
+        let cantidad = DatosCarga[5].value;
+        let imagen = DatosCarga[6].value;
 
 
-     tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
+
+        nombre2 = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
+
+
+        tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
      <img
        src="${imagen}"
        class="card-img-top" alt="...">
@@ -242,18 +261,13 @@ cargarProducto.onclick = () => {
      </div>
    </div>`
 
-   padreTarjeta.append(tarjetanueva);
+        padreTarjeta.append(tarjetanueva);
 
-stock.push(nombre2);
+        stock.push(nombre2);
         let nombre2Storage = JSON.stringify(nombre2);
-        guardarStorage("ProductosNuevos", nombre2Storage)
+        guardarStorage("ProductosNuevos", nombre2Storage);
 
     }
 
-    
+
 }
-
-
-
-
-
