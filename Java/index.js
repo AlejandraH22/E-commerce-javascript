@@ -8,9 +8,11 @@ let total = subtotal;
 const guardarStorage = (clave, valor) => {
     localStorage.setItem(clave, valor)
 }
+
 const basePorcentaje = (n) => {
     return (m) => (m * n) / 100
 }
+
 const porcentaje10 = basePorcentaje(10);
 const porcentaje25 = basePorcentaje(25);
 const porcentaje35 = basePorcentaje(35);
@@ -126,27 +128,52 @@ let botonSubmit = document.getElementsByClassName("boton2");
 let usuario = document.getElementById("usuario");
 let contraseña = document.getElementById("contraseña");
 let linkCargaProducto = document.getElementById("linkCargaProducto");
-
+let imagenProductos = document.getElementsByClassName("imagenProductos")
 
 
 
 
 // EVENTOS
 
-window.onload = () =>{
+
+// Cargar Página
+
+window.onload = () => {
     let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
-    if (productoCarritoGuardado != null){
-    productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
-    seccionPrecio[0].innerHTML = `${productoCarritoGuardado}`;
-    final.push(productoCarritoGuardado);
-}
+    if (productoCarritoGuardado != null) {
+        productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
+        seccionPrecio[0].innerHTML = `${productoCarritoGuardado}`;
+        final.push(productoCarritoGuardado);
+    }
+
     let carritoGuardado = localStorage.getItem("carritoStorage");
-    carritoGuardado = JSON.parse(carritoGuardado);
-    
+
+    if (carritoGuardado != undefined) {
+
+        carritoGuardado = JSON.parse(carritoGuardado);
+
+
+        for (let i = 0; i < carritoGuardado.length; i++) {
+            for (let e of stock){
+            if (carritoGuardado[i].producto === e.nombre) {
+                
+                e.cantidad = e.cantidad - carritoGuardado[i].cantidades;
+                
+                if (e.cantidad === 0){
+                    e.stock = "no";
+                }
+
+                carrito.push(carritoGuardado[i]);
+
+            }
+        }
+
+    }
+    }
 }
 
 
-
+// Agregar productos a carrito
 
 
 for (let i = 0; i < stock.length; i++) {
@@ -159,17 +186,17 @@ for (let i = 0; i < stock.length; i++) {
             if (botonCantidad[i].value > 0) {
                 final.length = 0;
                 for (let el of carrito) {
-                    final.push(`<div class="d-flex justify-content-around recuadro"> <p>${el.producto}</p> <p>${el.cantidades}</p> <p>${el.precio}</p> </div>`);
+                    final.push(`<div class="d-flex justify-content-between"> <img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div> <p>${el.producto}</p> <p>${el.cantidades}</p> <p>${el.precio}</p></div> </div>`);
 
-                    seccionPrecio[0].innerHTML = `${final.join("")} ${subtotalPantalla.innerHTML = `<div class="recuadro d-flex justify-content-end"> Subtotal = ${subtotal()}`} </div> `;
+                    carritoProductosElegidos.innerHTML = `<div>${final.join("")}  <div class="d-flex justify-content-end"> Subtotal = ${subtotal()}} </div></div> `;
+                   
                     let ProductosCarritoStorage = JSON.stringify(seccionPrecio[0].innerHTML);
                     guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
-                    guardarStorage("carritoStorage", carritoStorage) 
+                    guardarStorage("carritoStorage", carritoStorage)
                 }
             }
         } else {
-            ventaProducto[i].innerHTML = "";
 
             ventaProducto[i].innerHTML = `${ventaProducto[i].innerHTML} <p>Fuera de stock</p> <br> Stock: ${stock[i].cantidad}`
 
@@ -180,7 +207,27 @@ for (let i = 0; i < stock.length; i++) {
 }
 
 
+let iconoCarrito = document.getElementById("carrito");
+let productosEnCarrito = document.getElementById("posBotonCarrito");
+let textoCarritoVacio = document.getElementsByClassName("carritoVacio");
+let carritoProductosElegidos = document.getElementById("carritoProductosElegidos");
 
+
+iconoCarrito.onclick = () =>{
+
+    productosEnCarrito.style.display = "block";
+    contenedorForm.style.display = "none";
+    
+    if (carrito[0] != undefined){
+
+        textoCarritoVacio[0].innerHTML = `Mi pedido`;
+        textoCarritoVacio[0].style.borderBottom = "solid 1px black"
+
+
+    }
+
+
+}
 
 
 
@@ -204,16 +251,12 @@ let padreTarjeta = document.getElementById("padreTarjeta")
 
 
 
-
-
-
-
 // EVENTOS
 
 iconoCuenta.onclick = () => {
 
     contenedorForm.style.display = "block";
-
+    productosEnCarrito.style.display = "none";
 
     formularioIngreso.onsubmit = (e) => {
         e.preventDefault();
