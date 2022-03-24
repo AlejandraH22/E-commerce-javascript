@@ -96,6 +96,9 @@ li {
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .muestrarioCarrito {
             margin-bottom: 1rem;
             border-bottom: 0.5px solid; }
+          .header .navbar .navbar-collapse #carrito #posBotonCarrito #carritoProductosElegidos {
+            height: 50%;
+            overflow-y: scroll; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito {
             padding-right: 1rem;
             align-items: center; }
