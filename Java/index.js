@@ -142,7 +142,7 @@ window.onload = () => {
     let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
     if (productoCarritoGuardado != null) {
         productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
-        seccionPrecio[0].innerHTML = `${productoCarritoGuardado}`;
+        carritoProductosElegidos.innerHTML = `${productoCarritoGuardado}`;
         final.push(productoCarritoGuardado);
     }
 
@@ -186,11 +186,22 @@ for (let i = 0; i < stock.length; i++) {
             if (botonCantidad[i].value > 0) {
                 final.length = 0;
                 for (let el of carrito) {
-                    final.push(`<div class="d-flex justify-content-between"> <img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div> <p>${el.producto}</p> <p>${el.cantidades}</p> <p>${el.precio}</p></div> </div>`);
 
-                    carritoProductosElegidos.innerHTML = `<div>${final.join("")}  <div class="d-flex justify-content-end"> Subtotal = ${subtotal()}} </div></div> `;
+                    final.push(`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito"> <p>${el.producto}</p> <p>${el.cantidades}</p> <p>${el.precio}$</p></div></div>`);
+
+                    carritoProductosElegidos.innerHTML = `${final.join("")} <div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div> `;
                    
-                    let ProductosCarritoStorage = JSON.stringify(seccionPrecio[0].innerHTML);
+
+                    if (carrito[0] != undefined){
+
+                        textoCarritoVacio[0].innerHTML = `Mi pedido`;
+                        textoCarritoVacio[0].style.borderBottom = "solid 1px black"
+                
+                
+                    }
+                
+
+                    let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
                     guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
                     guardarStorage("carritoStorage", carritoStorage)
