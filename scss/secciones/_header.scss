@@ -101,9 +101,14 @@
                     -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     
                     .imagenEnCarrito{
-                        width: 8rem;
-                        height: 13rem;
+                        width: 6rem;
+                        height: 9rem;
                         margin: 0 1rem;
+                    }
+
+                    .muestrarioCarrito{
+                        margin-bottom: 1rem;
+                        border-bottom: 0.5px solid;
                     }
                     
                     .productosEnCarrito{
