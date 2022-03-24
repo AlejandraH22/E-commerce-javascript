@@ -196,7 +196,6 @@ for (let i = 0; i < stock.length; i++) {
                     if (carrito[0] != undefined) {
 
                         textoCarritoVacio[0].innerHTML = `Mi pedido`;
-                        textoCarritoVacio[0].style.borderBottom = "solid 1px black"
 
 
                     }
@@ -234,12 +233,22 @@ iconoCarrito.onclick = () => {
     if (carrito[0] != undefined) {
 
         textoCarritoVacio[0].innerHTML = `Mi pedido`;
-        
-
 
     }
 
 
+}
+
+// CIERRE CARRITO/USUARIO
+
+let cruzDeCierre = document.getElementsByClassName("cruzCierre");
+
+
+for (let i = 0; i < cruzDeCierre.length; i++){
+    cruzDeCierre[i].onclick = () => {
+        productosEnCarrito.style.display = "none";
+        contenedorForm.style.display = "none";
+    }
 }
 
 
