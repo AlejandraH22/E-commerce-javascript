@@ -54,11 +54,7 @@ const botonCompra = (compra, cantidad) => {
 const botonQuitarCompra = (quita, cantidad) => {
     let precioParcial = quita.precio * cantidad;
     quita.cantidad = quita.cantidad + cantidad;
-    if (quita.cantidad > 0) {
-        quita.stock = "si";
-    } else {
-        quita.stock = "no"
-    }
+     quita.cantidad > 0 ? quita.stock = "si" : quita.stock = "no";
     for (let el of carrito) {
         if (quita.nombre === el.producto) {
             el.cantidades = el.cantidades - cantidad;
@@ -160,9 +156,8 @@ window.onload = () => {
 
                     e.cantidad = e.cantidad - carritoGuardado[i].cantidades;
 
-                    if (e.cantidad === 0) {
-                        e.stock = "no";
-                    }
+                    e.cantidad === 0 ? e.stock = "no" : e.stock = "si"
+                    
 
                     carrito.push(carritoGuardado[i]);
 
@@ -206,14 +201,7 @@ for (let i = 0; i < stock.length; i++) {
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
 
 
-                    if (carrito[0] != undefined) {
-
-                        textoCarritoVacio[0].innerHTML = `Mi pedido`;
-
-
-                    }
-
-
+                    textoCarritoVacio[0].innerHTML= carrito[0] != undefined &&  `Mi pedido`;
                     let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
                     guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
