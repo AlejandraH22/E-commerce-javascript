@@ -154,21 +154,21 @@ window.onload = () => {
 
 
         for (let i = 0; i < carritoGuardado.length; i++) {
-            for (let e of stock){
-            if (carritoGuardado[i].producto === e.nombre) {
-                
-                e.cantidad = e.cantidad - carritoGuardado[i].cantidades;
-                
-                if (e.cantidad === 0){
-                    e.stock = "no";
+            for (let e of stock) {
+                if (carritoGuardado[i].producto === e.nombre) {
+
+                    e.cantidad = e.cantidad - carritoGuardado[i].cantidades;
+
+                    if (e.cantidad === 0) {
+                        e.stock = "no";
+                    }
+
+                    carrito.push(carritoGuardado[i]);
+
                 }
-
-                carrito.push(carritoGuardado[i]);
-
             }
-        }
 
-    }
+        }
     }
 }
 
@@ -191,16 +191,16 @@ for (let i = 0; i < stock.length; i++) {
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
-                   
 
-                    if (carrito[0] != undefined){
+
+                    if (carrito[0] != undefined) {
 
                         textoCarritoVacio[0].innerHTML = `Mi pedido`;
                         textoCarritoVacio[0].style.borderBottom = "solid 1px black"
-                
-                
+
+
                     }
-                
+
 
                     let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
                     guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
@@ -226,15 +226,15 @@ let carritoProductosElegidos = document.getElementById("carritoProductosElegidos
 let carritoSubtotal = document.getElementById("carritoSubtotal");
 
 
-iconoCarrito.onclick = () =>{
+iconoCarrito.onclick = () => {
 
     productosEnCarrito.style.display = "block";
     contenedorForm.style.display = "none";
-    
-    if (carrito[0] != undefined){
+
+    if (carrito[0] != undefined) {
 
         textoCarritoVacio[0].innerHTML = `Mi pedido`;
-        textoCarritoVacio[0].style.borderBottom = "solid 1px black"
+        
 
 
     }
