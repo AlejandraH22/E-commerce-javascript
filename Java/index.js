@@ -121,7 +121,7 @@ let listaContador = document.querySelectorAll(".listaContador");
 let seccionPrecio = document.querySelectorAll(".precios")
 let final = [];
 let subtotalPantalla = document.getElementById("subtotal");
-let iconoCuenta = document.getElementById("cuenta");
+let iconoCuenta = document.getElementById("iconoCuenta");
 let formularioIngreso = document.getElementById("formulario");
 let contenedorForm = document.getElementById("contenedorForm");
 let botonSubmit = document.getElementsByClassName("boton2");
@@ -144,6 +144,7 @@ window.onload = () => {
         productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
         carritoProductosElegidos.innerHTML = `${productoCarritoGuardado}`;
         final.push(productoCarritoGuardado);
+
     }
 
     let carritoGuardado = localStorage.getItem("carritoStorage");
@@ -169,7 +170,19 @@ window.onload = () => {
             }
 
         }
+        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
     }
+
+    let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
+
+if(productoGuardadoEnStorage != undefined){
+
+    productoGuardadoEnStorage = JSON.parse(productoGuardadoEnStorage);
+    productoNuevo = new Prendas (productoGuardadoEnStorage["nombre"], productoGuardadoEnStorage["tipo"],productoGuardadoEnStorage["talle"],productoGuardadoEnStorage["categoria"],productoGuardadoEnStorage["precio"],productoGuardadoEnStorage["cantidad"]);
+
+    
+}
+
 }
 
 
@@ -217,8 +230,7 @@ for (let i = 0; i < stock.length; i++) {
     }
 }
 
-
-let iconoCarrito = document.getElementById("carrito");
+let iconoCarrito = document.getElementById("iconoCarrito");
 let productosEnCarrito = document.getElementById("posBotonCarrito");
 let textoCarritoVacio = document.getElementsByClassName("carritoVacio");
 let carritoProductosElegidos = document.getElementById("carritoProductosElegidos");
@@ -233,6 +245,7 @@ iconoCarrito.onclick = () => {
     if (carrito[0] != undefined) {
 
         textoCarritoVacio[0].innerHTML = `Mi pedido`;
+        carritoProductosElegidos.style.overflowY = "scroll";
 
     }
 
@@ -244,13 +257,20 @@ iconoCarrito.onclick = () => {
 let cruzDeCierre = document.getElementsByClassName("cruzCierre");
 
 
-for (let i = 0; i < cruzDeCierre.length; i++){
-    cruzDeCierre[i].onclick = () => {
+for (let i = 0; i < cruzDeCierre.length; i++) {
+    cruzDeCierre[i].onclick = (e) => {
+        e.preventDefault();
         productosEnCarrito.style.display = "none";
         contenedorForm.style.display = "none";
     }
 }
 
+cruzDeCierre[5].onclick = () =>{
+    
+    ventanaCargaProducto.style.display = "none";
+
+
+}
 
 
 
@@ -269,7 +289,44 @@ let DatosCarga;
 let contador = 0;
 let nombre2;
 let tarjetanueva = document.createElement("div");
-let padreTarjeta = document.getElementById("padreTarjeta")
+let padreTarjeta = document.getElementById("padreTarjeta");
+
+
+
+// REGISTRAR USUARIO
+
+let botonRegistrarme = document.getElementsByClassName("boton3");
+let formularioDeRegistro = document.getElementById("formularioDeRegistro");
+let formRegistrarse = document.getElementById("formRegistrarse");
+let botonCompletarRegistro = document.getElementsByClassName("boton4")
+let usuariosTitulo = document.getElementById("usuariosTitulo")
+
+
+// botonRegistrarme[0].onclick = (e) =>{
+
+//     e.preventDefault();
+
+//     formularioIngreso.style.display = "none";
+//     formularioDeRegistro.style.display = "block"
+//     usuariosTitulo.innerText = "Registro de cuentas"
+
+//     botonCompletarRegistro.onsubmit = (el) => {
+//         el.preventDefault;
+
+//         let datosUsuarioNuevo = el.target;
+
+//         let nombreUsuarioNuevo =  (datosUsuarioNuevo[0].value).join("");
+
+//          nombreUsuarioNuevo = new Registrar (datosUsuarioNuevo[0].value, datosUsuarioNuevo[1].value, datosUsuarioNuevo[2].value);
+
+//          let usuarioNuevoStorage = JSON.stringify(nombreUsuarioNuevo);
+//          guardarStorage("usuarioNuevo", usuarioNuevoStorage);
+         
+
+//      }
+    
+
+// }
 
 
 
@@ -292,6 +349,8 @@ iconoCuenta.onclick = () => {
 
 }
 
+
+
 cargarProducto.onclick = () => {
     ventanaCargaProducto.style.display = "block";
 
@@ -309,10 +368,11 @@ cargarProducto.onclick = () => {
         let precio = DatosCarga[4].value;
         let cantidad = DatosCarga[5].value;
         let imagen = DatosCarga[6].value;
+     
 
 
 
-        nombre2 = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
+        productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
 
 
         tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
@@ -328,9 +388,9 @@ cargarProducto.onclick = () => {
 
         padreTarjeta.append(tarjetanueva);
 
-        stock.push(nombre2);
-        let nombre2Storage = JSON.stringify(nombre2);
-        guardarStorage("ProductosNuevos", nombre2Storage);
+    
+        let productoNuevoStorage = JSON.stringify(productoNuevo);
+        guardarStorage("productosNuevos", productoNuevoStorage);
 
     }
 

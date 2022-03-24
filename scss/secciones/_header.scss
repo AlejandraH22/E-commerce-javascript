@@ -15,13 +15,14 @@
             }
         }
 
-.navbar-nav{
-    padding-top: 1rem;
-    .cruzCierre{
-        width: 15px;
-        height: auto;
-    }
-}
+        .navbar-nav {
+            padding-top: 1rem;
+
+            .cruzCierre {
+                width: 15px;
+                height: auto;
+            }
+        }
 
         #linkCargaProducto {
             display: none;
@@ -43,6 +44,10 @@
             -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
             text-align: center;
             padding: 3rem;
+
+            .cargadorDeProductosTitulos{
+                padding-left: 30%;
+            }
 
             #botonCargaProducto {
                 border-radius: 30px;
@@ -81,14 +86,21 @@
                     -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
 
-                    .boton2 {
+                    .boton2,
+                    .boton3, .boton4 {
                         border-radius: 30px;
                         background-color: #D74E09;
                         border-color: #D74E09;
                     }
 
+                    #formularioDeRegistro{
+                        display: none;
+                    }
+
                 }
             }
+
+
 
             #carrito {
                 width: 100%;
@@ -107,24 +119,24 @@
                     box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
-                    
-                    .imagenEnCarrito{
+
+                    .imagenEnCarrito {
                         width: 6rem;
                         height: 9rem;
                         margin: 0 1rem;
                     }
 
-                    .muestrarioCarrito{
+                    .muestrarioCarrito {
                         margin-bottom: 1rem;
                         border-bottom: 0.5px solid;
                     }
 
-                    #carritoProductosElegidos{
+                    #carritoProductosElegidos {
                         height: 50%;
-                        overflow-y: scroll;
+
                     }
-                    
-                    .productosEnCarrito{
+
+                    .productosEnCarrito {
                         padding-right: 1rem;
                         align-items: center;
                     }

@@ -48,6 +48,8 @@ li {
       -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
       text-align: center;
       padding: 3rem; }
+      .header .navbar #ventanaCargaProducto .cargadorDeProductosTitulos {
+        padding-left: 30%; }
       .header .navbar #ventanaCargaProducto #botonCargaProducto {
         border-radius: 30px;
         background-color: #D74E09;
@@ -74,10 +76,13 @@ li {
           box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
           -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
           -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75); }
-          .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton2 {
+          .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton2,
+          .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton3, .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton4 {
             border-radius: 30px;
             background-color: #D74E09;
             border-color: #D74E09; }
+          .header .navbar .navbar-collapse #cuenta .posBotonCuenta #formularioDeRegistro {
+            display: none; }
       .header .navbar .navbar-collapse #carrito {
         width: 100%;
         position: relative;
@@ -102,8 +107,7 @@ li {
             margin-bottom: 1rem;
             border-bottom: 0.5px solid; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito #carritoProductosElegidos {
-            height: 50%;
-            overflow-y: scroll; }
+            height: 50%; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito {
             padding-right: 1rem;
             align-items: center; }

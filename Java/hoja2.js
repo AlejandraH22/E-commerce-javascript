@@ -36,3 +36,15 @@ const stock = [
     bermuda,
     poleraBeige
 ];
+
+
+
+
+class Registrar{
+
+    constructor(nombre, edad, mail){
+        this.nombre = nombre;
+        this.edad = edad;
+        this.mail = mail;
+    }
+}
