@@ -175,7 +175,6 @@ if(productoGuardadoEnStorage != undefined){
     productoGuardadoEnStorage = JSON.parse(productoGuardadoEnStorage);
     productoNuevo = new Prendas (productoGuardadoEnStorage["nombre"], productoGuardadoEnStorage["tipo"],productoGuardadoEnStorage["talle"],productoGuardadoEnStorage["categoria"],productoGuardadoEnStorage["precio"],productoGuardadoEnStorage["cantidad"]);
 
-    
 }
 
 }
@@ -383,4 +382,54 @@ cargarProducto.onclick = () => {
     }
 
 
+}
+
+
+// Buscador Por nombre
+
+let botonesBuscadorPorNombre = document.getElementsByClassName("botonesBuscadorPorNombre");
+let nombreBuscadorPorNombre = document.getElementsByClassName("nombreBuscadorPorNombre");
+let cardsCreadas = document.getElementsByClassName("card");
+let cardsTexto = document.getElementsByClassName("card-text");
+function eliminarAcentos(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+}
+
+
+for (let i = 0; i < botonesBuscadorPorNombre.length; i++){
+
+botonesBuscadorPorNombre[i].onclick = () =>{
+
+if (botonesBuscadorPorNombre[i].checked === true){
+
+
+    let textoBuscador = eliminarAcentos((nombreBuscadorPorNombre[i].textContent).toLowerCase());
+
+for (let o = 0; o < botonesBuscadorPorNombre.length; o++){
+botonesBuscadorPorNombre[i] != botonesBuscadorPorNombre[o] && (botonesBuscadorPorNombre[o].checked = null);
+}
+
+for (let o = 0; o < cardsTexto.length; o++){
+    cardsCreadas[o].style.display = "none";
+    let textoCard = eliminarAcentos((cardsTexto[o].textContent).toLowerCase());
+    
+
+stock.forEach((el) =>{ 
+
+    if (el.nombre === textoCard && el.categoria === textoBuscador){
+
+        cardsCreadas[o].style.display = "flex";
+
+    }
+
+
+})
+}
+
+
+
+}
+
+
+}
 }

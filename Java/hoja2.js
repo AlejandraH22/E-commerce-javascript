@@ -22,7 +22,7 @@ const jeanCeleste = new Prendas("jean celeste", "holgado", "42", "jeans", 6000, 
 const pantalonGamuza = new Prendas("pantalon de gamuza", "3/4", "38 y 1/2", "pantalones", 1200, 50);
 const pantalonLargo = new Prendas("pantalon largo", "pantalon", "40", "pantalones", 8000, 81);
 const bermuda = new Prendas("bermuda", "pantalon corto", "40", "pantalones", 3500, 25)
-const poleraBeige = new Prendas("polera beige", "manga larga", "xl", "polera", 7500, 40);
+const poleraBeige = new Prendas("polera beige", "manga larga", "xl", "poleras", 7500, 40);
 
 
 const stock = [
