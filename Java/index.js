@@ -95,17 +95,6 @@ const buscadorPorPrecio = () => {
 }
 
 
-const buscadorPorPalabra = () => {
-    let palabra = prompt("Diganos una categoría entre remeras, pantalones, jeans o polera");
-    palabra = palabra.toLowerCase();
-    if (palabra === "remeras" || palabra === "pantalones" || palabra === "jeans" || palabra === "polera") {
-        let buscador = stock.filter((el) => el.categoria == palabra);
-        buscador.forEach((el) => alert(el.nombre))
-    } else {
-        alert("No contamos con ningún producto con ese nombre")
-    }
-}
-
 // Botones de compra/ agregar a carrito
 
 // EMPARENTAMIENTO DOM
@@ -391,14 +380,19 @@ let botonesBuscadorPorNombre = document.getElementsByClassName("botonesBuscadorP
 let nombreBuscadorPorNombre = document.getElementsByClassName("nombreBuscadorPorNombre");
 let cardsCreadas = document.getElementsByClassName("card");
 let cardsTexto = document.getElementsByClassName("card-text");
+let click = 0;
 function eliminarAcentos(texto) {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
 }
 
 
+
 for (let i = 0; i < botonesBuscadorPorNombre.length; i++){
 
+
 botonesBuscadorPorNombre[i].onclick = () =>{
+
+    
 
 if (botonesBuscadorPorNombre[i].checked === true){
 
@@ -422,14 +416,29 @@ stock.forEach((el) =>{
 
     }
 
+    
+
 
 })
 }
 
 
-
 }
 
 
 }
+
+
+
+
+}
+
+for (let i = 0; i < botonesBuscadorPorNombre.length; i++){
+
+botonesBuscadorPorNombre[i].ondblclic = () => {
+
+    for (let o = 0; o < cardsCreadas.length; o++){
+        cardsCreadas[o].style.display = "flex";}
+}
+
 }
