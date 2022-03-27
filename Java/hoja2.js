@@ -42,9 +42,18 @@ const stock = [
 
 class Registrar{
 
-    constructor(nombre, edad, mail){
+    constructor(nombre, edad, mail, contraseña){
         this.nombre = nombre;
         this.edad = edad;
         this.mail = mail;
+        this.contraseña = contraseña;
     }
 }
+
+const mariano = new Registrar("Mariano", "29", "mariano.p.z@hotmail.com", "1234");
+const stefano = new Registrar ("stefano", "xx", "xx", "1234");
+
+const usuarios = [
+    mariano,
+    stefano
+]

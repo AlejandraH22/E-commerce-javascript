@@ -54,7 +54,7 @@ const botonCompra = (compra, cantidad) => {
 const botonQuitarCompra = (quita, cantidad) => {
     let precioParcial = quita.precio * cantidad;
     quita.cantidad = quita.cantidad + cantidad;
-     quita.cantidad > 0 ? quita.stock = "si" : quita.stock = "no";
+    quita.cantidad > 0 ? quita.stock = "si" : quita.stock = "no";
     for (let el of carrito) {
         if (quita.nombre === el.producto) {
             el.cantidades = el.cantidades - cantidad;
@@ -146,7 +146,7 @@ window.onload = () => {
                     e.cantidad = e.cantidad - carritoGuardado[i].cantidades;
 
                     e.cantidad === 0 ? e.stock = "no" : e.stock = "si"
-                    
+
 
                     carrito.push(carritoGuardado[i]);
 
@@ -159,12 +159,28 @@ window.onload = () => {
 
     let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
 
-if(productoGuardadoEnStorage != undefined){
+    if (productoGuardadoEnStorage != undefined) {
 
-    productoGuardadoEnStorage = JSON.parse(productoGuardadoEnStorage);
-    productoNuevo = new Prendas (productoGuardadoEnStorage["nombre"], productoGuardadoEnStorage["tipo"],productoGuardadoEnStorage["talle"],productoGuardadoEnStorage["categoria"],productoGuardadoEnStorage["precio"],productoGuardadoEnStorage["cantidad"]);
+        productoGuardadoEnStorage = JSON.parse(productoGuardadoEnStorage);
+        productoNuevo = new Prendas(productoGuardadoEnStorage["nombre"], productoGuardadoEnStorage["tipo"], productoGuardadoEnStorage["talle"], productoGuardadoEnStorage["categoria"], productoGuardadoEnStorage["precio"], productoGuardadoEnStorage["cantidad"]);
 
-}
+
+        stock.push(productoNuevo);
+    }
+
+
+    let usuarioGuardadoEnStorage = localStorage.getItem("usuarioNuevo");
+    
+    if (usuarioGuardadoEnStorage != undefined){
+
+        usuarioGuardadoEnStorage = JSON.parse(usuarioGuardadoEnStorage);
+
+        usuarioNuevo = new Registrar (usuarioGuardadoEnStorage["nombre"], usuarioGuardadoEnStorage["edad"], usuarioGuardadoEnStorage["mail"], usuarioGuardadoEnStorage["contraseña"])
+
+        usuarios.push(usuarioNuevo)
+
+    }
+
 
 }
 
@@ -189,7 +205,7 @@ for (let i = 0; i < stock.length; i++) {
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
 
 
-                    textoCarritoVacio[0].innerHTML= carrito[0] != undefined &&  `Mi pedido`;
+                    textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
                     let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
                     guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
@@ -241,8 +257,8 @@ for (let i = 0; i < cruzDeCierre.length; i++) {
     }
 }
 
-cruzDeCierre[5].onclick = () =>{
-    
+cruzDeCierre[5].onclick = () => {
+
     ventanaCargaProducto.style.display = "none";
 
 
@@ -278,35 +294,36 @@ let botonCompletarRegistro = document.getElementsByClassName("boton4")
 let usuariosTitulo = document.getElementById("usuariosTitulo")
 
 
-// botonRegistrarme[0].onclick = (e) =>{
+botonRegistrarme[0].onclick = (e) =>{
 
-//     e.preventDefault();
+    e.preventDefault();
 
-//     formularioIngreso.style.display = "none";
-//     formularioDeRegistro.style.display = "block"
-//     usuariosTitulo.innerText = "Registro de cuentas"
+    formularioIngreso.style.display = "none";
+    formularioDeRegistro.style.display = "block"
+    usuariosTitulo.innerText = "Registro de cuentas"
 
-//     botonCompletarRegistro.onsubmit = (el) => {
-//         el.preventDefault;
+    formRegistrarse.onsubmit = (el) => {
+        el.preventDefault;
 
-//         let datosUsuarioNuevo = el.target;
+        let datosUsuarioNuevo = el.target;
 
-//         let nombreUsuarioNuevo =  (datosUsuarioNuevo[0].value).join("");
+        const usuarioNuevo = new Registrar (datosUsuarioNuevo[0].value, datosUsuarioNuevo[1].value, datosUsuarioNuevo[2].value, datosUsuarioNuevo[3].value);
 
-//          nombreUsuarioNuevo = new Registrar (datosUsuarioNuevo[0].value, datosUsuarioNuevo[1].value, datosUsuarioNuevo[2].value);
+         let usuarioNuevoStorage = JSON.stringify(usuarioNuevo);
+         guardarStorage("usuarioNuevo", usuarioNuevoStorage);
 
-//          let usuarioNuevoStorage = JSON.stringify(nombreUsuarioNuevo);
-//          guardarStorage("usuarioNuevo", usuarioNuevoStorage);
-         
 
-//      }
-    
+     }
 
-// }
+
+}
 
 
 
 // EVENTOS
+
+
+// CARRITO
 
 iconoCuenta.onclick = () => {
 
@@ -324,6 +341,9 @@ iconoCuenta.onclick = () => {
     }
 
 }
+
+
+// CARGAR PRODUCTOS
 
 
 
@@ -344,7 +364,7 @@ cargarProducto.onclick = () => {
         let precio = DatosCarga[4].value;
         let cantidad = DatosCarga[5].value;
         let imagen = DatosCarga[6].value;
-     
+
 
 
 
@@ -364,7 +384,7 @@ cargarProducto.onclick = () => {
 
         padreTarjeta.append(tarjetanueva);
 
-    
+
         let productoNuevoStorage = JSON.stringify(productoNuevo);
         guardarStorage("productosNuevos", productoNuevoStorage);
 
@@ -381,64 +401,60 @@ let nombreBuscadorPorNombre = document.getElementsByClassName("nombreBuscadorPor
 let cardsCreadas = document.getElementsByClassName("card");
 let cardsTexto = document.getElementsByClassName("card-text");
 let click = 0;
+
+
 function eliminarAcentos(texto) {
-    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 }
 
 
 
-for (let i = 0; i < botonesBuscadorPorNombre.length; i++){
+for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
 
 
-botonesBuscadorPorNombre[i].onclick = () =>{
+    botonesBuscadorPorNombre[i].onchange = () => {
+        
 
-    
+        if (botonesBuscadorPorNombre[i].checked === true) {
 
-if (botonesBuscadorPorNombre[i].checked === true){
+            let textoBuscador = eliminarAcentos((nombreBuscadorPorNombre[i].textContent).toLowerCase());
+            click += 1;
+
+            for (let o = 0; o < botonesBuscadorPorNombre.length; o++) {
+            
+                botonesBuscadorPorNombre[i] != botonesBuscadorPorNombre[o] && (botonesBuscadorPorNombre[o].checked = null);
+                
+            //  let duda = botonesBuscadorPorNombre[i].some((el) => el.checked === true)
+            //  if (duda = true){
+            //      botonesBuscadorPorNombre[i].checked = null;
+            //  }
+           
+            }
+
+            for (let o = 0; o < cardsTexto.length; o++) {
+                cardsCreadas[o].style.display = "none";
+                let textoCard = eliminarAcentos((cardsTexto[o].textContent).toLowerCase());
 
 
-    let textoBuscador = eliminarAcentos((nombreBuscadorPorNombre[i].textContent).toLowerCase());
+                stock.forEach((el) => {
 
-for (let o = 0; o < botonesBuscadorPorNombre.length; o++){
-botonesBuscadorPorNombre[i] != botonesBuscadorPorNombre[o] && (botonesBuscadorPorNombre[o].checked = null);
-}
+                    if (el.nombre === textoCard && el.categoria === textoBuscador) {
 
-for (let o = 0; o < cardsTexto.length; o++){
-    cardsCreadas[o].style.display = "none";
-    let textoCard = eliminarAcentos((cardsTexto[o].textContent).toLowerCase());
-    
+                        cardsCreadas[o].style.display = "flex";
 
-stock.forEach((el) =>{ 
+                    }
+                })
+            }
+        } else {
+            for (let o = 0; o < cardsTexto.length; o++) {
 
-    if (el.nombre === textoCard && el.categoria === textoBuscador){
+                cardsCreadas[o].style.display = "flex";
 
-        cardsCreadas[o].style.display = "flex";
+            }
+        }
+
+
+
 
     }
-
-    
-
-
-})
-}
-
-
-}
-
-
-}
-
-
-
-
-}
-
-for (let i = 0; i < botonesBuscadorPorNombre.length; i++){
-
-botonesBuscadorPorNombre[i].ondblclic = () => {
-
-    for (let o = 0; o < cardsCreadas.length; o++){
-        cardsCreadas[o].style.display = "flex";}
-}
-
 }
