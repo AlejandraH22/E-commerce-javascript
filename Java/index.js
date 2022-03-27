@@ -299,7 +299,7 @@ botonRegistrarme[0].onclick = (e) =>{
     e.preventDefault();
 
     formularioIngreso.style.display = "none";
-    formularioDeRegistro.style.display = "block"
+    formularioDeRegistro.style.display = "block";
     usuariosTitulo.innerText = "Registro de cuentas"
 
     formRegistrarse.onsubmit = (el) => {
@@ -312,7 +312,11 @@ botonRegistrarme[0].onclick = (e) =>{
          let usuarioNuevoStorage = JSON.stringify(usuarioNuevo);
          guardarStorage("usuarioNuevo", usuarioNuevoStorage);
 
-
+         
+         usuarios.push(usuarioNuevo);
+         usuariosTitulo.innerText = "Ingreso a cuenta";
+         formularioIngreso.style.display = "block";
+         formularioDeRegistro.style.display = "none";
      }
 
 
@@ -334,10 +338,10 @@ iconoCuenta.onclick = () => {
         e.preventDefault();
         let usuarioId = (usuario.value).toLowerCase();
         let contraseñaId = contraseña.value;
-        if (usuarioId === "nano" && contraseñaId === "1234" || usuarioId === "stefano" && contraseñaId === "1234") {
+      let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
 
-            linkCargaProducto.style.display = "block";
-        }
+      ingreso === true &&  (linkCargaProducto.style.display = "block");
+        
     }
 
 }
