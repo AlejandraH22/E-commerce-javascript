@@ -280,7 +280,7 @@ let botonCargaProducto = document.getElementById("botonCargaProducto");
 let DatosCarga;
 let contador = 0;
 let nombre2;
-let tarjetanueva = document.createElement("div");
+
 let padreTarjeta = document.getElementById("padreTarjeta");
 
 
@@ -290,8 +290,9 @@ let padreTarjeta = document.getElementById("padreTarjeta");
 let botonRegistrarme = document.getElementsByClassName("boton3");
 let formularioDeRegistro = document.getElementById("formularioDeRegistro");
 let formRegistrarse = document.getElementById("formRegistrarse");
-let botonCompletarRegistro = document.getElementsByClassName("boton4")
-let usuariosTitulo = document.getElementById("usuariosTitulo")
+let botonCompletarRegistro = document.getElementsByClassName("boton4");
+let usuariosTitulo = document.getElementById("usuariosTitulo");
+let tarjetanueva = document.createElement("div");
 
 
 botonRegistrarme[0].onclick = (e) =>{
@@ -341,6 +342,7 @@ iconoCuenta.onclick = () => {
       let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
 
       ingreso === true &&  (linkCargaProducto.style.display = "block");
+      contenedorForm.style.display = "none";
         
     }
 
@@ -374,23 +376,26 @@ cargarProducto.onclick = () => {
 
         productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
 
-
+        
+        tarjetanueva.setAttribute("class", "card col-4");
+        tarjetanueva.setAttribute("style", "width: 18rem");
         tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
      <img
        src="${imagen}"
-       class="card-img-top" alt="...">
+       class="card-img-top imagenProductos" alt="...">
      <div class="card-body d-flex justify-content-between align-items-center">
        <p class="card-text ventaProducto">${nombre}</p>
        <input type="number" class="botonCantidad" value="0">
        <input type="button" value="Boton" class="boton btn-primary" name="Agregar">
      </div>
-   </div>`
+   </div>`;
 
-        padreTarjeta.append(tarjetanueva);
+        padreTarjeta.appendChild(tarjetanueva);
 
 
         let productoNuevoStorage = JSON.stringify(productoNuevo);
         guardarStorage("productosNuevos", productoNuevoStorage);
+        ventanaCargaProducto.style.display = "none";
 
     }
 

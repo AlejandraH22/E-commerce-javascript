@@ -203,6 +203,8 @@ li {
     grid-area: principal; }
     .productos .principal .card {
       margin-bottom: 3rem; }
+      .productos .principal .card .imagenProductos {
+        height: 70vh; }
     .productos .principal .boton {
       border-radius: 30px;
       background-color: #D74E09;
