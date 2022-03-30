@@ -199,7 +199,7 @@ for (let i = 0; i < stock.length; i++) {
                 final.length = 0;
                 for (let el of carrito) {
 
-                    final.push(`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito"> <h3>${el.producto}</h3> <p>${el.cantidades}</p> <p>${el.precio}$</p></div></div>`);
+                    final.push(`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3>${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado" id="botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado" id="botonMasCarrito">+</button> </div><p>${el.precio}$</p></div></div>`);
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;

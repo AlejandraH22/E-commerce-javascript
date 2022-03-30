@@ -111,6 +111,16 @@ li {
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito {
             padding-right: 1rem;
             align-items: center; }
+            .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito .sumadorCarrito {
+              display: flex;
+              justify-content: space-evenly;
+              align-items: baseline; }
+              .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito .sumadorCarrito .botonCarritoIngresado {
+                background-color: #D74E09;
+                box-shadow: -1px 1px 5px 0px #943808;
+                -webkit-box-shadow: -1px 1px 5px 0px #943808;
+                -moz-box-shadow: -1px 1px 5px 0px #943808;
+                color: white; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .carritoVacio {
             color: #D74E09;
             display: block; }
