@@ -6,11 +6,8 @@ class Prendas {
         this.categoria = categoria;
         this.precio = precio;
         this.cantidad = cantidad;
-        if (this.cantidad > 0) {
-            this.stock = "si";
-        } else {
-            this.stock = "no"
-        }
+        this.cantidad > 0 ? this.stock = "si" : this.stock = "no";
+        
     }
 }
 
