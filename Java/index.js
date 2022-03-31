@@ -1,5 +1,5 @@
 const carrito = [];
-const subtotal = () => carrito.reduce((acc, el) => acc + el.precio, 0);
+const subtotal = () => carrito.reduce((acc, el) => acc + el.precioFinal, 0);
 let total = subtotal;
 
 
@@ -26,20 +26,22 @@ const botonCompra = (compra, cantidad) => {
             } else {
                 compra.stock = "no"
             }
+            let precio = compra.precio;
             let precioParcial = compra.precio * cantidad;
             let buscador = carrito.some((el) => el.producto === compra.nombre);
             if (buscador === true) {
                 for (let el of carrito) {
                     if (el.producto === compra.nombre) {
                         el.cantidades += parseInt(cantidad);
-                        el.precio += precioParcial;
+                        el.precioFinal += precioParcial;
                     }
                 }
             } else {
                 carrito.push({
                     cantidades: parseInt(cantidad),
                     producto: compra.nombre,
-                    precio: precioParcial
+                    precioFinal: precioParcial,
+                    precioIndividual: precio,
                 });
             }
         }
@@ -170,12 +172,12 @@ window.onload = () => {
 
 
     let usuarioGuardadoEnStorage = localStorage.getItem("usuarioNuevo");
-    
-    if (usuarioGuardadoEnStorage != undefined){
+
+    if (usuarioGuardadoEnStorage != undefined) {
 
         usuarioGuardadoEnStorage = JSON.parse(usuarioGuardadoEnStorage);
 
-        usuarioNuevo = new Registrar (usuarioGuardadoEnStorage["nombre"], usuarioGuardadoEnStorage["edad"], usuarioGuardadoEnStorage["mail"], usuarioGuardadoEnStorage["contraseña"])
+        usuarioNuevo = new Registrar(usuarioGuardadoEnStorage["nombre"], usuarioGuardadoEnStorage["edad"], usuarioGuardadoEnStorage["mail"], usuarioGuardadoEnStorage["contraseña"])
 
         usuarios.push(usuarioNuevo)
 
@@ -199,7 +201,7 @@ for (let i = 0; i < stock.length; i++) {
                 final.length = 0;
                 for (let el of carrito) {
 
-                    final.push(`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3>${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado" id="botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado" id="botonMasCarrito">+</button> </div><p>${el.precio}$</p></div></div>`);
+                    final.push(`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
@@ -227,6 +229,10 @@ let productosEnCarrito = document.getElementById("posBotonCarrito");
 let textoCarritoVacio = document.getElementsByClassName("carritoVacio");
 let carritoProductosElegidos = document.getElementById("carritoProductosElegidos");
 let carritoSubtotal = document.getElementById("carritoSubtotal");
+let botonMenosCarrito = document.getElementsByClassName("botonMenosCarrito");
+let botonMasCarrito = document.getElementsByClassName("botonMasCarrito");
+let nombreProductoEnCarrito = document.getElementsByClassName("nombreProductoEnCarrito");
+let cantidadesEnCarrito = document.querySelectorAll(".cantidadesEnCarrito")
 
 
 iconoCarrito.onclick = () => {
@@ -235,14 +241,51 @@ iconoCarrito.onclick = () => {
     contenedorForm.style.display = "none";
 
     if (carrito[0] != undefined) {
-
         textoCarritoVacio[0].innerHTML = `Mi pedido`;
         carritoProductosElegidos.style.overflowY = "scroll";
-
     }
 
 
+    for (let i = 0; i < carrito.length; i++) {
+        botonMasCarrito[i].onclick = () => {
+
+            for (let el of carrito) {
+
+                if (el.producto === nombreProductoEnCarrito[i].innerText) {
+                    el.cantidades = el.cantidades + 1;
+                    el.precioFinal = el.precioIndividual * el.cantidades;
+
+                    let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
+                    final.splice(final[i], 1, nuevo);
+                    carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+                }
+            }
+        }
+
+        botonMenosCarrito[i].onclick = () => {
+
+            for (let el of carrito) {
+                if (el.producto === nombreProductoEnCarrito[i].innerText) {
+                    el.cantidades = el.cantidades - 1;
+                    el.precioFinal = el.precioFinal - el.precioIndividual;
+    
+                    let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
+                    final.splice(final[i], 1, nuevo);
+                    carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+    
+                }
+            }
+        }
+    
+    }
 }
+
+
+
+
+
 
 // CIERRE CARRITO/USUARIO
 
@@ -254,6 +297,12 @@ for (let i = 0; i < cruzDeCierre.length; i++) {
         e.preventDefault();
         productosEnCarrito.style.display = "none";
         contenedorForm.style.display = "none";
+
+        if (formularioDeRegistro.style.display === "block") {
+            formularioDeRegistro.style.display = "none";
+            formularioIngreso.style.display = "block";
+            usuariosTitulo.innerText = "Ingreso a cuenta";
+        }
     }
 }
 
@@ -293,9 +342,10 @@ let formRegistrarse = document.getElementById("formRegistrarse");
 let botonCompletarRegistro = document.getElementsByClassName("boton4");
 let usuariosTitulo = document.getElementById("usuariosTitulo");
 let tarjetanueva = document.createElement("div");
+let botonVolverRegistrarse = document.getElementsByClassName("boton5")
 
 
-botonRegistrarme[0].onclick = (e) =>{
+botonRegistrarme[0].onclick = (e) => {
 
     e.preventDefault();
 
@@ -303,22 +353,30 @@ botonRegistrarme[0].onclick = (e) =>{
     formularioDeRegistro.style.display = "block";
     usuariosTitulo.innerText = "Registro de cuentas"
 
+    botonVolverRegistrarse[0].onclick = () => {
+        usuariosTitulo.innerText = "Ingreso a cuenta";
+        formularioIngreso.style.display = "block";
+        formularioDeRegistro.style.display = "none";
+    }
+
     formRegistrarse.onsubmit = (el) => {
         el.preventDefault;
 
         let datosUsuarioNuevo = el.target;
 
-        const usuarioNuevo = new Registrar (datosUsuarioNuevo[0].value, datosUsuarioNuevo[1].value, datosUsuarioNuevo[2].value, datosUsuarioNuevo[3].value);
+        const usuarioNuevo = new Registrar((datosUsuarioNuevo[0].value).toLowerCase(), datosUsuarioNuevo[1].value, datosUsuarioNuevo[2].value, (datosUsuarioNuevo[3].value).toLowerCase());
 
-         let usuarioNuevoStorage = JSON.stringify(usuarioNuevo);
-         guardarStorage("usuarioNuevo", usuarioNuevoStorage);
+        let usuarioNuevoStorage = JSON.stringify(usuarioNuevo);
+        guardarStorage("usuarioNuevo", usuarioNuevoStorage);
 
-         
-         usuarios.push(usuarioNuevo);
-         usuariosTitulo.innerText = "Ingreso a cuenta";
-         formularioIngreso.style.display = "block";
-         formularioDeRegistro.style.display = "none";
-     }
+
+        usuarios.push(usuarioNuevo);
+        usuariosTitulo.innerText = "Ingreso a cuenta";
+        formularioIngreso.style.display = "block";
+        formularioDeRegistro.style.display = "none";
+
+
+    }
 
 
 }
@@ -338,12 +396,12 @@ iconoCuenta.onclick = () => {
     formularioIngreso.onsubmit = (e) => {
         e.preventDefault();
         let usuarioId = (usuario.value).toLowerCase();
-        let contraseñaId = contraseña.value;
-      let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
+        let contraseñaId = (contraseña.value).toLowerCase();
+        let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
 
-      ingreso === true &&  (linkCargaProducto.style.display = "block");
-      contenedorForm.style.display = "none";
-        
+        ingreso === true && (linkCargaProducto.style.display = "block");
+        contenedorForm.style.display = "none";
+
     }
 
 }
@@ -376,7 +434,7 @@ cargarProducto.onclick = () => {
 
         productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
 
-        
+
         tarjetanueva.setAttribute("class", "card col-4");
         tarjetanueva.setAttribute("style", "width: 18rem");
         tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
@@ -422,7 +480,7 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
 
 
     botonesBuscadorPorNombre[i].onchange = () => {
-        
+
 
         if (botonesBuscadorPorNombre[i].checked === true) {
 
@@ -430,14 +488,14 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
             click += 1;
 
             for (let o = 0; o < botonesBuscadorPorNombre.length; o++) {
-            
+
                 botonesBuscadorPorNombre[i] != botonesBuscadorPorNombre[o] && (botonesBuscadorPorNombre[o].checked = null);
-                
-            //  let duda = botonesBuscadorPorNombre[i].some((el) => el.checked === true)
-            //  if (duda = true){
-            //      botonesBuscadorPorNombre[i].checked = null;
-            //  }
-           
+
+                //  let duda = botonesBuscadorPorNombre[i].some((el) => el.checked === true)
+                //  if (duda = true){
+                //      botonesBuscadorPorNombre[i].checked = null;
+                //  }
+
             }
 
             for (let o = 0; o < cardsTexto.length; o++) {
