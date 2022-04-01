@@ -255,8 +255,10 @@ iconoCarrito.onclick = () => {
         carritoProductosElegidos.style.overflowY = "scroll";
     }
 
-    for (let i = 0; i < carrito.length; i++) {
-        setInterval(() => {
+    setInterval(() => {
+
+        for (let i = 0; i < carrito.length; i++) {
+
             botonMasCarrito[i].onclick = () => {
 
                 for (let el of carrito) {
@@ -270,60 +272,74 @@ iconoCarrito.onclick = () => {
                         carritoProductosElegidos.innerHTML = `${final.join("")}`;
                         carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
 
+
+
+
+                        textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
+                        let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                        guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                        let carritoStorage = JSON.stringify(carrito);
+                        guardarStorage("carritoStorage", carritoStorage)
+
+
+
                     }
                 }
 
             }
-        }, 0);
-
-    }
-
-    //     botonMenosCarrito[i].onclick = () => {
-
-    //         for (let el of carrito) {
-    //             if (el.producto === nombreProductoEnCarrito[i].innerText) {
-    //                 el.cantidades = el.cantidades - 1;
-    //                 el.precioFinal = el.precioFinal - el.precioIndividual;
-
-    //                 let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
-    //                 final.splice(final[i], 1, nuevo);
-    //                 carritoProductosElegidos.innerHTML = `${final.join("")}`;
-    //                 carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
-
-    //             }
-    //         }
 
 
-    // }
-}
 
-function sumarAlCarrito(nombre) {
+            botonMenosCarrito[i].onclick = () => {
 
-    for (let i = 0; i < carrito.length; i++) {
+                for (let el of carrito) {
+                    if (el.producto === nombreProductoEnCarrito[i].innerText) {
+                        el.cantidades -= 1;
+                        el.precioFinal = el.precioFinal - el.precioIndividual;
 
-        for (let el of carrito) {
+                        if (el.cantidades <= 0) {
 
-            if (el.producto === nombre.innerText) {
-                el.cantidades += 1;
-                el.precioFinal = el.precioIndividual * el.cantidades;
+                            final.splice(i, 1);
+                            carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                            carrito.splice(i, 1);
 
-                let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${imagenProductos[i].src} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
-                final.splice(final[i], 1, nuevo);
-                carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+                            if (carrito[0] === undefined) {
+
+                                textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
+                                carritoSubtotal.innerHTML = null;
+
+                            } 
+
+                            let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                            guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                            let carritoStorage = JSON.stringify(carrito);
+                            guardarStorage("carritoStorage", carritoStorage)
+
+                        } else {
+
+                            let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
+                            final.splice(i, 1, nuevo);
+                            carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+
+                            textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
+                            let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                            guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                            let carritoStorage = JSON.stringify(carrito);
+                            guardarStorage("carritoStorage", carritoStorage)
+
+                        }
+                    }
+                }
+
 
             }
-        }
-    }
 
-    for (let i = 0; i < carrito.length; i++) {
-        botonMasCarrito[i].onclick = () => {
-            let name = nombreProductoEnCarrito[i];
-            sumarAlCarrito(name);
         }
-    }
-
+    }, 0)
 }
+
+
 
 
 
