@@ -135,7 +135,7 @@ window.onload = () => {
 
         }
 
-       subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`);
+       subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button>`);
     }
 
     let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
@@ -228,7 +228,7 @@ for (let i = 0; i < stock.length; i++) {
 
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`;
+                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button>`;
 
 
 
@@ -270,9 +270,11 @@ iconoCarrito.onclick = () => {
     if (productosEnCarrito.style.display === "none"){
     productosEnCarrito.style.display = "block";
     contenedorForm.style.display = "none";
+
     if (carrito[0] != undefined) {
         textoCarritoVacio[0].innerHTML = `Mi pedido`;
         carritoProductosElegidos.style.overflowY = "scroll";
+        let botonFinalizarCompra = document.getElementById("botonCompletarCompra");
     }
 
     setInterval(() => {
@@ -290,7 +292,7 @@ iconoCarrito.onclick = () => {
                         let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                         final.splice(i, 1, nuevo);
                         carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div> <div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`;
+                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div> <div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button>`;
 
 
 
@@ -340,7 +342,7 @@ iconoCarrito.onclick = () => {
                             let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                             final.splice(i, 1, nuevo);
                             carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`;
+                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button>`;
 
                             textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
                             let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
@@ -357,6 +359,24 @@ iconoCarrito.onclick = () => {
 
         }
     }, 0)
+
+    botonFinalizarCompra.onclick = () =>{
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+              Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
+    }
+
 } else {
     productosEnCarrito.style.display = "none";
 }
@@ -613,3 +633,6 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
 
     }
 }
+
+// COMPLETAR COMPRA
+
