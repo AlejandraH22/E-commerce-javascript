@@ -100,23 +100,6 @@ const buscadorPorPrecio = () => {
 
 // Botones de compra/ agregar a carrito
 
-// EMPARENTAMIENTO DOM
-
-let botonCarrito = document.querySelectorAll(".boton");
-let ventaProducto = document.querySelectorAll(".ventaProducto");
-let botonCantidad = document.querySelectorAll(".botonCantidad");
-let listaContador = document.querySelectorAll(".listaContador");
-let seccionPrecio = document.querySelectorAll(".precios")
-let final = [];
-let subtotalPantalla = document.getElementById("subtotal");
-let iconoCuenta = document.getElementById("iconoCuenta");
-let formularioIngreso = document.getElementById("formulario");
-let contenedorForm = document.getElementById("contenedorForm");
-let botonSubmit = document.getElementsByClassName("boton2");
-let usuario = document.getElementById("usuario");
-let contraseña = document.getElementById("contraseña");
-let linkCargaProducto = document.getElementById("linkCargaProducto");
-let imagenProductos = document.getElementsByClassName("imagenProductos")
 
 
 
@@ -161,14 +144,28 @@ window.onload = () => {
     }
 
     let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
+    
+   
 
     if (productoGuardadoEnStorage != undefined) {
 
         productoGuardadoEnStorage = JSON.parse(productoGuardadoEnStorage);
-        productoNuevo = new Prendas(productoGuardadoEnStorage["nombre"], productoGuardadoEnStorage["tipo"], productoGuardadoEnStorage["talle"], productoGuardadoEnStorage["categoria"], productoGuardadoEnStorage["precio"], productoGuardadoEnStorage["cantidad"]);
-
-
+        productoNuevo = new Prendas(productoGuardadoEnStorage["nombre"], productoGuardadoEnStorage["tipo"], productoGuardadoEnStorage["talle"], productoGuardadoEnStorage["categoria"], productoGuardadoEnStorage["precio"], productoGuardadoEnStorage["cantidad"], productoGuardadoEnStorage["imagen"]);
         stock.push(productoNuevo);
+
+        tarjetanueva.setAttribute("class", "card col-4");
+        tarjetanueva.setAttribute("style", "width: 18rem");
+        tarjetanueva.innerHTML = `
+     <img
+       src="${productoGuardadoEnStorage["imagen"]}"
+       class="card-img-top imagenProductos" alt="...">
+     <div class="card-body d-flex justify-content-between align-items-center">
+       <p class="card-text ventaProducto">${productoGuardadoEnStorage["nombre"]}</p>
+       <input type="number" class="botonCantidad" value="0">
+       <input type="button" value="Boton" class="boton btn-primary" name="Agregar">
+     </div>`;
+
+        padreTarjeta.appendChild(tarjetanueva);
     }
 
 
@@ -183,7 +180,18 @@ window.onload = () => {
         usuarios.push(usuarioNuevo)
 
     }
+ 
+    let usuarioIngresadoStorage = localStorage.getItem("usuarioIngresado")
 
+    if (usuarioIngresadoStorage != undefined){
+
+        usuarioIngresadoStorage === "si" && (linkCargaProducto.style.display = "block");
+        let saludoDeStorage =JSON.parse(localStorage.getItem("saludo"));
+        saludo[0].style.display = "block";
+        saludo[0].innerText = `${saludoDeStorage}`
+        saludo[0].style.display === "block" && (formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`)
+
+   }
 
 }
 
@@ -191,6 +199,23 @@ window.onload = () => {
 // Agregar productos a carrito
 
 
+// EMPARENTAMIENTO DOM
+
+let botonCarrito = document.querySelectorAll(".boton");
+let ventaProducto = document.querySelectorAll(".ventaProducto");
+let botonCantidad = document.querySelectorAll(".botonCantidad");
+let listaContador = document.querySelectorAll(".listaContador");
+let seccionPrecio = document.querySelectorAll(".precios")
+let final = [];
+let subtotalPantalla = document.getElementById("subtotal");
+let iconoCuenta = document.getElementById("iconoCuenta");
+let formularioIngreso = document.getElementById("formulario");
+let contenedorForm = document.getElementById("contenedorForm");
+let botonSubmit = document.getElementsByClassName("boton2");
+let usuario = document.getElementById("usuario");
+let contraseña = document.getElementById("contraseña");
+let linkCargaProducto = document.getElementById("linkCargaProducto");
+let imagenProductos = document.getElementsByClassName("imagenProductos")
 
 
 
@@ -247,7 +272,7 @@ let cantidadesEnCarrito = document.querySelectorAll(".cantidadesEnCarrito")
 
 
 iconoCarrito.onclick = () => {
-
+    if (productosEnCarrito.style.display === "none"){
     productosEnCarrito.style.display = "block";
     contenedorForm.style.display = "none";
     if (carrito[0] != undefined) {
@@ -301,7 +326,7 @@ iconoCarrito.onclick = () => {
 
                             final.splice(i, 1);
                             carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                            carrito.splice(i, 1);
+                            carrito.splice(i,1);
 
                             if (carrito[0] === undefined) {
 
@@ -337,6 +362,9 @@ iconoCarrito.onclick = () => {
 
         }
     }, 0)
+} else {
+    productosEnCarrito.style.display = "none";
+}
 }
 
 
@@ -387,8 +415,7 @@ let formularioCargaProducto = document.getElementById("formularioCargaProducto")
 let botonCargaProducto = document.getElementById("botonCargaProducto");
 let DatosCarga;
 let contador = 0;
-let nombre2;
-
+let tarjetanueva = document.createElement("div");
 let padreTarjeta = document.getElementById("padreTarjeta");
 
 
@@ -400,7 +427,7 @@ let formularioDeRegistro = document.getElementById("formularioDeRegistro");
 let formRegistrarse = document.getElementById("formRegistrarse");
 let botonCompletarRegistro = document.getElementsByClassName("boton4");
 let usuariosTitulo = document.getElementById("usuariosTitulo");
-let tarjetanueva = document.createElement("div");
+
 let botonVolverRegistrarse = document.getElementsByClassName("boton5")
 
 
@@ -442,15 +469,17 @@ botonRegistrarme[0].onclick = (e) => {
 
 
 
-// EVENTOS
 
+// INGRESO DE USUARIO
 
-// CARRITO
+let recordarmeIngreso = document.getElementById("recordarmeIngreso");
+let saludo = document.getElementsByClassName("saludo");
 
 iconoCuenta.onclick = () => {
-
+if (contenedorForm.style.display === "none"){
     contenedorForm.style.display = "block";
     productosEnCarrito.style.display = "none";
+    
 
     formularioIngreso.onsubmit = (e) => {
         e.preventDefault();
@@ -458,12 +487,25 @@ iconoCuenta.onclick = () => {
         let contraseñaId = (contraseña.value).toLowerCase();
         let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
 
-        ingreso === true && (linkCargaProducto.style.display = "block");
+        ingreso === true && (linkCargaProducto.style.display = "block")
+        ingreso === true && (formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`)
         contenedorForm.style.display = "none";
+        saludo[0].style.display = "block";
+
+        saludo[0].innerText = `${saludo[0].innerText} ${usuarioId}`
+
+        if (recordarmeIngreso.checked === true && ingreso === true){
+             guardarStorage("usuarioIngresado", "si");
+             let saludoStorage = JSON.stringify(saludo[0].innerText)
+             guardarStorage("saludo",saludoStorage)
+        }
 
     }
-
+}else {
+    contenedorForm.style.display = "none";
 }
+}
+
 
 
 // CARGAR PRODUCTOS
@@ -491,8 +533,8 @@ cargarProducto.onclick = () => {
 
 
 
-        productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad));
-
+        productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad),imagen);
+        stock.push(productoNuevo) ;
 
         tarjetanueva.setAttribute("class", "card col-4");
         tarjetanueva.setAttribute("style", "width: 18rem");
@@ -513,6 +555,7 @@ cargarProducto.onclick = () => {
         let productoNuevoStorage = JSON.stringify(productoNuevo);
         guardarStorage("productosNuevos", productoNuevoStorage);
         ventanaCargaProducto.style.display = "none";
+        location.reload();
 
     }
 
@@ -540,7 +583,6 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
 
     botonesBuscadorPorNombre[i].onchange = () => {
 
-
         if (botonesBuscadorPorNombre[i].checked === true) {
 
             let textoBuscador = eliminarAcentos((nombreBuscadorPorNombre[i].textContent).toLowerCase());
@@ -549,11 +591,6 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
             for (let o = 0; o < botonesBuscadorPorNombre.length; o++) {
 
                 botonesBuscadorPorNombre[i] != botonesBuscadorPorNombre[o] && (botonesBuscadorPorNombre[o].checked = null);
-
-                //  let duda = botonesBuscadorPorNombre[i].some((el) => el.checked === true)
-                //  if (duda = true){
-                //      botonesBuscadorPorNombre[i].checked = null;
-                //  }
 
             }
 

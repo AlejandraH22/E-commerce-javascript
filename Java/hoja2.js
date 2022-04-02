@@ -50,8 +50,9 @@ class Registrar{
 
 const mariano = new Registrar("nano", "29", "mariano.p.z@hotmail.com", "1234");
 const stefano = new Registrar ("stefano", "xx", "xx", "1234");
-
+const david = new Registrar("david", "xx", "xx", "1234")
 const usuarios = [
     mariano,
-    stefano
+    stefano,
+    david
 ]

@@ -32,6 +32,10 @@ li {
       .header .navbar .navbar-nav .cruzCierre {
         width: 15px;
         height: auto; }
+    .header .navbar .saludo {
+      font-size: x-large;
+      font-family: "Oswald", sans-serif;
+      display: none; }
     .header .navbar #linkCargaProducto {
       display: none; }
     .header .navbar #cargarProducto {
@@ -214,7 +218,7 @@ li {
     .productos .principal .card {
       margin-bottom: 3rem; }
       .productos .principal .card .imagenProductos {
-        height: 70vh; }
+        height: 60vh; }
     .productos .principal .boton {
       border-radius: 30px;
       background-color: #D74E09;

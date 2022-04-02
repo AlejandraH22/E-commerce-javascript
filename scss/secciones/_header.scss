@@ -24,6 +24,12 @@
             }
         }
 
+        .saludo{
+            font-size: x-large;
+            font-family: $fuentePrincipal;
+            display: none;
+        }
+
         #linkCargaProducto {
             display: none;
         }
