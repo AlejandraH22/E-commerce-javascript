@@ -266,16 +266,20 @@ let nombreProductoEnCarrito = document.getElementsByClassName("nombreProductoEnC
 let cantidadesEnCarrito = document.querySelectorAll(".cantidadesEnCarrito")
 
 
+
 iconoCarrito.onclick = () => {
+
     if (productosEnCarrito.style.display === "none"){
     productosEnCarrito.style.display = "block";
     contenedorForm.style.display = "none";
+    let botonFinalizarCompra = document.getElementsByClassName("boton6");
 
+    
     if (carrito[0] != undefined) {
         textoCarritoVacio[0].innerHTML = `Mi pedido`;
         carritoProductosElegidos.style.overflowY = "scroll";
-        let botonFinalizarCompra = document.getElementById("botonCompletarCompra");
-    }
+        
+}
 
     setInterval(() => {
 
@@ -357,6 +361,15 @@ iconoCarrito.onclick = () => {
 
             }
 
+            botonFinalizarCompra[i].onclick = () =>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                  })
+                  
+            }
         }
     }, 0)
 
@@ -633,6 +646,3 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
 
     }
 }
-
-// COMPLETAR COMPRA
-
