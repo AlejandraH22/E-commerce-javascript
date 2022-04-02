@@ -129,6 +129,18 @@ li {
           .header .navbar .navbar-collapse #carrito #posBotonCarrito #carritoProductosElegidos {
             height: 50%;
             margin-bottom: 2rem; }
+          .header .navbar .navbar-collapse #carrito #posBotonCarrito .boton6 {
+            border-radius: 30px;
+            background-color: #D74E09;
+            border-color: #D74E09;
+            box-shadow: 0px 0px 0px 3px #ff8243;
+            -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
+            -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+            margin: 5px; }
+            .header .navbar .navbar-collapse #carrito #posBotonCarrito .boton6:active {
+              box-shadow: none;
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito {
             padding-right: 1rem;
             align-items: center; }

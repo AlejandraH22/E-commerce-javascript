@@ -135,7 +135,7 @@ window.onload = () => {
 
         }
 
-       subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`);
+       subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`);
     }
 
     let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
@@ -171,7 +171,6 @@ window.onload = () => {
         usuarioGuardadoEnStorage = JSON.parse(usuarioGuardadoEnStorage);
 
         usuarioNuevo = new Registrar(usuarioGuardadoEnStorage["nombre"], usuarioGuardadoEnStorage["edad"], usuarioGuardadoEnStorage["mail"], usuarioGuardadoEnStorage["contraseña"])
-
         usuarios.push(usuarioNuevo)
 
     }
@@ -229,7 +228,7 @@ for (let i = 0; i < stock.length; i++) {
 
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`;
+                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`;
 
 
 
@@ -291,7 +290,7 @@ iconoCarrito.onclick = () => {
                         let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                         final.splice(i, 1, nuevo);
                         carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`;
+                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div> <div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`;
 
 
 
@@ -341,7 +340,7 @@ iconoCarrito.onclick = () => {
                             let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                             final.splice(i, 1, nuevo);
                             carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`;
+                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex"><button type="button" class="btn btn-primary boton6">Completar compra</button>`;
 
                             textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
                             let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
