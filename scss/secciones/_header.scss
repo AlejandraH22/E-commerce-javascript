@@ -59,6 +59,16 @@
                 border-radius: 30px;
                 background-color: #D74E09;
                 border-color: #D74E09;
+                box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+
+                
+                &:active{
+                    box-shadow: none;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                }
             }
 
             .divInput {
@@ -97,6 +107,17 @@
                         border-radius: 30px;
                         background-color: #D74E09;
                         border-color: #D74E09;
+                        box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                        -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                        -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                        margin: 5px;
+
+                        
+                        &:active{
+                            box-shadow: none;
+                            -webkit-box-shadow: none;
+                            -moz-box-shadow: none;
+                        }
                     }
 
                     #formularioDeRegistro{
@@ -139,6 +160,7 @@
 
                     #carritoProductosElegidos {
                         height: 50%;
+                        margin-bottom: 2rem;
 
                     }
 
@@ -151,10 +173,16 @@
                             align-items: baseline;
                         .botonCarritoIngresado{
                             background-color: #D74E09;
-                            box-shadow: -1px 1px 5px 0px rgba(148,56,8,1);
-                            -webkit-box-shadow: -1px 1px 5px 0px rgba(148,56,8,1);
-                            -moz-box-shadow: -1px 1px 5px 0px rgba(148,56,8,1);
+                            box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                            -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                            -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
                             color: white;
+
+                            &:active{
+                                box-shadow: none;
+                                -webkit-box-shadow: none;
+                                -moz-box-shadow: none;
+                            }
                         }
                     }
                     }

@@ -57,7 +57,14 @@ li {
       .header .navbar #ventanaCargaProducto #botonCargaProducto {
         border-radius: 30px;
         background-color: #D74E09;
-        border-color: #D74E09; }
+        border-color: #D74E09;
+        box-shadow: 0px 0px 0px 3px #ff8243;
+        -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
+        -moz-box-shadow: 0px 0px 0px 3px #ff8243; }
+        .header .navbar #ventanaCargaProducto #botonCargaProducto:active {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none; }
       .header .navbar #ventanaCargaProducto .divInput {
         padding: 0rem 5rem; }
     .header .navbar .links_nav {
@@ -84,7 +91,16 @@ li {
           .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton3, .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton4, .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton5 {
             border-radius: 30px;
             background-color: #D74E09;
-            border-color: #D74E09; }
+            border-color: #D74E09;
+            box-shadow: 0px 0px 0px 3px #ff8243;
+            -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
+            -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+            margin: 5px; }
+            .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton2:active,
+            .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton3:active, .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton4:active, .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton5:active {
+              box-shadow: none;
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none; }
           .header .navbar .navbar-collapse #cuenta .posBotonCuenta #formularioDeRegistro {
             display: none; }
       .header .navbar .navbar-collapse #carrito {
@@ -111,7 +127,8 @@ li {
             margin-bottom: 1rem;
             border-bottom: 0.5px solid; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito #carritoProductosElegidos {
-            height: 50%; }
+            height: 50%;
+            margin-bottom: 2rem; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito {
             padding-right: 1rem;
             align-items: center; }
@@ -121,10 +138,14 @@ li {
               align-items: baseline; }
               .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito .sumadorCarrito .botonCarritoIngresado {
                 background-color: #D74E09;
-                box-shadow: -1px 1px 5px 0px #943808;
-                -webkit-box-shadow: -1px 1px 5px 0px #943808;
-                -moz-box-shadow: -1px 1px 5px 0px #943808;
+                box-shadow: 0px 0px 0px 3px #ff8243;
+                -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
+                -moz-box-shadow: 0px 0px 0px 3px #ff8243;
                 color: white; }
+                .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito .sumadorCarrito .botonCarritoIngresado:active {
+                  box-shadow: none;
+                  -webkit-box-shadow: none;
+                  -moz-box-shadow: none; }
           .header .navbar .navbar-collapse #carrito #posBotonCarrito .carritoVacio {
             color: #D74E09;
             display: block; }
@@ -224,9 +245,17 @@ li {
       background-color: #D74E09;
       border-color: #D74E09;
       width: 53px;
-      text-align: center; }
-      .productos .principal .boton:focus {
-        box-shadow: none; }
+      text-align: center;
+      box-shadow: 0px 0px 0px 3px #ff8243;
+      -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
+      -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+      outline: none; }
+      .productos .principal .boton :focus-visible {
+        outline: none; }
+      .productos .principal .boton:active {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none; }
     .productos .principal .botonCantidad {
       border: solid 1px;
       text-align: center;

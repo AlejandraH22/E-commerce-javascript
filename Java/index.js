@@ -1,3 +1,5 @@
+
+
 const carrito = [];
 const subtotal = () => carrito.reduce((acc, el) => acc + el.precioFinal, 0);
 let total = subtotal;
@@ -16,6 +18,7 @@ const basePorcentaje = (n) => {
 const porcentaje10 = basePorcentaje(10);
 const porcentaje25 = basePorcentaje(25);
 const porcentaje35 = basePorcentaje(35);
+
 
 const botonCompra = (compra, cantidad) => {
     if (compra.stock === "si") {
@@ -45,30 +48,23 @@ const botonCompra = (compra, cantidad) => {
                     imagen: compra.imagen,
                 });
             }
+
+            Toastify({
+                text: `Agregaste ${cantidad} productos a tu carrito`,
+                className: "info",
+                duration: 1000,
+                style: {
+                  background: "#D74E09",
+                  borderRadius: "30px",
+                }
+                
+              }).showToast();
         }
 
     }
 }
 
 
-
-
-
-const botonQuitarCompra = (quita, cantidad) => {
-    let precioParcial = quita.precio * cantidad;
-    quita.cantidad = quita.cantidad + cantidad;
-    quita.cantidad > 0 ? quita.stock = "si" : quita.stock = "no";
-    for (let el of carrito) {
-        if (quita.nombre === el.producto) {
-            el.cantidades = el.cantidades - cantidad;
-            el.precioFinal = el.precioFinal - precioParcial;
-            if (el.cantidades === 0) {
-                let indice = carrito.findIndex((elemento) => elemento.producto === el.producto);
-                carrito.splice(indice, 1)
-            }
-        }
-    }
-}
 
 
 const botonReset = () => {
@@ -120,10 +116,9 @@ window.onload = () => {
 
     let carritoGuardado = localStorage.getItem("carritoStorage");
 
-    if (carritoGuardado != undefined) {
+    if (carritoGuardado[0] != undefined) {
 
         carritoGuardado = JSON.parse(carritoGuardado);
-
 
         for (let i = 0; i < carritoGuardado.length; i++) {
             for (let e of stock) {
@@ -133,14 +128,14 @@ window.onload = () => {
 
                     e.cantidad === 0 ? e.stock = "no" : e.stock = "si"
 
-
                     carrito.push(carritoGuardado[i]);
 
                 }
             }
 
         }
-        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+
+       subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`);
     }
 
     let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
@@ -234,12 +229,13 @@ for (let i = 0; i < stock.length; i++) {
 
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`;
 
 
 
 
                     textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
+                    carritoProductosElegidos.style.overflowY = "scroll";
                     let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
                     guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
@@ -295,7 +291,7 @@ iconoCarrito.onclick = () => {
                         let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                         final.splice(i, 1, nuevo);
                         carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`;
 
 
 
@@ -332,7 +328,7 @@ iconoCarrito.onclick = () => {
 
                                 textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
                                 carritoSubtotal.innerHTML = null;
-
+                                
                             } 
 
                             let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
@@ -345,7 +341,7 @@ iconoCarrito.onclick = () => {
                             let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                             final.splice(i, 1, nuevo);
                             carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-end"> Subtotal = ${subtotal()}$ </div>`;
+                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around"> Subtotal = ${subtotal()}$ </div>`;
 
                             textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
                             let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);

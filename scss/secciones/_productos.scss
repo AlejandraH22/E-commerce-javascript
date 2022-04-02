@@ -41,10 +41,25 @@
             border-color: #D74E09;
             width: 53px;
             text-align: center;
+            box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+            -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+            -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+            outline: none;
+           
 
-            &:focus{
-                box-shadow: none;
+            & :focus-visible{
+                outline: none;
             }
+
+            
+            &:active {
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+            }
+
+         
+            
         }
 
         .botonCantidad{
