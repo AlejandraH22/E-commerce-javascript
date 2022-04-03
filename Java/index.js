@@ -96,13 +96,13 @@ const buscadorPorPrecio = () => {
 // Cargar Página
 
 window.onload = () => {
-    let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
-    if (productoCarritoGuardado != null) {
-        productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
-        carritoProductosElegidos.innerHTML = `${productoCarritoGuardado}`;
-        final.push(productoCarritoGuardado);
+    // let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
+    // if (productoCarritoGuardado != null) {
+    //     productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
+    //     carritoProductosElegidos.innerHTML = `${productoCarritoGuardado}`;
+    //     final.push(productoCarritoGuardado);
 
-    }
+    // }
 
     let carritoGuardado = localStorage.getItem("carritoStorage");
 
@@ -119,6 +119,10 @@ window.onload = () => {
                     e.cantidad === 0 ? e.stock = "no" : e.stock = "si"
 
                     carrito.push(carritoGuardado[i]);
+
+
+                    final.push(`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${e.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${e.nombre}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${carrito[i].cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${carrito[i].precioFinal}$</p></div></div>`);
+                    carritoProductosElegidos.innerHTML = `${final.join("")}`;
 
                 }
             }
@@ -218,6 +222,7 @@ for (let i = 0; i < stock.length; i++) {
 
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                    carritoSubtotal.innerHTML = null;
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
 
 
@@ -225,8 +230,8 @@ for (let i = 0; i < stock.length; i++) {
 
                     textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
                     carritoProductosElegidos.style.overflowY = "scroll";
-                    let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                    guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                    // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                    // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
                     guardarStorage("carritoStorage", carritoStorage)
 
@@ -277,127 +282,139 @@ iconoCarrito.onclick = () => {
         }
 
         setInterval(() => {
+            if (subtotal() != 0) {
 
-            for (let i = 0; i < carrito.length; i++) {
+                for (let i = 0; i < carrito.length; i++) {
 
-                botonMasCarrito[i].onclick = () => {
+                    botonMasCarrito[i].onclick = () => {
 
-                    for (let el of carrito) {
+                        for (let el of carrito) {
 
-                        if (el.producto === nombreProductoEnCarrito[i].innerText) {
-                            el.cantidades += 1;
-                            el.precioFinal = el.precioIndividual * el.cantidades;
-
-                            let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
-                            final.splice(i, 1, nuevo);
-                            carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                            carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div> <div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
-
-
-
-
-                            textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
-                            let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                            guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
-                            let carritoStorage = JSON.stringify(carrito);
-                            guardarStorage("carritoStorage", carritoStorage)
-
-
-
-                        }
-                    }
-
-                }
-
-
-
-                botonMenosCarrito[i].onclick = () => {
-
-                    for (let el of carrito) {
-                        if (el.producto === nombreProductoEnCarrito[i].innerText) {
-                            el.cantidades -= 1;
-                            el.precioFinal = el.precioFinal - el.precioIndividual;
-
-                            if (el.cantidades <= 0) {
-
-                                final.splice(i, 1);
-                                carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                                carrito.splice(i, 1);
-
-                                if (carrito[0] === undefined) {
-
-                                    textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
-                                    carritoSubtotal.innerHTML = null;
-
-                                }
-
-                                let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                                guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
-                                let carritoStorage = JSON.stringify(carrito);
-                                guardarStorage("carritoStorage", carritoStorage)
-
-                            } else {
+                            if (el.producto === nombreProductoEnCarrito[i].innerText) {
+                                el.cantidades += 1;
+                                el.precioFinal = el.precioIndividual * el.cantidades;
 
                                 let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
                                 final.splice(i, 1, nuevo);
                                 carritoProductosElegidos.innerHTML = `${final.join("")}`;
-                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                                carritoSubtotal.innerHTML = null;
+                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div> <div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
 
-                                textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
-                                let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                                guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+
+
+
+                                textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
+                                // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                                // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                                 let carritoStorage = JSON.stringify(carrito);
                                 guardarStorage("carritoStorage", carritoStorage)
 
+
+
                             }
                         }
+
                     }
 
 
-                }
 
-                botonFinalizarCompra[i].onclick = () => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        footer: '<a href="">Why do I have this issue?</a>'
-                    })
+                    botonMenosCarrito[i].onclick = () => {
 
-                }
+                        for (let el of carrito) {
+                            if (el.producto === nombreProductoEnCarrito[i].innerText) {
+                                el.cantidades -= 1;
+                                el.precioFinal = el.precioFinal - el.precioIndividual;
 
-                botonDescuento[i].onclick = () => {
-                    carritoProductosElegidos.style.display = "none";
-                    carritoSubtotal.style.display = "none";
-                    carritoAplicarDescuento.style.display = "block";
-                    textoCarritoVacio[0].innerHTML = `Descuento`;
+                                if (el.cantidades <= 0) {
 
-                    botonVolverDescuento.onclick = () => {
-                        carritoProductosElegidos.style.display = "block";
-                    carritoSubtotal.style.display = "block";
-                    carritoAplicarDescuento.style.display = "none";
-                    textoCarritoVacio[0].innerHTML = `Mi predido`;
-                    }
+                                    final.splice(i, 1);
+                                    carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                                    carrito.splice(i, 1);
 
-                    botonAplicarDescuento.onclick = () =>{
-                        let codigoIngresado = (codigoDescuento.value).toLowerCase();
+                                    if (carrito[0] === undefined) {
 
-                        descuento(codigoIngresado);
-                        
-                        if (subtotal() != total){
-                            Swal.fire({
-                                position: 'top',
-                                icon: 'success',
-                                title: `¡Descuento aplicado con éxito! El total es de: ${total}`,
-                                showConfirmButton: false,
-                                timer: 3000
-                              })
+                                        textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
+                                        carritoSubtotal.innerHTML = null;
+
+                                        localStorage.removeItem("carritoStorage");
+                                        localStorage.removeItem("productosCarritoStorage");
+
+                                    }
+                                    if (carrito[0] != undefined) {
+                                        // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                                        // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                                        let carritoStorage = JSON.stringify(carrito);
+                                        guardarStorage("carritoStorage", carritoStorage)
+                                        
+                                        carritoSubtotal.innerHTML = null;
+                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                                    }
+                                } else {
+
+                                    let nuevo = (`<div class="d-flex justify-content-between muestrarioCarrito align-items-center"><img src=${el.imagen} alt="..." class= "imagenEnCarrito"> <div class="productosEnCarrito">    <h3 class= "nombreProductoEnCarrito">${el.producto}</h3> <div class="sumadorCarrito"><button class="botonCarritoIngresado botonMenosCarrito">-</button> <p>${el.cantidades}</p>  <button class="botonCarritoIngresado botonMasCarrito">+</button> </div><p>${el.precioFinal}$</p></div></div>`);
+                                    final.splice(i, 1, nuevo);
+                                    carritoProductosElegidos.innerHTML = `${final.join("")}`;
+                                    carritoSubtotal.innerHTML = null;
+                                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+
+                                    textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
+                                    // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                                    // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                                    let carritoStorage = JSON.stringify(carrito);
+                                    guardarStorage("carritoStorage", carritoStorage)
+
+                                }
+                                
+                            }
                         }
+
+
+                    }
+                }
+                if (subtotal() != 0) {
+                    botonFinalizarCompra[0].onclick = () => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+
                     }
 
-                
-                }
+                    botonDescuento[0].onclick = () => {
+                        carritoProductosElegidos.style.display = "none";
+                        carritoSubtotal.style.display = "none";
+                        carritoAplicarDescuento.style.display = "block";
+                        textoCarritoVacio[0].innerHTML = `Descuento`;
 
+                        botonVolverDescuento.onclick = () => {
+                            carritoProductosElegidos.style.display = "block";
+                            carritoSubtotal.style.display = "block";
+                            carritoAplicarDescuento.style.display = "none";
+                            textoCarritoVacio[0].innerHTML = `Mi predido`;
+                        }
+
+                        botonAplicarDescuento.onclick = () => {
+                            let codigoIngresado = (codigoDescuento.value).toLowerCase();
+
+                            descuento(codigoIngresado);
+
+                            if (subtotal() != total) {
+                                Swal.fire({
+                                    position: 'top',
+                                    icon: 'success',
+                                    title: `¡Descuento aplicado con éxito! El total es de: ${total}`,
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                })
+                            }
+                        }
+
+
+                    }
+
+                }
             }
         }, 0)
 
@@ -405,7 +422,7 @@ iconoCarrito.onclick = () => {
 
     } else {
         productosEnCarrito.style.display = "none";
-       
+
     }
 }
 
