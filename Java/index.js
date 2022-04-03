@@ -345,7 +345,7 @@ iconoCarrito.onclick = () => {
                                         // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                                         let carritoStorage = JSON.stringify(carrito);
                                         guardarStorage("carritoStorage", carritoStorage)
-                                        
+
                                         carritoSubtotal.innerHTML = null;
                                 carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
                                     }
@@ -374,11 +374,18 @@ iconoCarrito.onclick = () => {
                 if (subtotal() != 0) {
                     botonFinalizarCompra[0].onclick = () => {
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!',
-                            footer: '<a href="">Why do I have this issue?</a>'
-                        })
+                            title: '¡PRONTO PODRÁS COMPLETAR EL PROCESO!',
+                            width: 600,
+                            padding: '3em',
+                            confirmButtonColor: `#D74E09`,
+                            color: '#FFFFFF',
+                            background: '#D74E09',
+                            backdrop: `
+                              rgba(0,0,123,0.1)
+                              left top
+                              no-repeat
+                            `
+                          })
 
                     }
 
@@ -392,7 +399,7 @@ iconoCarrito.onclick = () => {
                             carritoProductosElegidos.style.display = "block";
                             carritoSubtotal.style.display = "block";
                             carritoAplicarDescuento.style.display = "none";
-                            textoCarritoVacio[0].innerHTML = `Mi predido`;
+                            textoCarritoVacio[0].innerHTML = `Mi pedido`;
                         }
 
                         botonAplicarDescuento.onclick = () => {
@@ -406,9 +413,18 @@ iconoCarrito.onclick = () => {
                                     icon: 'success',
                                     title: `¡Descuento aplicado con éxito! El total es de: ${total}`,
                                     showConfirmButton: false,
-                                    timer: 3000
+                                    timer: 3000,
+                                    background: '#D74E09',
+                                    color: '#FFFFFF'
                                 })
+
+
+                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Total = ${total}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button>`;
                             }
+                            carritoProductosElegidos.style.display = "block";
+                            carritoSubtotal.style.display = "block";
+                            carritoAplicarDescuento.style.display = "none";
+                            textoCarritoVacio[0].innerHTML = `Mi pedido`;
                         }
 
 
