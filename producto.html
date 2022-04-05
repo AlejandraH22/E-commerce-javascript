@@ -21,7 +21,7 @@
   <header class="header">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-      <div class="container-fluid d-flex justify-content-between ">
+      <div class="container-fluid d-flex justify-content-between" id="postNavbar">
         <form class="d-flex">
           <input class="form-control" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
@@ -179,9 +179,9 @@
   <main class="productos">
     <aside class="aside">
       <h1 class="mb-5">BUSCADOR</h1>
-      <h2 class="mb-5">Filtrado por: </h2>
-
-      <h2 class="mb-5">Productos:</h2>
+      <h2 class="mb-5 pt-2">Filtrar por: </h2>
+      <div class="contenedorFiltrarPorProductos">
+      <h2 class="mb-5">Productos</h2>
       <ul class="mb-5 inputsUl">
         <li class="mb-3">
           <input type="checkbox" value="remeras"  class="botonesBuscadorPorNombre" id="inputRemeras">
@@ -200,10 +200,11 @@
           <label for="inputPolera"  class="nombreBuscadorPorNombre">Poleras</label>
         </li>
       </ul>
-      <h2 class="mb-5">Talle:</h2>
+    </div>
+      <!-- <h2 class="mb-5">Talle:</h2>
 
 
-      <h2 class="mb-5">Precio:</h2>
+      <h2 class="mb-5">Precio:</h2> -->
     </aside>
     <section class="principal">
       <div class="container-fluid mt-5">

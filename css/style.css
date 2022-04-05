@@ -17,18 +17,27 @@ li {
 .row {
   --bs-gutter-x: 0; }
 
+body {
+  background-color: #FCF7FF;
+  font-weight: 600; }
+
 .header {
   position: relative;
   z-index: 1; }
   .header .navbar {
-    padding-top: 0rem; }
+    padding-top: 0rem;
+    border-bottom: solid 1px #D74E09; }
+    .header .navbar #postNavbar {
+      border-bottom: solid 1px #D74E09; }
     .header .navbar .navbar-brand {
       margin-right: 7rem; }
       .header .navbar .navbar-brand .logo {
         width: 80px;
         height: auto; }
     .header .navbar .navbar-nav {
-      padding-top: 1rem; }
+      padding-top: 0.5rem;
+      font-size: 18px;
+      font-weight: 600; }
       .header .navbar .navbar-nav .cruzCierre {
         width: 15px;
         height: auto; }
@@ -181,7 +190,8 @@ li {
     flex-grow: 1; } }
 
 .footer {
-  background-color: #f8f9fa; }
+  background-color: #f8f9fa;
+  border-top: solid 1px #D74E09; }
 
 .seccion1 {
   padding-right: var(--bs-gutter-x, 0.01rem);
@@ -251,13 +261,16 @@ li {
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-rows: 1fr;
-  grid-template-columns: 0.3fr 1.2fr;
-  grid-template-rows: 1.5fr 0.5fr;
+  grid-template-columns: 0.23fr 1.2fr;
+  grid-template-rows: 1fr;
   gap: 0px 0px;
-  grid-template-areas: "aside principal" "precios precios";
+  grid-template-areas: "aside principal";
   font-family: "Oswald", sans-serif; }
   .productos .aside {
-    grid-area: aside; }
+    border-right: solid 1px #D74E09;
+    grid-area: aside;
+    padding-top: 20px;
+    padding-left: 20px; }
     .productos .aside .inputsUl {
       font-size: larger; }
   .productos .principal {
@@ -265,7 +278,10 @@ li {
     .productos .principal .card {
       margin-bottom: 3rem; }
       .productos .principal .card .imagenProductos {
-        height: 60vh; }
+        height: 54vh; }
+      .productos .principal .card .ventaProducto {
+        font-weight: 700;
+        font-size: 20px; }
     .productos .principal .boton {
       border-radius: 30px;
       background-color: #D74E09;

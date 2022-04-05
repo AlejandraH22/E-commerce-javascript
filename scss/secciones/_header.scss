@@ -4,6 +4,11 @@
 
     .navbar {
         padding-top: 0rem;
+        border-bottom: solid 1px #D74E09; 
+
+        #postNavbar{
+            border-bottom: solid 1px #D74E09;
+        }
 
         .navbar-brand {
             margin-right: 7rem;
@@ -16,12 +21,15 @@
         }
 
         .navbar-nav {
-            padding-top: 1rem;
+            padding-top: 0.5rem;
+            font-size: 18px;
+            font-weight: 600;
 
             .cruzCierre {
                 width: 15px;
                 height: auto;
             }
+            
         }
 
         .saludo{
@@ -81,6 +89,8 @@
             margin: 0 1rem;
         }
 
+   
+
         .navbar-collapse {
             flex-grow: 0;
 
@@ -133,6 +143,7 @@
                 width: 100%;
                 position: relative;
                 z-index: 1;
+                
 
                 #posBotonCarrito {
                     padding: 1rem 1rem;

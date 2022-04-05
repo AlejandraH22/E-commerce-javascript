@@ -3,22 +3,25 @@
     display: grid; 
     grid-auto-columns: 1fr; 
     grid-auto-rows: 1fr; 
-    grid-template-columns: 0.3fr 1.2fr; 
-    grid-template-rows: 1.5fr 0.5fr; 
+    grid-template-columns: 0.23fr 1.2fr; 
+    grid-template-rows: 1fr; 
     gap: 0px 0px; 
     grid-template-areas: 
-      "aside principal"
-      "precios precios"; 
-  
+      "aside principal";
+
         font-family: $fuentePrincipal;
 
     .aside {
-
+        border-right: solid 1px #D74E09;
         grid-area: aside;
+        padding-top: 20px;
+        padding-left: 20px;
 
 .inputsUl{
     font-size: larger;
 }
+
+
 
     }
 
@@ -29,8 +32,14 @@
             margin-bottom: 3rem;
         
             .imagenProductos{
-                height: 60vh;
+                height: 54vh;
                 
+            }
+
+            .ventaProducto{
+                font-weight: 700;
+                font-size: 20px;
+            
             }
            
         }
