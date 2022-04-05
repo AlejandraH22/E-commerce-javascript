@@ -96,17 +96,17 @@ const buscadorPorPrecio = () => {
 // Cargar Página
 
 window.onload = () => {
-    // let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
-    // if (productoCarritoGuardado != null) {
-    //     productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
-    //     carritoProductosElegidos.innerHTML = `${productoCarritoGuardado}`;
-    //     final.push(productoCarritoGuardado);
+    let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
+    if (productoCarritoGuardado != null) {
+        productoCarritoGuardado = JSON.parse(productoCarritoGuardado);
+        carritoProductosElegidos.innerHTML = `${productoCarritoGuardado}`;
+        final.push(productoCarritoGuardado);
 
-    // }
+    }
 
     let carritoGuardado = localStorage.getItem("carritoStorage");
-
-    if (carritoGuardado[0] != undefined) {
+if (carritoGuardado != undefined){
+    if (carritoGuardado.nombre != undefined) {
 
         carritoGuardado = JSON.parse(carritoGuardado);
 
@@ -127,7 +127,7 @@ window.onload = () => {
                 }
             }
 
-        }
+        }}
 
         subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`);
     }
@@ -558,20 +558,25 @@ botonRegistrarme[0].onclick = (e) => {
 let recordarmeIngreso = document.getElementById("recordarmeIngreso");
 let saludo = document.getElementsByClassName("saludo");
 
+
 iconoCuenta.onclick = () => {
     if (contenedorForm.style.display === "none") {
         contenedorForm.style.display = "block";
         productosEnCarrito.style.display = "none";
 
-
+        if(linkCargaProducto.style.display === "block"){
+        formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`;
+    }
         formularioIngreso.onsubmit = (e) => {
             e.preventDefault();
             let usuarioId = (usuario.value).toLowerCase();
             let contraseñaId = (contraseña.value).toLowerCase();
             let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
 
-            ingreso === true && (linkCargaProducto.style.display = "block")
-            ingreso === true && (formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`)
+            if (ingreso === true){
+
+            linkCargaProducto.style.display = "block";
+            formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`;
             contenedorForm.style.display = "none";
             saludo[0].style.display = "block";
 
@@ -583,7 +588,7 @@ iconoCuenta.onclick = () => {
                 guardarStorage("saludo", saludoStorage)
             }
 
-        }
+        }}
     } else {
         contenedorForm.style.display = "none";
     }
@@ -701,3 +706,26 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
 
     }
 }
+
+let textoBarraFinalHeader = document.querySelectorAll(".textoBarraFinalHeader")
+
+textoBarra = () => {
+
+    if (textoBarraFinalHeader[0].id === "activo") {
+        textoBarraFinalHeader[0].removeAttribute(`id`);
+        textoBarraFinalHeader[1].id = "activo";
+    } else if (textoBarraFinalHeader[1].id === "activo") {
+        textoBarraFinalHeader[1].removeAttribute(`id`);
+        textoBarraFinalHeader[2].id = "activo";
+    } else if (textoBarraFinalHeader[2].id === "activo") {
+        textoBarraFinalHeader[2].removeAttribute(`id`);
+        textoBarraFinalHeader[0].id = "activo";
+    }
+
+
+}
+
+setInterval(() => {
+    textoBarra()
+}, 4000)
+
