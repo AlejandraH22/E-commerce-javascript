@@ -267,6 +267,7 @@ let carritoAplicarDescuento = document.getElementById("carritoAplicarDescuento")
 let botonVolverDescuento = document.getElementById("botonVolverDescuento");
 let codigoDescuento = document.getElementById("codigoDescuento");
 let botonAplicarDescuento = document.getElementById("botonAplicarDescuento");
+let intervalo;
 
 
 
@@ -284,7 +285,9 @@ iconoCarrito.onclick = () => {
 
         }
 
-        setInterval(() => {
+       
+
+         intervalo = setInterval(() => {
             if (subtotal() != 0) {
 
                 for (let i = 0; i < carrito.length; i++) {
@@ -317,8 +320,10 @@ iconoCarrito.onclick = () => {
                             }
                         }
 
-                    }
+                        
 
+                    }
+                    
 
 
                     botonMenosCarrito[i].onclick = () => {
@@ -373,6 +378,8 @@ iconoCarrito.onclick = () => {
 
 
                     }
+
+
                 }
                 if (subtotal() != 0) {
                     botonFinalizarCompra[0].onclick = () => {
@@ -403,6 +410,7 @@ iconoCarrito.onclick = () => {
                             carritoSubtotal.style.display = "block";
                             carritoAplicarDescuento.style.display = "none";
                             textoCarritoVacio[0].innerHTML = `Mi pedido`;
+                            
                         }
 
                         botonAplicarDescuento.onclick = () => {
@@ -438,9 +446,9 @@ iconoCarrito.onclick = () => {
         }, 0)
 
 
-
     } else {
         productosEnCarrito.style.display = "none";
+        
 
     }
 }
