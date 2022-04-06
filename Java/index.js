@@ -105,11 +105,14 @@ window.onload = () => {
     }
 
     let carritoGuardado = localStorage.getItem("carritoStorage");
-if (carritoGuardado != undefined){
-    if (carritoGuardado.nombre != undefined) {
+   
 
         carritoGuardado = JSON.parse(carritoGuardado);
-
+        
+        if (carritoGuardado != undefined){
+            
+           
+               
         for (let i = 0; i < carritoGuardado.length; i++) {
             for (let e of stock) {
                 if (carritoGuardado[i].producto === e.nombre) {
@@ -127,7 +130,7 @@ if (carritoGuardado != undefined){
                 }
             }
 
-        }}
+        }
 
         subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`);
     }
