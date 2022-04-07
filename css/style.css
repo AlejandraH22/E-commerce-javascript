@@ -88,7 +88,15 @@ body {
       .header .navbar #ventanaCargaProducto .divInput {
         padding: 0rem 5rem; }
     .header .navbar .links_nav {
-      margin: 0 1rem; }
+      margin: 0 1rem;
+      text-decoration: none;
+      background-image: linear-gradient(#d74e09, #d74e09);
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: 0% 2px;
+      transition: background-size .3s; }
+      .header .navbar .links_nav:hover {
+        background-size: 100% 2px; }
     .header .navbar .navbar-collapse {
       flex-grow: 0; }
       .header .navbar .navbar-collapse #cuenta {
@@ -282,7 +290,28 @@ body {
     padding-top: 20px;
     padding-left: 20px; }
     .productos .aside .inputsUl {
-      font-size: larger; }
+      font-size: larger;
+      padding-left: 0.5rem; }
+      .productos .aside .inputsUl .botonesBuscadorPorNombre {
+        display: none; }
+        .productos .aside .inputsUl .botonesBuscadorPorNombre:checked + .nombreBuscadorPorNombre::before {
+          background-color: #D74E09; }
+      .productos .aside .inputsUl .nombreBuscadorPorNombre {
+        padding: 0px 15px 0px 20px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer; }
+        .productos .aside .inputsUl .nombreBuscadorPorNombre::before {
+          content: "";
+          width: 17px;
+          height: 17px;
+          display: inline-block;
+          background: none;
+          border: 3px solid #ff8243;
+          border-radius: 50%;
+          position: absolute;
+          left: 0px;
+          top: 6px; }
   .productos .principal {
     grid-area: principal; }
     .productos .principal .card {

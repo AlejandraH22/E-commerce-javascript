@@ -18,6 +18,38 @@
 
 .inputsUl{
     font-size: larger;
+padding-left: 0.5rem;
+
+    .botonesBuscadorPorNombre{
+        display: none;
+
+        &:checked + .nombreBuscadorPorNombre::before{
+            background-color: $naranja;
+        }
+    }
+
+    .nombreBuscadorPorNombre{
+        padding: 0px 15px 0px 20px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+
+        &::before{
+            content: "";
+            width: 17px;
+            height: 17px;
+            display: inline-block;
+            background:none;
+            border: 3px solid rgba(255,130,67,1);
+            border-radius: 50%;
+            position: absolute;
+           left: 0px;
+            top: 6px;
+
+        }
+
+       
+    }
 }
 
 

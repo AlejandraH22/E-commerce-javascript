@@ -63,7 +63,7 @@
         }
 
         #cargarProducto {
-            color: #D74E09;
+            color: $naranja;
         }
 
         #ventanaCargaProducto {
@@ -107,6 +107,16 @@
 
         .links_nav {
             margin: 0 1rem;
+            text-decoration: none;
+            background-image: linear-gradient(rgba(215,78,9,1) , rgba(215,78,9,1) );
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size .3s;
+            
+            &:hover{
+                background-size: 100% 2px;
+            }
         }
 
     
