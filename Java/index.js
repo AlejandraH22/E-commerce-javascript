@@ -184,9 +184,16 @@ window.onload = () => {
 
     }
 
+    
+    
+    
+
 }
 
 
+
+let bodyKids = document.getElementById("body_kids")
+    guardarStorage("kids", JSON.stringify(bodyKids.innerHTML))
 // Agregar productos a carrito
 
 
@@ -268,6 +275,9 @@ let botonVolverDescuento = document.getElementById("botonVolverDescuento");
 let codigoDescuento = document.getElementById("codigoDescuento");
 let botonAplicarDescuento = document.getElementById("botonAplicarDescuento");
 let intervalo;
+let botonCambioPagina = document.getElementById("switch");
+
+
 
 
 
