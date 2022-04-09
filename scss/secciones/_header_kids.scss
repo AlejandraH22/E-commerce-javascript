@@ -2,15 +2,15 @@
 
     position: relative;
     z-index: 1;
-    background-color: $violeta;
+    background-image: linear-gradient(to bottom, #06bee1, #00a3ea, #0084ee, #005fe4, #5626c4);
 
     .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
-        color: $blanco;
+        color: black
     }
 
     .barraFinalHeader{
 
-        background-color: $violeta;
+        background-color: $celeste;
         text-align: center;
         color: $blanco;
        

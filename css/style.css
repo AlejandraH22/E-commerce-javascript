@@ -355,11 +355,11 @@ body {
 .header_kids {
   position: relative;
   z-index: 1;
-  background-color: #5626C4; }
+  background-image: linear-gradient(to bottom, #06bee1, #00a3ea, #0084ee, #005fe4, #5626c4); }
   .header_kids .navbar-light .navbar-nav .nav-link.active, .header_kids .navbar-light .navbar-nav .show > .nav-link {
-    color: #FCF7FF; }
+    color: black; }
   .header_kids .barraFinalHeader {
-    background-color: #5626C4;
+    background-color: #06BEE1;
     text-align: center;
     color: #FCF7FF; }
     .header_kids .barraFinalHeader .textoBarraFinalHeader {
@@ -549,18 +549,20 @@ body {
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "aside principal";
-  font-family: "Oswald", sans-serif; }
+  font-family: "Oswald", sans-serif;
+  background-image: linear-gradient(to bottom, #005fe4, #2753de, #3a47d6, #4938ce, #5626c4); }
   .productos_kids .aside {
     grid-area: aside;
     padding-top: 20px;
-    padding-left: 20px; }
+    padding-left: 20px;
+    color: black; }
     .productos_kids .aside .inputsUl {
       font-size: larger;
       padding-left: 0.5rem; }
       .productos_kids .aside .inputsUl .botonesBuscadorPorNombre {
         display: none; }
         .productos_kids .aside .inputsUl .botonesBuscadorPorNombre:checked + .nombreBuscadorPorNombre::before {
-          background-color: #D74E09; }
+          background-color: #06BEE1; }
       .productos_kids .aside .inputsUl .nombreBuscadorPorNombre {
         padding: 0px 15px 0px 20px;
         display: inline-block;
@@ -572,7 +574,7 @@ body {
           height: 17px;
           display: inline-block;
           background: none;
-          border: 3px solid #ff8243;
+          border: 3px solid #06BEE1;
           border-radius: 50%;
           position: absolute;
           left: 0px;
@@ -582,7 +584,7 @@ body {
     .productos_kids .principal .card {
       margin-bottom: 3rem;
       border-radius: 40px;
-      border-color: #5EFC8D;
+      border: solid 10px #06BEE1;
       padding-top: 2rem; }
       .productos_kids .principal .card .imagenProductos {
         height: 54vh; }
@@ -621,5 +623,5 @@ body {
         margin-bottom: 0; }
 
 .footer_kids {
-  background-color: #f8f9fa;
-  border-top: solid 1px #D74E09; }
+  background-color: #5626C4;
+  border-top: solid 1px #06BEE1; }
