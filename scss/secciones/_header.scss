@@ -3,6 +3,43 @@
     position: relative;
     z-index: 1;
 
+    .labelSwitch{
+        display: inline-block;
+        width: 65px;
+        height: 33px;
+        background-color: #D74E09;
+        border-radius: 100px;
+        cursor: pointer;
+        position: relative;
+        transition: .2s;
+    &::after{
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        background: white;
+        border-radius: 100px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        transition: .2s;
+    }
+  
+    }
+
+    #switch:checked + .labelSwitch::after{
+        left: 36px;
+
+    }
+
+    #switch:checked + .labelSwitch{
+        background-color: $violeta;
+    }
+
+    #switch{
+        display: none;
+    }
+
     .barraFinalHeader{
 
         background-color: #D74E09;

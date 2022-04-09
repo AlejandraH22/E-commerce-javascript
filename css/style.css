@@ -24,6 +24,32 @@ body {
 .header {
   position: relative;
   z-index: 1; }
+  .header .labelSwitch {
+    display: inline-block;
+    width: 65px;
+    height: 33px;
+    background-color: #D74E09;
+    border-radius: 100px;
+    cursor: pointer;
+    position: relative;
+    transition: .2s; }
+    .header .labelSwitch::after {
+      content: "";
+      display: block;
+      width: 25px;
+      height: 25px;
+      background: white;
+      border-radius: 100px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      transition: .2s; }
+  .header #switch:checked + .labelSwitch::after {
+    left: 36px; }
+  .header #switch:checked + .labelSwitch {
+    background-color: #5626C4; }
+  .header #switch {
+    display: none; }
   .header .barraFinalHeader {
     background-color: #D74E09;
     text-align: center;
