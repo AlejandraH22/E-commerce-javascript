@@ -161,6 +161,18 @@ body {
         width: 100%;
         position: relative;
         z-index: 1; }
+        .header .navbar .navbar-collapse #carrito #iconoCarrito {
+          position: relative;
+          display: inline-block;
+          text-align: center; }
+          .header .navbar .navbar-collapse #carrito #iconoCarrito .contador {
+            background-color: #F8333C;
+            color: #FCF7FF;
+            position: absolute;
+            right: 13px;
+            width: 17px;
+            top: 24px;
+            font-size: 0.8rem; }
         .header .navbar .navbar-collapse #carrito #posBotonCarrito {
           padding: 1rem 1rem;
           display: none;

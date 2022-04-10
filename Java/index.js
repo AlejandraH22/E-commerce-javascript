@@ -1,6 +1,7 @@
 const carrito = [];
 const subtotal = () => carrito.reduce((acc, el) => acc + el.precioFinal, 0);
 let total = subtotal;
+let contadorCarrito = 1;
 
 
 // Funciones
@@ -62,8 +63,13 @@ const botonCompra = (compra, cantidad) => {
     }
 }
 
+let contadorIcono = document.getElementById("contador")
 
+function contadorCarritoIcono() { 
+   contadorCarrito = carrito.length;
 
+   contadorIcono.innerText = `${contadorCarrito}`;
+}
 
 const botonReset = () => {
     carrito.splice(0, carrito.length)
@@ -82,6 +88,8 @@ const buscadorPorPrecio = () => {
     }
 
 }
+
+
 
 
 // Botones de compra/ agregar a carrito
@@ -183,17 +191,13 @@ window.onload = () => {
         saludo[0].style.display === "block" && (formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`)
 
     }
-
-    
-    
-    
-
 }
 
+    
 
 
-let bodyKids = document.getElementById("body_kids")
-    guardarStorage("kids", JSON.stringify(bodyKids.innerHTML))
+
+
 // Agregar productos a carrito
 
 
@@ -243,7 +247,8 @@ for (let i = 0; i < stock.length; i++) {
                     // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
                     // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
-                    guardarStorage("carritoStorage", carritoStorage)
+                    guardarStorage("carritoStorage", carritoStorage);
+                    contadorCarritoIcono();
 
 
 
@@ -276,10 +281,25 @@ let codigoDescuento = document.getElementById("codigoDescuento");
 let botonAplicarDescuento = document.getElementById("botonAplicarDescuento");
 let intervalo;
 let botonCambioPagina = document.getElementById("switch");
+// let body = document.getElementsByTagName("body");
+// let header = document.getElementsByClassName("header");
+// let main = document.getElementsByName("main");
 
 
+// botonCambioPagina.onclick = () =>{
+//     if (botonCambioPagina.checked === true){
+//     body[0].setAttribute("id","body_kids");
+//     header[0].classList.add("header_kids");
+//     main[0].classList.add("productos_kids")
 
 
+   
+// }  else{
+//     body[0].classList.remove("header_kids")
+//     header[0].classList.remove("header_kids");
+// } 
+
+// }
 
 iconoCarrito.onclick = () => {
 
@@ -342,13 +362,15 @@ iconoCarrito.onclick = () => {
                             if (el.producto === nombreProductoEnCarrito[i].innerText) {
                                 el.cantidades -= 1;
                                 el.precioFinal = el.precioFinal - el.precioIndividual;
+                                
 
                                 if (el.cantidades <= 0) {
 
                                     final.splice(i, 1);
                                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                                     carrito.splice(i, 1);
-
+                                    contadorCarritoIcono();
+                                   
                                     if (carrito[0] === undefined) {
 
                                         textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
@@ -356,6 +378,7 @@ iconoCarrito.onclick = () => {
 
                                         localStorage.removeItem("carritoStorage");
                                         localStorage.removeItem("productosCarritoStorage");
+                                        
 
                                     }
                                     if (carrito[0] != undefined) {
@@ -749,4 +772,3 @@ textoBarra = () => {
 setInterval(() => {
     textoBarra()
 }, 4000)
-

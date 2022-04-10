@@ -54,6 +54,7 @@
         display: none;
     }
 
+  
     #activo{
         display: block;
     }
@@ -166,6 +167,11 @@
                 position: relative;
                 z-index: 1;
 
+            
+                    
+                
+                
+
                 .posBotonCuenta {
                     display: none;
                     padding: 1rem 1rem;
@@ -204,14 +210,27 @@
                 }
             }
 
-
+            
 
             #carrito {
                 width: 100%;
                 position: relative;
                 z-index: 1;
+                #iconoCarrito{
+                    position: relative;
+                    display: inline-block;
+                    text-align: center;
+                .contador{
+                    background-color: $roja;
+                    color: $blanco;
+                    position: absolute;
+                    right: 13px;
+                    width: 17px;
+                    top: 24px;
+                    font-size: 0.8rem;
+                }
                 
-
+            }
                 #posBotonCarrito {
                     padding: 1rem 1rem;
                     display: none;
