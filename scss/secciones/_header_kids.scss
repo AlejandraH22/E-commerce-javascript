@@ -1,4 +1,6 @@
-.header_kids {
+.bodyDark{
+
+.header{
 
     position: relative;
     z-index: 1;
@@ -6,6 +8,10 @@
 
     .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
         color: black
+    }
+
+    .navbar{
+        border-bottom: solid 1px $verde;
     }
 
     .barraFinalHeader{
@@ -296,4 +302,4 @@
             flex-grow: 1;
         }
     }
-}
+}}

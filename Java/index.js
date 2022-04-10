@@ -281,25 +281,11 @@ let codigoDescuento = document.getElementById("codigoDescuento");
 let botonAplicarDescuento = document.getElementById("botonAplicarDescuento");
 let intervalo;
 let botonCambioPagina = document.getElementById("switch");
-// let body = document.getElementsByTagName("body");
-// let header = document.getElementsByClassName("header");
-// let main = document.getElementsByName("main");
+let body = document.getElementsByTagName("body");
+let header = document.getElementsByClassName("header");
+let main = document.getElementsByName("main");
 
 
-// botonCambioPagina.onclick = () =>{
-//     if (botonCambioPagina.checked === true){
-//     body[0].setAttribute("id","body_kids");
-//     header[0].classList.add("header_kids");
-//     main[0].classList.add("productos_kids")
-
-
-   
-// }  else{
-//     body[0].classList.remove("header_kids")
-//     header[0].classList.remove("header_kids");
-// } 
-
-// }
 
 iconoCarrito.onclick = () => {
 
