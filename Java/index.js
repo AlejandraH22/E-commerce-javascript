@@ -281,9 +281,7 @@ let codigoDescuento = document.getElementById("codigoDescuento");
 let botonAplicarDescuento = document.getElementById("botonAplicarDescuento");
 let intervalo;
 let botonCambioPagina = document.getElementById("switch");
-let body = document.getElementsByTagName("body");
-let header = document.getElementsByClassName("header");
-let main = document.getElementsByName("main");
+
 
 
 
