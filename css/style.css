@@ -661,5 +661,6 @@ body {
         margin-bottom: 0; }
 
 .bodyDark .footer {
-  background-color: #5626C4;
-  border-top: solid 1px #06BEE1; }
+  background-color: #06BEE1;
+  border-top: solid 1px #5EFC8D;
+  color: #06BEE1; }
