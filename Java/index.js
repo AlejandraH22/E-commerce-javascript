@@ -1,14 +1,15 @@
-const carrito = [];
+
 const subtotal = () => carrito.reduce((acc, el) => acc + el.precioFinal, 0);
 let total = subtotal;
-let contadorCarrito = 1;
 
 
-// Funciones
-
-const guardarStorage = (clave, valor) => {
-    localStorage.setItem(clave, valor)
+const botonReset = () => {
+    carrito.splice(0, carrito.length)
 }
+
+
+let botonCambioPagina = document.getElementById("switch");
+
 
 const basePorcentaje = (n) => {
     return (m) => (m * n) / 100
@@ -19,61 +20,7 @@ const porcentaje25 = basePorcentaje(25);
 const porcentaje35 = basePorcentaje(35);
 
 
-const botonCompra = (compra, cantidad) => {
-    if (compra.stock === "si") {
-        if (cantidad <= compra.cantidad) {
-            compra.cantidad = compra.cantidad - cantidad;
-            if (compra.cantidad > 0) {
-                compra.stock = "si";
-            } else {
-                compra.stock = "no"
-            }
-            let precio = compra.precio;
-            let precioParcial = compra.precio * cantidad;
-            let buscador = carrito.some((el) => el.producto === compra.nombre);
-            if (buscador === true) {
-                for (let el of carrito) {
-                    if (el.producto === compra.nombre) {
-                        el.cantidades += parseInt(cantidad);
-                        el.precioFinal += precioParcial;
-                    }
-                }
-            } else {
-                carrito.push({
-                    cantidades: parseInt(cantidad),
-                    producto: compra.nombre,
-                    precioFinal: precioParcial,
-                    precioIndividual: precio,
-                    imagen: compra.imagen,
-                });
-            }
 
-            Toastify({
-                text: `Agregaste ${cantidad} productos a tu carrito`,
-                className: "info",
-                duration: 1000,
-                style: {
-                    background: "#D74E09",
-                    borderRadius: "30px",
-                }
-
-            }).showToast();
-        }
-
-    }
-}
-
-let contadorIcono = document.getElementById("contador")
-
-function contadorCarritoIcono() { 
-   contadorCarrito = carrito.length;
-
-   contadorIcono.innerText = `${contadorCarrito}`;
-}
-
-const botonReset = () => {
-    carrito.splice(0, carrito.length)
-}
 
 
 
@@ -92,16 +39,20 @@ const buscadorPorPrecio = () => {
 
 
 
-// Botones de compra/ agregar a carrito
 
 
 
 
 
-// EVENTOS
+
+// CARGAR PÁGINA / RECARGAR STORAGE
 
 
-// Cargar Página
+
+const guardarStorage = (clave, valor) => {
+    localStorage.setItem(clave, valor)
+}
+
 
 window.onload = () => {
     let productoCarritoGuardado = localStorage.getItem("productosCarritoStorage");
@@ -117,8 +68,7 @@ window.onload = () => {
 
         carritoGuardado = JSON.parse(carritoGuardado);
         
-        if (carritoGuardado != undefined){
-            
+        if (carritoGuardado != undefined){         
            
                
         for (let i = 0; i < carritoGuardado.length; i++) {
@@ -193,32 +143,68 @@ window.onload = () => {
     }
 }
 
+
+// AGREGAR A CARRITO
     
-
-
-
-
-// Agregar productos a carrito
-
-
-// EMPARENTAMIENTO DOM
 
 let botonCarrito = document.querySelectorAll(".boton");
 let ventaProducto = document.querySelectorAll(".ventaProducto");
 let botonCantidad = document.querySelectorAll(".botonCantidad");
-let listaContador = document.querySelectorAll(".listaContador");
-let seccionPrecio = document.querySelectorAll(".precios")
 let final = [];
-let subtotalPantalla = document.getElementById("subtotal");
-let iconoCuenta = document.getElementById("iconoCuenta");
-let formularioIngreso = document.getElementById("formulario");
-let contenedorForm = document.getElementById("contenedorForm");
-let botonSubmit = document.getElementsByClassName("boton2");
+const carrito = [];
 let usuario = document.getElementById("usuario");
 let contraseña = document.getElementById("contraseña");
 let linkCargaProducto = document.getElementById("linkCargaProducto");
 let imagenProductos = document.getElementsByClassName("imagenProductos")
 
+
+
+
+const botonCompra = (compra, cantidad) => {
+    if (compra.stock === "si") {
+        if (cantidad <= compra.cantidad) {
+            compra.cantidad = compra.cantidad - cantidad;
+            if (compra.cantidad > 0) {
+                compra.stock = "si";
+            } else {
+                compra.stock = "no"
+            }
+            let precio = compra.precio;
+            let precioParcial = compra.precio * cantidad;
+            let buscador = carrito.some((el) => el.producto === compra.nombre);
+            if (buscador === true) {
+                for (let el of carrito) {
+                    if (el.producto === compra.nombre) {
+                        el.cantidades += parseInt(cantidad);
+                        el.precioFinal += precioParcial;
+                    }
+                }
+            } else {
+                carrito.push({
+                    cantidades: parseInt(cantidad),
+                    producto: compra.nombre,
+                    precioFinal: precioParcial,
+                    precioIndividual: precio,
+                    imagen: compra.imagen,
+                });
+            }
+
+            Toastify({
+                text: `Agregaste ${cantidad} productos a tu carrito`,
+                className: "info",
+                duration: 1000,
+                style: {
+                    background: "#D74E09",
+                    borderRadius: "30px",
+                }
+
+            }).showToast();
+        }
+
+    }
+}
+
+// Agregar elementos a carrito:
 
 
 for (let i = 0; i < stock.length; i++) {
@@ -244,8 +230,8 @@ for (let i = 0; i < stock.length; i++) {
 
                     textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
                     carritoProductosElegidos.style.overflowY = "scroll";
-                    // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                    // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                    let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
+                    guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
                     guardarStorage("carritoStorage", carritoStorage);
                     contadorCarritoIcono();
@@ -265,6 +251,21 @@ for (let i = 0; i < stock.length; i++) {
 
 }
 
+
+// CONTADOR
+
+
+let contadorIcono = document.getElementById("contador")
+
+function contadorCarritoIcono() { 
+   contadorCarrito = carrito.length;
+
+   contadorIcono.innerText = `${contadorCarrito}`;
+}
+
+
+// CARRITO
+
 let iconoCarrito = document.getElementById("iconoCarrito");
 let productosEnCarrito = document.getElementById("posBotonCarrito");
 let textoCarritoVacio = document.getElementsByClassName("carritoVacio");
@@ -280,12 +281,25 @@ let botonVolverDescuento = document.getElementById("botonVolverDescuento");
 let codigoDescuento = document.getElementById("codigoDescuento");
 let botonAplicarDescuento = document.getElementById("botonAplicarDescuento");
 let intervalo;
-let botonCambioPagina = document.getElementById("switch");
+let iconoCuenta = document.getElementById("iconoCuenta");
+let formularioIngreso = document.getElementById("formulario");
+let contenedorForm = document.getElementById("contenedorForm");
+let botonSubmit = document.getElementsByClassName("boton2");
 
-
+const descuento = (codigo) => {
+    if (codigo === "hipocampo") {
+        total = subtotal() - porcentaje10(subtotal())
+    } else if (codigo === "bolso") {
+        total = subtotal() - porcentaje25(subtotal())
+    } else {
+        total = parseInt(subtotal());
+    }
+};
 
 
 iconoCarrito.onclick = () => {
+
+
 
     if (productosEnCarrito.style.display === "none") {
         productosEnCarrito.style.display = "block";
@@ -299,7 +313,7 @@ iconoCarrito.onclick = () => {
 
         }
 
-       
+    //    SUMAR O RESTAR CANTIDAD DE PRODUCTO:
 
          intervalo = setInterval(() => {
             if (subtotal() != 0) {
@@ -398,6 +412,9 @@ iconoCarrito.onclick = () => {
 
 
                 }
+
+                // FINALIZAR COMPRA
+
                 if (subtotal() != 0) {
                     botonFinalizarCompra[0].onclick = () => {
                         Swal.fire({
@@ -415,6 +432,8 @@ iconoCarrito.onclick = () => {
                           })
 
                     }
+
+                    // DESCUENTO
 
                     botonDescuento[0].onclick = () => {
                         carritoProductosElegidos.style.display = "none";
@@ -472,15 +491,7 @@ iconoCarrito.onclick = () => {
 
 
 
-const descuento = (codigo) => {
-    if (codigo === "hipocampo") {
-        total = subtotal() - porcentaje10(subtotal())
-    } else if (codigo === "bolso") {
-        total = subtotal() - porcentaje25(subtotal())
-    } else {
-        total = parseInt(subtotal());
-    }
-};
+
 
 
 
@@ -510,26 +521,6 @@ cruzDeCierre[5].onclick = () => {
 
 
 }
-
-
-
-
-// CARGAR PRODUCTO
-
-
-// Enlace con DOM
-
-
-let cargarProducto = document.getElementById("cargarProducto");
-let ventanaCargaProducto = document.getElementById("ventanaCargaProducto");
-let formularioCargaProducto = document.getElementById("formularioCargaProducto");
-let botonCargaProducto = document.getElementById("botonCargaProducto");
-let DatosCarga;
-let contador = 0;
-let tarjetanueva = document.createElement("div");
-let padreTarjeta = document.getElementById("padreTarjeta");
-
-
 
 // REGISTRAR USUARIO
 
@@ -580,7 +571,6 @@ botonRegistrarme[0].onclick = (e) => {
 
 
 
-
 // INGRESO DE USUARIO
 
 let recordarmeIngreso = document.getElementById("recordarmeIngreso");
@@ -621,6 +611,19 @@ iconoCuenta.onclick = () => {
         contenedorForm.style.display = "none";
     }
 }
+
+
+// CARGAR PRODUCTO
+
+
+let cargarProducto = document.getElementById("cargarProducto");
+let ventanaCargaProducto = document.getElementById("ventanaCargaProducto");
+let formularioCargaProducto = document.getElementById("formularioCargaProducto");
+let botonCargaProducto = document.getElementById("botonCargaProducto");
+let DatosCarga;
+let contador = 0;
+let tarjetanueva = document.createElement("div");
+let padreTarjeta = document.getElementById("padreTarjeta");
 
 
 
@@ -735,6 +738,9 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
     }
 }
 
+
+// BARRA HEADER
+
 let textoBarraFinalHeader = document.querySelectorAll(".textoBarraFinalHeader")
 
 textoBarra = () => {
@@ -756,3 +762,4 @@ textoBarra = () => {
 setInterval(() => {
     textoBarra()
 }, 4000)
+
