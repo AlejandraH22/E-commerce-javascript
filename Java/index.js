@@ -3,26 +3,18 @@ const subtotal = () => carrito.reduce((acc, el) => acc + el.precioFinal, 0);
 let total = subtotal;
 
 
-const botonReset = () => {
-    carrito.splice(0, carrito.length)
+const basePorcentaje = (n) => {
+    return (m) => (m * n) / 100
 }
 
 
-let botonCambioPagina = document.getElementById("switch");
-
-
-const basePorcentaje = (n) => {
-    return (m) => (m * n) / 100
+const botonReset = () => {
+    carrito.splice(0, carrito.length)
 }
 
 const porcentaje10 = basePorcentaje(10);
 const porcentaje25 = basePorcentaje(25);
 const porcentaje35 = basePorcentaje(35);
-
-
-
-
-
 
 
 const buscadorPorPrecio = () => {
@@ -35,14 +27,6 @@ const buscadorPorPrecio = () => {
     }
 
 }
-
-
-
-
-
-
-
-
 
 
 // CARGAR PÁGINA / RECARGAR STORAGE
@@ -158,8 +142,6 @@ let linkCargaProducto = document.getElementById("linkCargaProducto");
 let imagenProductos = document.getElementsByClassName("imagenProductos")
 
 
-
-
 const botonCompra = (compra, cantidad) => {
     if (compra.stock === "si") {
         if (cantidad <= compra.cantidad) {
@@ -224,14 +206,8 @@ for (let i = 0; i < stock.length; i++) {
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                     carritoSubtotal.innerHTML = null;
                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
-
-
-
-
                     textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
                     carritoProductosElegidos.style.overflowY = "scroll";
-                    let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                    guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
                     let carritoStorage = JSON.stringify(carrito);
                     guardarStorage("carritoStorage", carritoStorage);
                     contadorCarritoIcono();
@@ -338,8 +314,7 @@ iconoCarrito.onclick = () => {
 
 
                                 textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
-                                // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                                // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                          
                                 let carritoStorage = JSON.stringify(carrito);
                                 guardarStorage("carritoStorage", carritoStorage)
 
@@ -380,8 +355,7 @@ iconoCarrito.onclick = () => {
 
                                     }
                                     if (carrito[0] != undefined) {
-                                        // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                                        // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                                  
                                         let carritoStorage = JSON.stringify(carrito);
                                         guardarStorage("carritoStorage", carritoStorage)
 
@@ -397,8 +371,7 @@ iconoCarrito.onclick = () => {
                                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
 
                                     textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
-                                    // let ProductosCarritoStorage = JSON.stringify(carritoProductosElegidos.innerHTML);
-                                    // guardarStorage("productosCarritoStorage", ProductosCarritoStorage);
+                                   
                                     let carritoStorage = JSON.stringify(carrito);
                                     guardarStorage("carritoStorage", carritoStorage)
 
@@ -761,5 +734,25 @@ textoBarra = () => {
 
 setInterval(() => {
     textoBarra()
-}, 4000)
+}, 4000);
+
+
+
+// BOTON CAMBIO DE PÁGINA:
+
+
+let botonCambioPagina = document.getElementById("switch");
+let body = document.getElementsByTagName("body");
+
+
+botonCambioPagina.onclick = () =>{
+    if (botonCambioPagina.checked === true) {
+
+    body[0].classList.add("bodyDark");
+    }else {
+        body[0].classList.remove("bodyDark");
+    
+    }
+} 
+
 

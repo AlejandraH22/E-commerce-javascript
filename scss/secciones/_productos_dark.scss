@@ -12,14 +12,14 @@
       "aside principal";
 
         font-family: $fuentePrincipal;
-        background-image: linear-gradient(to bottom, #005fe4, #2753de, #3a47d6, #4938ce, #5626c4);
+        background-color: #111;
         
 
     .aside {
         grid-area: aside;
         padding-top: 20px;
         padding-left: 20px;
-        color: black;
+        color: $celeste;
 
 .inputsUl{
     font-size: larger;
