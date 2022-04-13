@@ -55,4 +55,27 @@ const usuarios = [
     mariano,
     stefano,
     david
-]
+];
+
+let objeto = {
+    "Frutas": [
+      { "NombreFruta":"Manzana" , "Cantidad":10 },
+      { "NombreFruta":"Pera" , "Cantidad":20 },
+      { "NombreFruta":"Naranja" , "Cantidad":30 }
+    ],
+    "Frutas": [
+        { "NombreFruta":"Manzana" , "Cantidad":10 },
+        { "NombreFruta":"Pera" , "Cantidad":20 },
+        { "NombreFruta":"Naranja" , "Cantidad":30 }
+      ],
+      "Frutas": [
+        { "NombreFruta":"Manzana" , "Cantidad":10 },
+        { "NombreFruta":"Pera" , "Cantidad":20 },
+        { "NombreFruta":"Naranja" , "Cantidad":30 }
+      ],
+      "Frutas": [
+        { "NombreFruta":"Manzana" , "Cantidad":10 },
+        { "NombreFruta":"Pera" , "Cantidad":20 },
+        { "NombreFruta":"Naranja" , "Cantidad":30 }
+      ]
+  }
