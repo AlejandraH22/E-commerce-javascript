@@ -1,7 +1,13 @@
 #body_kids{
 
-.footer_kids{
-    background-color: $celeste;
-    border-top: solid 1px $verde;
-    color: $celeste;
-}}
+    .footer_kids{
+        background-color: $roja;
+        border-top: solid 12px $verde;
+        color: $verde;
+        padding-top: 2vh;
+
+
+        a{
+            color: $verde;
+        }
+    }}
