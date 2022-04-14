@@ -1,0 +1,92 @@
+{
+   "remera1" : {
+  "id": 1,
+  "nombre": "sonic",
+  "talle": "m",
+  "categoria": "remeras",
+  "precio": "1500",
+  "cantidad": 30,
+  "stock": "cantidad > 0 ? si : no",
+  "imagen": "https://http2.mlstatic.com/D_645750-MLA40680634112_022020-O.jpg"
+},
+ "remera2" :{
+    "id": 2,
+    "nombre": "spider-man",
+    "talle": "xs",
+    "categoria": "remeras",
+    "precio": "3000",
+    "cantidad": 50,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "https://falabella.scene7.com/is/image/FalabellaAR/880574394_1?wid=800&hei=800&qlt=70"
+  },
+ "remera3": {
+    "id": 3,
+    "nombre":"monstruo",
+    "talle": "m",
+    "categoria": "remeras",
+    "precio": "2000",
+    "cantidad": 25,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_740128-MLA31116295301_062019-W.jpg"
+  },
+   "remera4" :{
+    "id": 4,
+    "nombre":"popeye",
+    "talle": "xl",
+    "categoria": "remeras",
+    "precio": "1500",
+    "cantidad": 28,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "https://www.planetatres.com.ar/tienda-online/3125-large_default/remera-popeye.jpg"
+  },
+   "remera5" : {
+    "id": 5,
+    "nombre": "yo no fui",
+    "talle": "xl",
+    "categoria": "remeras",
+    "precio": "1500",
+    "cantidad": 28,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_771684-MLA31124627807_062019-O.jpg"
+  },
+  "remera6": {
+    "id": 6,
+    "nombre": "bob esponja",
+    "talle": "xl",
+    "categoria": "remeras",
+    "precio": "1700",
+    "cantidad": 32,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "http://d3ugyf2ht6aenh.cloudfront.net/stores/990/663/products/ni-151-20e4bd021cb4e2986a15965410162605-640-0.jpg"
+  },
+  "remera7" : {
+    "id": 7,
+    "nombre": "gravity falls",
+    "talle": "s",
+    "categoria": "remeras",
+    "precio": "1200",
+    "cantidad": 48,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_536615-MLA25280893461_012017-O.jpg"
+  },
+  "remera8" :{
+    "id": 8,
+    "nombre": "pikachu",
+    "talle": "xl",
+    "categoria": "remeras",
+    "precio": "2000",
+    "cantidad": 90,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "http://d3ugyf2ht6aenh.cloudfront.net/stores/227/495/products/pikachu-cara-94803de5d0aa19b09015132874539758-640-0.jpg"
+  },
+  "remera9" : {
+    "id": 9,
+    "nombre": "hora de aventura",
+    "talle": "m",
+    "categoria": "remeras",
+    "precio": "1900",
+    "cantidad": 2,
+    "stock": "cantidad > 0 ? si : no",
+    "imagen": "http://d3ugyf2ht6aenh.cloudfront.net/stores/060/396/products/hora-aventura-color-fb3d5b662460e1fc1115126248012154-640-0.jpg"
+  }
+}
