@@ -1,7 +1,10 @@
-
 const subtotal = () => carrito.reduce((acc, el) => acc + el.precioFinal, 0);
 let total = subtotal;
-
+let temp = fetch(`https://api.openweathermap.org/data/2.5/weather?id=3435910&appid=9aa0d7d7ace195e870036d608160609b`)
+    .then(respuesta => respuesta.json())
+    .then(data => {
+        temp = Math.round(data.main.temp - 273.15);
+    })
 
 const basePorcentaje = (n) => {
     return (m) => (m * n) / 100
@@ -48,13 +51,13 @@ window.onload = () => {
     }
 
     let carritoGuardado = localStorage.getItem("carritoStorage");
-   
 
-        carritoGuardado = JSON.parse(carritoGuardado);
-        
-        if (carritoGuardado != undefined){         
-           
-               
+
+    carritoGuardado = JSON.parse(carritoGuardado);
+
+    if (carritoGuardado != undefined) {
+
+
         for (let i = 0; i < carritoGuardado.length; i++) {
             for (let e of stock) {
                 if (carritoGuardado[i].producto === e.nombre) {
@@ -107,13 +110,18 @@ window.onload = () => {
 
         usuarioGuardadoEnStorage = JSON.parse(usuarioGuardadoEnStorage);
 
-     
-        usuarios.push({ nombre : usuarioGuardadoEnStorage["nombre"], edad: usuarioGuardadoEnStorage["edad"], mail : usuarioGuardadoEnStorage["mail"], contraseña: usuarioGuardadoEnStorage["contraseña"]})
-        
+
+        usuarios.push({
+            nombre: usuarioGuardadoEnStorage["nombre"],
+            edad: usuarioGuardadoEnStorage["edad"],
+            mail: usuarioGuardadoEnStorage["mail"],
+            contraseña: usuarioGuardadoEnStorage["contraseña"]
+        })
+
 
     }
 
-   
+
 
     let usuarioIngresadoStorage = localStorage.getItem("usuarioIngresado")
 
@@ -126,11 +134,21 @@ window.onload = () => {
         saludo[0].style.display === "block" && (formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`)
 
     }
+
+
+    let temperaturaEnStorage = localStorage.getItem("temperatura");
+    
+    if (temperaturaEnStorage != undefined){
+    temperaturaEnStorage = JSON.parse(temperaturaEnStorage);
+    cargarTemp = temperaturaEnStorage.innerHTML;
+        
+    navbar.append(cargarTemp);
+}
 }
 
 
 // AGREGAR A CARRITO
-    
+
 
 let botonCarrito = document.querySelectorAll(".boton");
 let ventaProducto = document.querySelectorAll(".ventaProducto");
@@ -234,10 +252,10 @@ for (let i = 0; i < stock.length; i++) {
 
 let contadorIcono = document.getElementById("contador")
 
-function contadorCarritoIcono() { 
-   contadorCarrito = carrito.length;
+function contadorCarritoIcono() {
+    contadorCarrito = carrito.length;
 
-   contadorIcono.innerText = `${contadorCarrito}`;
+    contadorIcono.innerText = `${contadorCarrito}`;
 }
 
 
@@ -290,9 +308,9 @@ iconoCarrito.onclick = () => {
 
         }
 
-    //    SUMAR O RESTAR CANTIDAD DE PRODUCTO:
+        //    SUMAR O RESTAR CANTIDAD DE PRODUCTO:
 
-         intervalo = setInterval(() => {
+        intervalo = setInterval(() => {
             if (subtotal() != 0) {
 
                 for (let i = 0; i < carrito.length; i++) {
@@ -315,7 +333,7 @@ iconoCarrito.onclick = () => {
 
 
                                 textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
-                          
+
                                 let carritoStorage = JSON.stringify(carrito);
                                 guardarStorage("carritoStorage", carritoStorage)
 
@@ -324,10 +342,10 @@ iconoCarrito.onclick = () => {
                             }
                         }
 
-                        
+
 
                     }
-                    
+
 
 
                     botonMenosCarrito[i].onclick = () => {
@@ -336,7 +354,7 @@ iconoCarrito.onclick = () => {
                             if (el.producto === nombreProductoEnCarrito[i].innerText) {
                                 el.cantidades -= 1;
                                 el.precioFinal = el.precioFinal - el.precioIndividual;
-                                
+
 
                                 if (el.cantidades <= 0) {
 
@@ -344,7 +362,7 @@ iconoCarrito.onclick = () => {
                                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                                     carrito.splice(i, 1);
                                     contadorCarritoIcono();
-                                   
+
                                     if (carrito[0] === undefined) {
 
                                         textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
@@ -352,16 +370,16 @@ iconoCarrito.onclick = () => {
 
                                         localStorage.removeItem("carritoStorage");
                                         localStorage.removeItem("productosCarritoStorage");
-                                        
+
 
                                     }
                                     if (carrito[0] != undefined) {
-                                  
+
                                         let carritoStorage = JSON.stringify(carrito);
                                         guardarStorage("carritoStorage", carritoStorage)
 
                                         carritoSubtotal.innerHTML = null;
-                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
                                     }
                                 } else {
 
@@ -372,12 +390,12 @@ iconoCarrito.onclick = () => {
                                     carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
 
                                     textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
-                                   
+
                                     let carritoStorage = JSON.stringify(carrito);
                                     guardarStorage("carritoStorage", carritoStorage)
 
                                 }
-                                
+
                             }
                         }
 
@@ -403,7 +421,7 @@ iconoCarrito.onclick = () => {
                               left top
                               no-repeat
                             `
-                          })
+                        })
 
                     }
 
@@ -420,7 +438,7 @@ iconoCarrito.onclick = () => {
                             carritoSubtotal.style.display = "block";
                             carritoAplicarDescuento.style.display = "none";
                             textoCarritoVacio[0].innerHTML = `Mi pedido`;
-                            
+
                         }
 
                         botonAplicarDescuento.onclick = () => {
@@ -458,7 +476,7 @@ iconoCarrito.onclick = () => {
 
     } else {
         productosEnCarrito.style.display = "none";
-        
+
 
     }
 }
@@ -526,21 +544,25 @@ botonRegistrarme[0].onclick = (e) => {
 
         let datosUsuarioNuevo = el.target;
 
-        const usuarioNuevo = {nombre: (datosUsuarioNuevo[0].value).toLowerCase(),
+        const usuarioNuevo = {
+            nombre: (datosUsuarioNuevo[0].value).toLowerCase(),
             edad: (datosUsuarioNuevo[1].value).toLowerCase(),
-        mail: (datosUsuarioNuevo[2].value).toLowerCase(),
-    contraseña: (datosUsuarioNuevo[3].value).toLowerCase()}
-            
-        
+            mail: (datosUsuarioNuevo[2].value).toLowerCase(),
+            contraseña: (datosUsuarioNuevo[3].value).toLowerCase()
+        }
+
+
 
         let usuarioNuevoStorage = JSON.stringify(usuarioNuevo);
         guardarStorage("usuarioNuevo", usuarioNuevoStorage);
 
-        usuarios.push({nombre: (datosUsuarioNuevo[0].value).toLowerCase(),
+        usuarios.push({
+            nombre: (datosUsuarioNuevo[0].value).toLowerCase(),
             edad: (datosUsuarioNuevo[1].value).toLowerCase(),
-        mail: (datosUsuarioNuevo[2].value).toLowerCase(),
-    contraseña: (datosUsuarioNuevo[3].value).toLowerCase()});
-        
+            mail: (datosUsuarioNuevo[2].value).toLowerCase(),
+            contraseña: (datosUsuarioNuevo[3].value).toLowerCase()
+        });
+
 
         usuariosTitulo.innerText = "Ingreso a cuenta";
         formularioIngreso.style.display = "block";
@@ -556,6 +578,7 @@ botonRegistrarme[0].onclick = (e) => {
 
 let recordarmeIngreso = document.getElementById("recordarmeIngreso");
 let saludo = document.getElementsByClassName("saludo");
+let navbar = document.getElementById("barraInicial");
 
 
 iconoCuenta.onclick = () => {
@@ -563,40 +586,70 @@ iconoCuenta.onclick = () => {
         contenedorForm.style.display = "block";
         productosEnCarrito.style.display = "none";
 
-        if(linkCargaProducto.style.display === "block"){
-        formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`;
-    }
+        if (linkCargaProducto.style.display === "block") {
+            formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`;
+        }
         formularioIngreso.onsubmit = (e) => {
             e.preventDefault();
             let usuarioId = (usuario.value).toLowerCase();
             let contraseñaId = (contraseña.value).toLowerCase();
             let ingreso;
-            for (let i in usuarios){
-               if (usuarios[i].nombre === usuarioId && usuarios[i].contraseña === contraseñaId){
-                ingreso = true;
-                usuarioId = usuarios[i].nombre;
-        }}
-            if (ingreso === true){
-
-            linkCargaProducto.style.display = "block";
-            formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`;
-            contenedorForm.style.display = "none";
-            saludo[0].style.display = "block";
-
-            saludo[0].innerText = `${saludo[0].innerText} ${usuarioId}`
-
-            if (recordarmeIngreso.checked === true && ingreso === true) {
-                guardarStorage("usuarioIngresado", "si");
-                let saludoStorage = JSON.stringify(saludo[0].innerText)
-                guardarStorage("saludo", saludoStorage)
+            for (let i in usuarios) {
+                if (usuarios[i].nombre === usuarioId && usuarios[i].contraseña === contraseñaId) {
+                    ingreso = true;
+                    usuarioId = usuarios[i].nombre;
+                }
             }
+            if (ingreso === true) {
 
+                linkCargaProducto.style.display = "block";
+                formularioIngreso.innerHTML = `<h3> Ya has ingresado a tu cuenta</h3>`;
+                contenedorForm.style.display = "none";
+                saludo[0].style.display = "block";
+
+                saludo[0].innerText = `${saludo[0].innerText} ${usuarioId}`
+
+               
+                        let ingresoNuevo = document.createElement("div")
+                        ingresoNuevo.classList.add("corrido")
+                        let prenda;
+                        if (temp >= 25) {
+                            prenda = "Bermudas"
+                        } else if (temp < 25 && temp >= 20) {
+                            prenda = "Remeras"
+                        } else if (temp < 20 && temp >= 15) {
+                            prenda = "Jeans"
+                        } else if (temp< 15 && temp >= 10) {
+                            prenda = "Pantalones de gamuza"
+                        } else {
+                            prenda = "Poleras"
+                        }
+                        ingresoNuevo.innerHTML = `<div class= "divTemperatura">
+                      <h2>Temperatura actual</h2>
+                      <p class="temperatura">${temp}°C</p>
+                      <p class="sugerencia"> Hoy es un buen día para comprar <span> ${prenda}</span></p>
+                    </div>`;
+                        navbar.append(ingresoNuevo);
+
+
+                    
+
+                if (recordarmeIngreso.checked === true && ingreso === true) {
+                    guardarStorage("usuarioIngresado", "si");
+                    let saludoStorage = JSON.stringify(saludo[0].innerText)
+                    guardarStorage("saludo", saludoStorage)
+
+                    let guardarTemp = JSON.stringify(ingresoNuevo.innerHTML);
+                    guardarStorage("temperatura", guardarTemp)
+                }
+
+            }
         }
-    } 
-}else {
+    } else {
         contenedorForm.style.display = "none";
     }
 }
+
 
 
 // CARGAR PRODUCTO
@@ -758,13 +811,12 @@ let botonCambioPagina = document.getElementById("switch");
 let body = document.getElementsByTagName("body");
 
 
-botonCambioPagina.onclick = () =>{
+botonCambioPagina.onclick = () => {
     if (botonCambioPagina.checked === true) {
 
-    body[0].classList.add("bodyDark");
-    }else {
+        body[0].classList.add("bodyDark");
+    } else {
         body[0].classList.remove("bodyDark");
-    
+
     }
-} 
- 
+}

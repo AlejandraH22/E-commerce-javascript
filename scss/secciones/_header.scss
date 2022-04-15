@@ -78,10 +78,34 @@
             }
         }
 
+        #barraInicial{
+            align-items: center;
+        }
+
+        .corrido{
+            
+            text-align: center;
+                    .divTemperatura{
+                        padding-left: 30%;
+                        position: relative;
+                        left: 110%;
+                    h2{
+                        font-size: 1rem;
+                    }
+                    .temperatura{
+                        font-size: 2rem;
+                        margin-bottom: 0;
+                    }
+                    span{
+                        color: $naranja;
+                    }
+                }
+                }
         .navbar-nav {
             padding-top: 0.5rem;
             font-size: 18px;
             font-weight: 600;
+            
 
             .cruzCierre {
                 width: 15px;
