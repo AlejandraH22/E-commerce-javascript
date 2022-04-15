@@ -89,9 +89,7 @@ window.onload = () => {
 
         tarjetanueva.setAttribute("class", "card col-4");
         tarjetanueva.setAttribute("style", "width: 18rem");
-        tarjetanueva.innerHTML = `
-     <img
-       src="${productoGuardadoEnStorage["imagen"]}"
+        tarjetanueva.innerHTML = `<img src="${productoGuardadoEnStorage["imagen"]}"
        class="card-img-top imagenProductos" alt="...">
      <div class="card-body d-flex justify-content-between align-items-center">
        <p class="card-text ventaProducto">${productoGuardadoEnStorage["nombre"]}</p>
@@ -109,10 +107,13 @@ window.onload = () => {
 
         usuarioGuardadoEnStorage = JSON.parse(usuarioGuardadoEnStorage);
 
-        usuarioNuevo = new Registrar(usuarioGuardadoEnStorage["nombre"], usuarioGuardadoEnStorage["edad"], usuarioGuardadoEnStorage["mail"], usuarioGuardadoEnStorage["contraseña"])
-        usuarios.push(usuarioNuevo)
+     
+        usuarios.push({ nombre : usuarioGuardadoEnStorage["nombre"], edad: usuarioGuardadoEnStorage["edad"], mail : usuarioGuardadoEnStorage["mail"], contraseña: usuarioGuardadoEnStorage["contraseña"]})
+        
 
     }
+
+   
 
     let usuarioIngresadoStorage = localStorage.getItem("usuarioIngresado")
 
@@ -525,13 +526,22 @@ botonRegistrarme[0].onclick = (e) => {
 
         let datosUsuarioNuevo = el.target;
 
-        const usuarioNuevo = new Registrar((datosUsuarioNuevo[0].value).toLowerCase(), datosUsuarioNuevo[1].value, datosUsuarioNuevo[2].value, (datosUsuarioNuevo[3].value).toLowerCase());
+        const usuarioNuevo = {nombre: (datosUsuarioNuevo[0].value).toLowerCase(),
+            edad: (datosUsuarioNuevo[1].value).toLowerCase(),
+        mail: (datosUsuarioNuevo[2].value).toLowerCase(),
+    contraseña: (datosUsuarioNuevo[3].value).toLowerCase()}
+            
+        
 
         let usuarioNuevoStorage = JSON.stringify(usuarioNuevo);
         guardarStorage("usuarioNuevo", usuarioNuevoStorage);
 
+        usuarios.push({nombre: (datosUsuarioNuevo[0].value).toLowerCase(),
+            edad: (datosUsuarioNuevo[1].value).toLowerCase(),
+        mail: (datosUsuarioNuevo[2].value).toLowerCase(),
+    contraseña: (datosUsuarioNuevo[3].value).toLowerCase()});
+        
 
-        usuarios.push(usuarioNuevo);
         usuariosTitulo.innerText = "Ingreso a cuenta";
         formularioIngreso.style.display = "block";
         formularioDeRegistro.style.display = "none";
@@ -541,8 +551,6 @@ botonRegistrarme[0].onclick = (e) => {
 
 
 }
-
-
 
 // INGRESO DE USUARIO
 
@@ -562,8 +570,12 @@ iconoCuenta.onclick = () => {
             e.preventDefault();
             let usuarioId = (usuario.value).toLowerCase();
             let contraseñaId = (contraseña.value).toLowerCase();
-            let ingreso = usuarios.some((el) => (el.nombre).toLowerCase() === usuarioId && (el.contraseña).toLowerCase() === contraseñaId);
-
+            let ingreso;
+            for (let i in usuarios){
+               if (usuarios[i].nombre === usuarioId && usuarios[i].contraseña === contraseñaId){
+                ingreso = true;
+                usuarioId = usuarios[i].nombre;
+        }}
             if (ingreso === true){
 
             linkCargaProducto.style.display = "block";
@@ -579,8 +591,9 @@ iconoCuenta.onclick = () => {
                 guardarStorage("saludo", saludoStorage)
             }
 
-        }}
-    } else {
+        }
+    } 
+}else {
         contenedorForm.style.display = "none";
     }
 }
@@ -754,5 +767,4 @@ botonCambioPagina.onclick = () =>{
     
     }
 } 
-
-
+ 

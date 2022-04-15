@@ -38,44 +38,26 @@ const stock = [
 
 
 
-class Registrar{
 
-    constructor(nombre, edad, mail, contraseña){
-        this.nombre = nombre;
-        this.edad = edad;
-        this.mail = mail;
-        this.contraseña = contraseña;
-    }
-}
 
-const mariano = new Registrar("nano", "29", "mariano.p.z@hotmail.com", "1234");
-const stefano = new Registrar ("stefano", "xx", "xx", "1234");
-const david = new Registrar("david", "xx", "xx", "1234")
+
 const usuarios = [
-    mariano,
-    stefano,
-    david
-];
-
-let objeto = {
-    "Frutas": [
-      { "NombreFruta":"Manzana" , "Cantidad":10 },
-      { "NombreFruta":"Pera" , "Cantidad":20 },
-      { "NombreFruta":"Naranja" , "Cantidad":30 }
-    ],
-    "Frutas": [
-        { "NombreFruta":"Manzana" , "Cantidad":10 },
-        { "NombreFruta":"Pera" , "Cantidad":20 },
-        { "NombreFruta":"Naranja" , "Cantidad":30 }
-      ],
-      "Frutas": [
-        { "NombreFruta":"Manzana" , "Cantidad":10 },
-        { "NombreFruta":"Pera" , "Cantidad":20 },
-        { "NombreFruta":"Naranja" , "Cantidad":30 }
-      ],
-      "Frutas": [
-        { "NombreFruta":"Manzana" , "Cantidad":10 },
-        { "NombreFruta":"Pera" , "Cantidad":20 },
-        { "NombreFruta":"Naranja" , "Cantidad":30 }
-      ]
+ {
+        nombre: "nano",
+        edad: "29",
+        mail: "mariano.p.z@hotmail.com",
+        contraseña: "1234"  
+  },
+ {
+      nombre: "stefano",
+      edad: "xx",
+      mail: "xx",
+      contraseña: "1234"
+  },
+  {
+      nombre: "david",
+      edad: "xx",
+      mail: "xx",
+      contraseña: "1234"
   }
+]

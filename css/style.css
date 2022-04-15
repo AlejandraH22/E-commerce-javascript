@@ -908,7 +908,7 @@ body {
       #body_kids .productos_kids .principal .card .ventaProducto {
         font-weight: 700;
         font-size: 20px; }
-    #body_kids .productos_kids .principal .boton {
+    #body_kids .productos_kids .principal .botonKids {
       border-radius: 30px;
       background-color: #5EFC8D;
       border-color: #5EFC8D;
@@ -918,9 +918,9 @@ body {
       -webkit-box-shadow: 0px 0px 0px 3px #a8eb12;
       -moz-box-shadow: 0px 0px 0px 3px #a8eb12;
       outline: none; }
-      #body_kids .productos_kids .principal .boton :focus-visible {
+      #body_kids .productos_kids .principal .botonKids :focus-visible {
         outline: none; }
-      #body_kids .productos_kids .principal .boton:active {
+      #body_kids .productos_kids .principal .botonKids:active {
         box-shadow: none;
         -webkit-box-shadow: none;
         -moz-box-shadow: none; }
