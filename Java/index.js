@@ -140,9 +140,12 @@ window.onload = () => {
     
     if (temperaturaEnStorage != undefined){
     temperaturaEnStorage = JSON.parse(temperaturaEnStorage);
-    cargarTemp = temperaturaEnStorage.innerHTML;
+    let ingresoNuevo = document.createElement("div");
+    ingresoNuevo.classList.add("corrido");
+    ingresoNuevo.innerHTML = temperaturaEnStorage;
+   
         
-    navbar.append(cargarTemp);
+    navbar.append(ingresoNuevo);
 }
 }
 
