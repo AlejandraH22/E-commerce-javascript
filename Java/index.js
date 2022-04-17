@@ -894,15 +894,13 @@ let botonAplicarBuscadorPorPrecio = document.getElementById("botonAplicarBuscado
 
 botonAplicarBuscadorPorPrecio.onclick = () => {
 
-
-
-
     stock.forEach((el) => {
-        if (el.precio >= botonMin.value || el.precio <= botonMax.value) {
+        if (el.precio >= botonMin.value && el.precio <= botonMax.value) {
             for (let i = 0; i < cardsTexto.length; i++) {
                 let palabraClave = eliminarAcentos((cardsTexto[i].textContent).toLowerCase());
 
                 if (el.nombre != palabraClave) {
+
                     console.log(el.nombre)
                     cardsCreadas[i].style.display = "none";
 
