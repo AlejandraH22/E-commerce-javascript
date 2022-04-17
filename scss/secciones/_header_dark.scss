@@ -61,10 +61,32 @@
             
         }
 
+        .corrido{
+            
+            text-align: center;
+                    .divTemperatura{
+                        padding-left: 30%;
+                        position: relative;
+                        left: 110%;
+                        color: white;
+                    h2{
+                        font-size: 1rem;
+                    }
+                    .temperatura{
+                        font-size: 2rem;
+                        margin-bottom: 0;
+                    }
+                    span{
+                        color: $celeste;
+                    }
+                }
+                }
+
         .saludo{
             font-size: x-large;
             font-family: $fuentePrincipal;
             display: none;
+            color: white;
         }
 
         #linkCargaProducto {
@@ -72,7 +94,7 @@
         }
 
         #cargarProducto {
-            color: $naranja;
+            color: $violeta;
         }
 
         #ventanaCargaProducto {
@@ -94,11 +116,11 @@
 
             #botonCargaProducto {
                 border-radius: 30px;
-                background-color: #D74E09;
-                border-color: #D74E09;
-                box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                background-color: $celeste;
+                border-color: $celeste;
+                box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                -webkit-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                -moz-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
 
                 
                 &:active{
@@ -117,7 +139,7 @@
         .links_nav {
             margin: 0 1rem;
             text-decoration: none;
-            background-image: linear-gradient(rgba(215,78,9,1) , rgba(215,78,9,1) );
+            background-image: linear-gradient($violeta , $violeta);
             background-position: 50% 100%;
             background-repeat: no-repeat;
             background-size: 0% 2px;
@@ -146,19 +168,20 @@
                     width: 20vw;
                     right: -5vw;
                     height: 100vh;
-                    background-color: white;
+                    background-color: black;
                     box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
+                    color: $celeste;
 
                     .boton2,
                     .boton3, .boton4, .boton5 {
                         border-radius: 30px;
-                        background-color: #D74E09;
-                        border-color: #D74E09;
-                        box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                        -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                        -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                        background-color: $celeste;
+                        border-color: $celeste;
+                        box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -webkit-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -moz-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
                         margin: 5px;
 
                         
@@ -189,7 +212,7 @@
                     display: none;
                     position: absolute;
                     z-index: 2;
-                    background-color: white;
+                    background-color: black;
                     width: 30vw;
                     height: 100vh;
                     right: -0.89vw;
@@ -211,15 +234,16 @@
                     #carritoProductosElegidos {
                         height: 50%;
                         margin-bottom: 2rem;
+                     
 
                     }
                     .boton8{
                         border-radius: 30px;
-                        background-color: #D74E09;
-                        border-color: #D74E09;
-                        box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                        -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                        -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                        background-color: $celeste;
+                        border-color: $celeste;
+                        box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -webkit-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -moz-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
                         margin: 5px;
 
                         
@@ -229,15 +253,23 @@
                             -moz-box-shadow: none;
                         }
                     }
+
+
+                    .subtotalEnCarrito{
+                        color: white;
+                    }
                     .divCompletarCompra{
                         
+                        
+                       
+
                     .boton6, .boton7{
                         border-radius: 30px;
-                        background-color: #D74E09;
-                        border-color: #D74E09;
-                        box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                        -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                        -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                        background-color: $celeste;
+                        border-color: $celeste;
+                        box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -webkit-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -moz-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
                         margin: 5px;
 
                         
@@ -263,6 +295,8 @@
                     .productosEnCarrito {
                         padding-right: 1rem;
                         align-items: center;
+                        color: white;
+
                         .sumadorCarrito{
                             display: flex;
                             justify-content: space-evenly;
@@ -284,7 +318,7 @@
                     }
 
                     .carritoVacio {
-                        color: #D74E09;
+                        color: $celeste;
                         display: block;
                     }
                 }

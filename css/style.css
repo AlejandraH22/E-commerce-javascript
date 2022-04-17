@@ -438,14 +438,29 @@ body {
       .bodyDark .header .navbar .navbar-nav .cruzCierre {
         width: 15px;
         height: auto; }
+    .bodyDark .header .navbar .corrido {
+      text-align: center; }
+      .bodyDark .header .navbar .corrido .divTemperatura {
+        padding-left: 30%;
+        position: relative;
+        left: 110%;
+        color: white; }
+        .bodyDark .header .navbar .corrido .divTemperatura h2 {
+          font-size: 1rem; }
+        .bodyDark .header .navbar .corrido .divTemperatura .temperatura {
+          font-size: 2rem;
+          margin-bottom: 0; }
+        .bodyDark .header .navbar .corrido .divTemperatura span {
+          color: #06BEE1; }
     .bodyDark .header .navbar .saludo {
       font-size: x-large;
       font-family: "Oswald", sans-serif;
-      display: none; }
+      display: none;
+      color: white; }
     .bodyDark .header .navbar #linkCargaProducto {
       display: none; }
     .bodyDark .header .navbar #cargarProducto {
-      color: #D74E09; }
+      color: #5626C4; }
     .bodyDark .header .navbar #ventanaCargaProducto {
       display: none;
       background-color: white;
@@ -462,11 +477,11 @@ body {
         padding-left: 30%; }
       .bodyDark .header .navbar #ventanaCargaProducto #botonCargaProducto {
         border-radius: 30px;
-        background-color: #D74E09;
-        border-color: #D74E09;
-        box-shadow: 0px 0px 0px 3px #ff8243;
-        -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
-        -moz-box-shadow: 0px 0px 0px 3px #ff8243; }
+        background-color: #06BEE1;
+        border-color: #06BEE1;
+        box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+        -webkit-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+        -moz-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75); }
         .bodyDark .header .navbar #ventanaCargaProducto #botonCargaProducto:active {
           box-shadow: none;
           -webkit-box-shadow: none;
@@ -476,7 +491,7 @@ body {
     .bodyDark .header .navbar .links_nav {
       margin: 0 1rem;
       text-decoration: none;
-      background-image: linear-gradient(#d74e09, #d74e09);
+      background-image: linear-gradient(#5626C4, #5626C4);
       background-position: 50% 100%;
       background-repeat: no-repeat;
       background-size: 0% 2px;
@@ -497,18 +512,19 @@ body {
           width: 20vw;
           right: -5vw;
           height: 100vh;
-          background-color: white;
+          background-color: black;
           box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
           -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75); }
+          -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
+          color: #06BEE1; }
           .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton2,
           .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton3, .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton4, .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton5 {
             border-radius: 30px;
-            background-color: #D74E09;
-            border-color: #D74E09;
-            box-shadow: 0px 0px 0px 3px #ff8243;
-            -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
-            -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+            background-color: #06BEE1;
+            border-color: #06BEE1;
+            box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+            -webkit-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+            -moz-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
             margin: 5px; }
             .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton2:active,
             .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton3:active, .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton4:active, .bodyDark .header .navbar .navbar-collapse #cuenta .posBotonCuenta .boton5:active {
@@ -526,7 +542,7 @@ body {
           display: none;
           position: absolute;
           z-index: 2;
-          background-color: white;
+          background-color: black;
           width: 30vw;
           height: 100vh;
           right: -0.89vw;
@@ -545,23 +561,25 @@ body {
             margin-bottom: 2rem; }
           .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .boton8 {
             border-radius: 30px;
-            background-color: #D74E09;
-            border-color: #D74E09;
-            box-shadow: 0px 0px 0px 3px #ff8243;
-            -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
-            -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+            background-color: #06BEE1;
+            border-color: #06BEE1;
+            box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+            -webkit-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+            -moz-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
             margin: 5px; }
             .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .boton8:active {
               box-shadow: none;
               -webkit-box-shadow: none;
               -moz-box-shadow: none; }
+          .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .subtotalEnCarrito {
+            color: white; }
           .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .divCompletarCompra .boton6, .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .divCompletarCompra .boton7 {
             border-radius: 30px;
-            background-color: #D74E09;
-            border-color: #D74E09;
-            box-shadow: 0px 0px 0px 3px #ff8243;
-            -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
-            -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+            background-color: #06BEE1;
+            border-color: #06BEE1;
+            box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+            -webkit-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+            -moz-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
             margin: 5px; }
             .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .divCompletarCompra .boton6:active, .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .divCompletarCompra .boton7:active {
               box-shadow: none;
@@ -571,7 +589,8 @@ body {
             display: none; }
           .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito {
             padding-right: 1rem;
-            align-items: center; }
+            align-items: center;
+            color: white; }
             .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .productosEnCarrito .sumadorCarrito {
               display: flex;
               justify-content: space-evenly;
@@ -587,7 +606,7 @@ body {
                   -webkit-box-shadow: none;
                   -moz-box-shadow: none; }
           .bodyDark .header .navbar .navbar-collapse #carrito #posBotonCarrito .carritoVacio {
-            color: #D74E09;
+            color: #06BEE1;
             display: block; }
 
 @media (max-width: 768px) {
@@ -615,7 +634,7 @@ body {
       .bodyDark .productos .aside .inputsUl .botonesBuscadorPorNombre {
         display: none; }
         .bodyDark .productos .aside .inputsUl .botonesBuscadorPorNombre:checked + .nombreBuscadorPorNombre::before {
-          background-color: #06BEE1; }
+          background-color: rgba(46, 153, 176, 0.75); }
       .bodyDark .productos .aside .inputsUl .nombreBuscadorPorNombre {
         padding: 0px 15px 0px 20px;
         display: inline-block;
@@ -646,13 +665,13 @@ body {
         font-size: 20px; }
     .bodyDark .productos .principal .boton {
       border-radius: 30px;
-      background-color: #D74E09;
-      border-color: #D74E09;
       width: 53px;
       text-align: center;
-      box-shadow: 0px 0px 0px 3px #ff8243;
-      -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
-      -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+      background-color: #06BEE1;
+      border-color: #06BEE1;
+      box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+      -webkit-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+      -moz-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
       outline: none; }
       .bodyDark .productos .principal .boton :focus-visible {
         outline: none; }
@@ -678,7 +697,9 @@ body {
 .bodyDark .footer {
   background-color: #06BEE1;
   border-top: solid 1px #5EFC8D;
-  color: #06BEE1; }
+  color: white; }
+  .bodyDark .footer a {
+    color: white; }
 
 #body_kids .header_kids {
   position: relative;

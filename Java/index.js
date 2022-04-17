@@ -11,9 +11,7 @@ const basePorcentaje = (n) => {
 }
 
 
-const botonReset = () => {
-    carrito.splice(0, carrito.length)
-}
+
 
 const porcentaje10 = basePorcentaje(10);
 const porcentaje25 = basePorcentaje(25);
@@ -77,7 +75,7 @@ window.onload = () => {
 
         }
 
-        subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`);
+        subtotal() != 0 && (carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra">  <button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button></div><button type="button" class="btn btn-primary boton8 botonReset" >Eliminar compra</button>`);
     }
 
     let productoGuardadoEnStorage = localStorage.getItem("productosNuevos");
@@ -227,7 +225,7 @@ for (let i = 0; i < stock.length; i++) {
 
                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                     carritoSubtotal.innerHTML = null;
-                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra">  <button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button></div><button type="button" class="btn btn-primary boton8 botonReset" >Eliminar compra</button>`;
                     textoCarritoVacio[0].innerHTML = carrito[0] != undefined && `Mi pedido`;
                     carritoProductosElegidos.style.overflowY = "scroll";
                     let carritoStorage = JSON.stringify(carrito);
@@ -284,6 +282,7 @@ let formularioIngreso = document.getElementById("formulario");
 let contenedorForm = document.getElementById("contenedorForm");
 let botonSubmit = document.getElementsByClassName("boton2");
 
+
 const descuento = (codigo) => {
     if (codigo === "hipocampo") {
         total = subtotal() - porcentaje10(subtotal())
@@ -330,7 +329,7 @@ iconoCarrito.onclick = () => {
                                 final.splice(i, 1, nuevo);
                                 carritoProductosElegidos.innerHTML = `${final.join("")}`;
                                 carritoSubtotal.innerHTML = null;
-                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div> <div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra">  <button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button></div><button type="button" class="btn btn-primary boton8 botonReset" >Eliminar compra</button>`;
 
 
 
@@ -382,7 +381,7 @@ iconoCarrito.onclick = () => {
                                         guardarStorage("carritoStorage", carritoStorage)
 
                                         carritoSubtotal.innerHTML = null;
-                                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                                        carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra">  <button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button></div><button type="button" class="btn btn-primary boton8 botonReset" >Eliminar compra</button>`;
                                     }
                                 } else {
 
@@ -390,7 +389,7 @@ iconoCarrito.onclick = () => {
                                     final.splice(i, 1, nuevo);
                                     carritoProductosElegidos.innerHTML = `${final.join("")}`;
                                     carritoSubtotal.innerHTML = null;
-                                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button>`;
+                                    carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${subtotal()}$ </div><div class= "d-flex justify-content-center divCompletarCompra">  <button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button></div><button type="button" class="btn btn-primary boton8 botonReset" >Eliminar compra</button>`;
 
                                     textoCarritoVacio[0].innerHTML = (carrito[0] != undefined && `Mi pedido`);
 
@@ -461,7 +460,7 @@ iconoCarrito.onclick = () => {
                                 })
 
 
-                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Total = ${total}$ </div><div class= "d-flex justify-content-center divCompletarCompra"><button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button>`;
+                                carritoSubtotal.innerHTML = `<div class="d-flex justify-content-around subtotalEnCarrito"> Subtotal = ${total}$ </div><div class= "d-flex justify-content-center divCompletarCompra">  <button type="button" class="btn btn-primary boton6" id="botonCompletarCompra">Completar compra</button><button type="button" class="btn btn-primary boton7" id="botonDescuento">Código de descuento</button></div><button type="button" class="btn btn-primary boton8 botonReset" >Eliminar compra</button>`;
                             }
                             carritoProductosElegidos.style.display = "block";
                             carritoSubtotal.style.display = "block";
@@ -472,7 +471,46 @@ iconoCarrito.onclick = () => {
 
                     }
 
+                    
+
                 }
+                // ELIMINAR COMPRA
+
+                let botonEliminarCompra = document.getElementsByClassName("botonReset");
+                if (subtotal() != 0){
+                botonEliminarCompra[0].onclick = () =>{
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "Estás a punto de eliminar todos los productos de tu carrito",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        color: '#FFFFFF',
+                        background: '#D74E09',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '¡Si, quiero eliminarlo!',
+                        cancelButtonText: 'Cancelar',
+                      
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire({
+                            title: 'Eliminado',
+                            text: 'Sacaste todos los productos del carrito',
+                            color: '#FFFFFF',
+                            background: '#D74E09',
+                        } )
+                        }
+
+
+                      carrito.splice(0, carrito.length)
+                      textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
+                      carritoSubtotal.innerHTML = null;
+                      carritoProductosElegidos.innerHTML =null;
+                      contadorIcono.innerText = `0`;
+                      localStorage.removeItem("carritoStorage");
+                      localStorage.removeItem("productosCarritoStorage");
+                      })
+                }}
             }
         }, 0)
 
