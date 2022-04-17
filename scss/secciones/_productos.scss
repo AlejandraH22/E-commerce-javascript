@@ -52,6 +52,21 @@ padding-left: 0.5rem;
     }
 }
 
+input[type='range']{
+    
+    
+    background-color: $naranja;
+}
+
+#min[type='range'], #max[type='range']{
+    background-color: lightgray;
+    overflow: hidden;
+    -webkit-appearance: none;
+}
+
+output:before {
+    content: '$ ';
+}
 
 
     }

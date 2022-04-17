@@ -18,16 +18,6 @@ const porcentaje25 = basePorcentaje(25);
 const porcentaje35 = basePorcentaje(35);
 
 
-const buscadorPorPrecio = () => {
-    let precioMinimo = prompt("Indique el precio mínimo")
-    let precioMaximo = prompt("Indique el precio máximo")
-    buscador = stock.filter((num) => num.precio <= precioMaximo && num.precio >= precioMinimo);
-    buscador.forEach((el) => alert(`${el.nombre} se adecua a tu búsquedas`))
-    if (buscador.length == 0) {
-        alert("No hay ningún producto que se adecue a tu búsqueda")
-    }
-
-}
 
 
 // CARGAR PÁGINA / RECARGAR STORAGE
@@ -135,16 +125,29 @@ window.onload = () => {
 
 
     let temperaturaEnStorage = localStorage.getItem("temperatura");
+
+    if (temperaturaEnStorage != undefined) {
+        temperaturaEnStorage = JSON.parse(temperaturaEnStorage);
+        let ingresoNuevo = document.createElement("div");
+        ingresoNuevo.classList.add("corrido");
+        ingresoNuevo.innerHTML = temperaturaEnStorage;
+
+
+        navbar.append(ingresoNuevo);
+    }
+
+    let darkModeStorage = localStorage.getItem("darkMode");
+
+    if(darkModeStorage != undefined){
     
-    if (temperaturaEnStorage != undefined){
-    temperaturaEnStorage = JSON.parse(temperaturaEnStorage);
-    let ingresoNuevo = document.createElement("div");
-    ingresoNuevo.classList.add("corrido");
-    ingresoNuevo.innerHTML = temperaturaEnStorage;
-   
-        
-    navbar.append(ingresoNuevo);
+    if (darkModeStorage === "si"){
+        botonCambioPagina.checked = true;
+        body[0].classList.add("bodyDark");
+    }
+
+
 }
+
 }
 
 
@@ -471,46 +474,47 @@ iconoCarrito.onclick = () => {
 
                     }
 
-                    
+
 
                 }
                 // ELIMINAR COMPRA
 
                 let botonEliminarCompra = document.getElementsByClassName("botonReset");
-                if (subtotal() != 0){
-                botonEliminarCompra[0].onclick = () =>{
-                    Swal.fire({
-                        title: '¿Estás seguro?',
-                        text: "Estás a punto de eliminar todos los productos de tu carrito",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        color: '#FFFFFF',
-                        background: '#D74E09',
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: '¡Si, quiero eliminarlo!',
-                        cancelButtonText: 'Cancelar',
-                      
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          Swal.fire({
-                            title: 'Eliminado',
-                            text: 'Sacaste todos los productos del carrito',
+                if (subtotal() != 0) {
+                    botonEliminarCompra[0].onclick = () => {
+                        Swal.fire({
+                            title: '¿Estás seguro?',
+                            text: "Estás a punto de eliminar todos los productos de tu carrito",
+                            icon: 'warning',
+                            showCancelButton: true,
                             color: '#FFFFFF',
                             background: '#D74E09',
-                        } )
-                        }
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '¡Si, quiero eliminarlo!',
+                            cancelButtonText: 'Cancelar',
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: 'Eliminado',
+                                    text: 'Sacaste todos los productos del carrito',
+                                    color: '#FFFFFF',
+                                    background: '#D74E09',
+                                })
+                            }
 
 
-                      carrito.splice(0, carrito.length)
-                      textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
-                      carritoSubtotal.innerHTML = null;
-                      carritoProductosElegidos.innerHTML =null;
-                      contadorIcono.innerText = `0`;
-                      localStorage.removeItem("carritoStorage");
-                      localStorage.removeItem("productosCarritoStorage");
-                      })
-                }}
+                            carrito.splice(0, carrito.length)
+                            textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
+                            carritoSubtotal.innerHTML = null;
+                            carritoProductosElegidos.innerHTML = null;
+                            contadorIcono.innerText = `0`;
+                            localStorage.removeItem("carritoStorage");
+                            localStorage.removeItem("productosCarritoStorage");
+                        })
+                    }
+                }
             }
         }, 0)
 
@@ -650,30 +654,30 @@ iconoCuenta.onclick = () => {
 
                 saludo[0].innerText = `${saludo[0].innerText} ${usuarioId}`
 
-               
-                        let ingresoNuevo = document.createElement("div")
-                        ingresoNuevo.classList.add("corrido")
-                        let prenda;
-                        if (temp >= 25) {
-                            prenda = "Bermudas"
-                        } else if (temp < 25 && temp >= 20) {
-                            prenda = "Remeras"
-                        } else if (temp < 20 && temp >= 15) {
-                            prenda = "Jeans"
-                        } else if (temp< 15 && temp >= 10) {
-                            prenda = "Pantalones de gamuza"
-                        } else {
-                            prenda = "Poleras"
-                        }
-                        ingresoNuevo.innerHTML = `<div class= "divTemperatura">
+
+                let ingresoNuevo = document.createElement("div")
+                ingresoNuevo.classList.add("corrido")
+                let prenda;
+                if (temp >= 25) {
+                    prenda = "Bermudas"
+                } else if (temp < 25 && temp >= 20) {
+                    prenda = "Remeras"
+                } else if (temp < 20 && temp >= 15) {
+                    prenda = "Jeans"
+                } else if (temp < 15 && temp >= 10) {
+                    prenda = "Pantalones de gamuza"
+                } else {
+                    prenda = "Poleras"
+                }
+                ingresoNuevo.innerHTML = `<div class= "divTemperatura">
                       <h2>Temperatura actual</h2>
                       <p class="temperatura">${temp}°C</p>
                       <p class="sugerencia"> Hoy es un buen día para comprar <span> ${prenda}</span></p>
                     </div>`;
-                        navbar.append(ingresoNuevo);
+                navbar.append(ingresoNuevo);
 
 
-                    
+
 
                 if (recordarmeIngreso.checked === true && ingreso === true) {
                     guardarStorage("usuarioIngresado", "si");
@@ -712,6 +716,9 @@ let padreTarjeta = document.getElementById("padreTarjeta");
 
 
 cargarProducto.onclick = () => {
+
+    if(ventanaCargaProducto.style.display === "none"){
+
     ventanaCargaProducto.style.display = "block";
 
     formularioCargaProducto.onsubmit = (e) => {
@@ -757,7 +764,9 @@ cargarProducto.onclick = () => {
         location.reload();
 
     }
-
+}else {
+    ventanaCargaProducto.style.display = "none";
+}
 
 }
 
@@ -856,8 +865,41 @@ botonCambioPagina.onclick = () => {
     if (botonCambioPagina.checked === true) {
 
         body[0].classList.add("bodyDark");
+        guardarStorage("darkMode", "si");
+
+
     } else {
+
         body[0].classList.remove("bodyDark");
+        localStorage.removeItem("darkMode");
 
     }
+}
+
+
+// BUSCADOR POR PRECIO
+
+const buscadorPorPrecio = () => {
+    buscador = stock.filter((num) => num.precio <= precioMaximo && num.precio >= precioMinimo);
+    buscador.forEach((el) => alert(`${el.nombre} se adecua a tu búsquedas`))
+}
+
+let botonMin = document.getElementById("min");
+let botonMax = document.getElementById("max");
+let divMin = document.getElementById("divMin");
+let outputMin = document.getElementById("outputMin");
+let outputMax = document.getElementById("outputMax");
+let cardPrecio = document.getElementsByClassName("cardPrecio");
+
+botonMin.oninput = () => {
+
+    outputMin.innerText = `${botonMin.value}`
+
+    
+}
+
+botonMax.oninput = () => {
+    
+    outputMax.innerText = `${botonMax.value}`
+
 }

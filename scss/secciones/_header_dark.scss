@@ -99,8 +99,7 @@
 
         #ventanaCargaProducto {
             display: none;
-            background-color: white;
-            position: absolute;
+         position: absolute;
             z-index: 2;
             width: 50vw;
             right: 24vw;
@@ -109,7 +108,9 @@
             -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
             text-align: center;
             padding: 3rem;
-
+            background-color: black;
+            color: white;
+           
             .cargadorDeProductosTitulos{
                 padding-left: 30%;
             }
@@ -220,6 +221,11 @@
                     -webkit-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
                     -moz-box-shadow: 2px 7px 27px -5px rgba(0, 0, 0, 0.75);
 
+
+                    .subtotalEnCarrito{
+                        color: white;
+                    }
+
                     .imagenEnCarrito {
                         width: 6rem;
                         height: 9rem;
@@ -255,9 +261,7 @@
                     }
 
 
-                    .subtotalEnCarrito{
-                        color: white;
-                    }
+                
                     .divCompletarCompra{
                         
                         
@@ -288,7 +292,7 @@
 
                 #carritoAplicarDescuento{
                     display: none;
-
+                    color: white;
                    
                 }
 
@@ -302,10 +306,11 @@
                             justify-content: space-evenly;
                             align-items: baseline;
                         .botonCarritoIngresado{
-                            background-color: #D74E09;
-                            box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                            -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
-                            -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+                            background-color: $celeste;
+                        border-color: $celeste;
+                        box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -webkit-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+                        -moz-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
                             color: white;
 
                             &:active{
