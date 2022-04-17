@@ -899,11 +899,13 @@ botonAplicarBuscadorPorPrecio.onclick = () => {
             for (let i = 0; i < cardsTexto.length; i++) {
                 let palabraClave = eliminarAcentos((cardsTexto[i].textContent).toLowerCase());
 
-                if (el.nombre != palabraClave) {
+                if (el.nombre === palabraClave) {
 
                     console.log(el.nombre)
-                    cardsCreadas[i].style.display = "none";
+                    cardsCreadas[i].style.display = "flex";
 
+                } else {
+                    cardsCreadas[i].style.display = "none";
                 }
             }
         }
