@@ -894,8 +894,20 @@ let cardPrecio = document.getElementsByClassName("cardPrecio");
 botonMin.oninput = () => {
 
     outputMin.innerText = `${botonMin.value}`
+    for (let i = 0; i <= cardPrecio.length; i++){
 
-    
+        let palabraClave = (eliminarAcentos(cardsTexto[0].textContent)).toLowerCase()
+    stock.forEach((el) => { if(el.precio >= botonMin.value){
+       
+
+            if ((palabraClave.toLowerCase() === stock.nombre)) {
+                cardsCreadas[i].style.display = "flex";
+            } else {
+                cardsCreadas[i].style.display="none";
+            }
+        }
+    } )
+} 
 }
 
 botonMax.oninput = () => {
