@@ -138,15 +138,15 @@ window.onload = () => {
 
     let darkModeStorage = localStorage.getItem("darkMode");
 
-    if(darkModeStorage != undefined){
-    
-    if (darkModeStorage === "si"){
-        botonCambioPagina.checked = true;
-        body[0].classList.add("bodyDark");
+    if (darkModeStorage != undefined) {
+
+        if (darkModeStorage === "si") {
+            botonCambioPagina.checked = true;
+            body[0].classList.add("bodyDark");
+        }
+
+
     }
-
-
-}
 
 }
 
@@ -717,34 +717,34 @@ let padreTarjeta = document.getElementById("padreTarjeta");
 
 cargarProducto.onclick = () => {
 
-    if(ventanaCargaProducto.style.display === "none"){
+    if (ventanaCargaProducto.style.display === "none") {
 
-    ventanaCargaProducto.style.display = "block";
+        ventanaCargaProducto.style.display = "block";
 
-    formularioCargaProducto.onsubmit = (e) => {
+        formularioCargaProducto.onsubmit = (e) => {
 
-        e.preventDefault();
+            e.preventDefault();
 
-        DatosCarga = e.target;
-
-
-        let nombre = DatosCarga[0].value;
-        let tipo = DatosCarga[1].value;
-        let talle = DatosCarga[2].value;
-        let categoria = DatosCarga[3].value;
-        let precio = DatosCarga[4].value;
-        let cantidad = DatosCarga[5].value;
-        let imagen = DatosCarga[6].value;
+            DatosCarga = e.target;
 
 
+            let nombre = DatosCarga[0].value;
+            let tipo = DatosCarga[1].value;
+            let talle = DatosCarga[2].value;
+            let categoria = DatosCarga[3].value;
+            let precio = DatosCarga[4].value;
+            let cantidad = DatosCarga[5].value;
+            let imagen = DatosCarga[6].value;
 
 
-        productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad), imagen);
-        stock.push(productoNuevo);
 
-        tarjetanueva.setAttribute("class", "card col-4");
-        tarjetanueva.setAttribute("style", "width: 18rem");
-        tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
+
+            productoNuevo = new Prendas(nombre, tipo, talle, categoria, parseInt(precio), parseInt(cantidad), imagen);
+            stock.push(productoNuevo);
+
+            tarjetanueva.setAttribute("class", "card col-4");
+            tarjetanueva.setAttribute("style", "width: 18rem");
+            tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
      <img
        src="${imagen}"
        class="card-img-top imagenProductos" alt="...">
@@ -755,18 +755,18 @@ cargarProducto.onclick = () => {
      </div>
    </div>`;
 
-        padreTarjeta.appendChild(tarjetanueva);
+            padreTarjeta.appendChild(tarjetanueva);
 
 
-        let productoNuevoStorage = JSON.stringify(productoNuevo);
-        guardarStorage("productosNuevos", productoNuevoStorage);
+            let productoNuevoStorage = JSON.stringify(productoNuevo);
+            guardarStorage("productosNuevos", productoNuevoStorage);
+            ventanaCargaProducto.style.display = "none";
+            location.reload();
+
+        }
+    } else {
         ventanaCargaProducto.style.display = "none";
-        location.reload();
-
     }
-}else {
-    ventanaCargaProducto.style.display = "none";
-}
 
 }
 
@@ -893,25 +893,38 @@ let cardPrecio = document.getElementsByClassName("cardPrecio");
 
 botonMin.oninput = () => {
 
-    outputMin.innerText = `${botonMin.value}`
-    for (let i = 0; i <= cardPrecio.length; i++){
+    outputMin.innerText = `${botonMin.value}`;
 
-        let palabraClave = (eliminarAcentos(cardsTexto[0].textContent)).toLowerCase()
-    stock.forEach((el) => { if(el.precio >= botonMin.value){
-       
-
-            if ((palabraClave.toLowerCase() === stock.nombre)) {
-                cardsCreadas[i].style.display = "flex";
-            } else {
-                cardsCreadas[i].style.display="none";
-            }
+    stock.forEach((el) => {
+        if (el.precio >= botonMin.value) {
+            for (let i = 0; i < cardsTexto.length; i++){
+                let palabraClave = eliminarAcentos((cardsTexto[i].textContent).toLowerCase());
+               
+                if (el.nombre === palabraClave){
+                    cardsCreadas[i].style.display = "flex";
+                    console.log(cardsCreadas[i])
+                } else {
+                    cardsCreadas[i].style.display = "none";
+                }
         }
-    } )
-} 
-}
+    }
+})}
+
 
 botonMax.oninput = () => {
-    
+
     outputMax.innerText = `${botonMax.value}`
+    for (let i = 0; i <= cardsCreadas.length; i++) {
+
+        let palabraClave = (eliminarAcentos(cardsTexto[0].textContent)).toLowerCase();
+       
+
+        stock.forEach((el) => {
+            if (el.precio <= botonMax.value) {
+                palabraClave.toLowerCase() === stock.nombre && (cardsCreadas[i].style.display = "flex");
+
+            }
+        })
+    }
 
 }
