@@ -502,16 +502,17 @@ iconoCarrito.onclick = () => {
                                     color: '#FFFFFF',
                                     background: '#D74E09',
                                 })
+                                carrito.splice(0, carrito.length)
+                                textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
+                                carritoSubtotal.innerHTML = null;
+                                carritoProductosElegidos.innerHTML = null;
+                                contadorIcono.innerText = `0`;
+                                localStorage.removeItem("carritoStorage");
+                                localStorage.removeItem("productosCarritoStorage");
                             }
 
 
-                            carrito.splice(0, carrito.length)
-                            textoCarritoVacio[0].innerHTML = `Aún no contas con ningún producto en tu carrito`
-                            carritoSubtotal.innerHTML = null;
-                            carritoProductosElegidos.innerHTML = null;
-                            contadorIcono.innerText = `0`;
-                            localStorage.removeItem("carritoStorage");
-                            localStorage.removeItem("productosCarritoStorage");
+                        
                         })
                     }
                 }
@@ -745,15 +746,13 @@ cargarProducto.onclick = () => {
             tarjetanueva.setAttribute("class", "card col-4");
             tarjetanueva.setAttribute("style", "width: 18rem");
             tarjetanueva.innerHTML = `<div class="card col-4" style="width: 18rem;">
-     <img
-       src="${imagen}"
-       class="card-img-top imagenProductos" alt="...">
-     <div class="card-body d-flex justify-content-between align-items-center">
-       <p class="card-text ventaProducto">${nombre}</p>
-       <input type="number" class="botonCantidad" value="0">
-       <input type="button" value="Boton" class="boton btn-primary" name="Agregar">
-     </div>
-   </div>`;
+             <img src="${imagen}"class="card-img-top imagenProductos" alt="...">
+            <div class="card-body d-flex justify-content-between align-items-center">
+            <p class="card-text ventaProducto">${nombre}</p>
+            <input type="number" class="botonCantidad" value="0">
+             <input type="button" value="Boton" class="boton btn-primary" name="Agregar">
+            </div>
+            </div>`;
 
             padreTarjeta.appendChild(tarjetanueva);
 
@@ -894,22 +893,22 @@ let botonAplicarBuscadorPorPrecio = document.getElementById("botonAplicarBuscado
 
 botonAplicarBuscadorPorPrecio.onclick = () => {
 
-  
-        
-            for (let i = 0; i < cardsTexto.length; i++) {
-                let palabraClave = eliminarAcentos((cardsTexto[i].textContent).toLowerCase());
-                cardsCreadas[i].style.display = "none";
-                stock.forEach((el) => {
-                if (el.precio >= botonMin.value && el.precio <= botonMax.value) {
+
+
+    for (let i = 0; i < cardsTexto.length; i++) {
+        let palabraClave = eliminarAcentos((cardsTexto[i].textContent).toLowerCase());
+        cardsCreadas[i].style.display = "none";
+        stock.forEach((el) => {
+            if (el.precio >= botonMin.value && el.precio <= botonMax.value) {
                 if (el.nombre === palabraClave) {
-                    
+
                     cardsCreadas[i].style.display = "flex";
-                } else if (cardsCreadas[i].style.display === "flex"){
+                } else if (cardsCreadas[i].style.display === "flex") {
                     cardsCreadas[i].style.display === "flex"
                 }
             }
-        }
-        )}
+        })
+    }
 }
 
 botonMax.oninput = () => {
