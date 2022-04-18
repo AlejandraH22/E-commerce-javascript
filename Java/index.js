@@ -557,7 +557,6 @@ cruzDeCierre[5].onclick = () => {
 
     ventanaCargaProducto.style.display = "none";
 
-
 }
 
 // REGISTRAR USUARIO
