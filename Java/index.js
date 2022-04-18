@@ -794,7 +794,7 @@ for (let i = 0; i < botonesBuscadorPorNombre.length; i++) {
         if (botonesBuscadorPorNombre[i].checked === true) {
 
             let textoBuscador = eliminarAcentos((nombreBuscadorPorNombre[i].textContent).toLowerCase());
-            click += 1;
+
 
             for (let o = 0; o < botonesBuscadorPorNombre.length; o++) {
 
@@ -894,27 +894,32 @@ let botonAplicarBuscadorPorPrecio = document.getElementById("botonAplicarBuscado
 
 botonAplicarBuscadorPorPrecio.onclick = () => {
 
-    stock.forEach((el) => {
-        if (el.precio >= botonMin.value && el.precio <= botonMax.value) {
+  
+        
             for (let i = 0; i < cardsTexto.length; i++) {
                 let palabraClave = eliminarAcentos((cardsTexto[i].textContent).toLowerCase());
-
+                cardsCreadas[i].style.display = "none";
+                stock.forEach((el) => {
+                if (el.precio >= botonMin.value && el.precio <= botonMax.value) {
                 if (el.nombre === palabraClave) {
-
-                    console.log(el.nombre)
+                    
                     cardsCreadas[i].style.display = "flex";
-
-                } else {
-                    cardsCreadas[i].style.display = "none";
+                } else if (cardsCreadas[i].style.display === "flex"){
+                    cardsCreadas[i].style.display === "flex"
                 }
             }
         }
-    })
+        )}
 }
 
-botonMax.onchange = () => {
+botonMax.oninput = () => {
     outputMax.innerText = `${botonMax.value}`;
+
 }
-botonMin.onchange = () => {
+
+
+
+botonMin.oninput = () => {
     outputMin.innerText = `${botonMin.value}`;
+
 }

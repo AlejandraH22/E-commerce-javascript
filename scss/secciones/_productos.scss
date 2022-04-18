@@ -50,23 +50,68 @@ padding-left: 0.5rem;
 
        
     }
-}
 
-input[type='range']{
     
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      -webkit-appearance: none;
+      background-color: #9a905d;
+    }
     
-    background-color: $naranja;
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: $naranja;
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: ew-resize;
+      background: #434343;
+      box-shadow: -100px 0 0 100px $naranja
+
+      
+    }
+
+    #botonAplicarBuscadorPorPrecio{
+        border-radius: 2px;
+        background-color: #D74E09;
+        border-color: #D74E09;
+        text-align: center;
+        box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+        -webkit-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+        -moz-box-shadow: 0px 0px 0px 3px rgba(255,130,67,1);
+        outline: none;
+       
+
+        & :focus-visible{
+            outline: none;
+        }
+
+        
+        &:active {
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+        }
+
+     
+        
+    }
+
 }
 
-#min[type='range'], #max[type='range']{
-    background-color: lightgray;
-    overflow: hidden;
-    -webkit-appearance: none;
-}
 
-output:before {
-    content: '$ ';
-}
+
+
+
 
 
     }

@@ -363,14 +363,38 @@ body {
           position: absolute;
           left: 0px;
           top: 6px; }
-    .productos .aside input[type='range'] {
-      background-color: #D74E09; }
-    .productos .aside #min[type='range'], .productos .aside #max[type='range'] {
-      background-color: lightgray;
-      overflow: hidden;
-      -webkit-appearance: none; }
-    .productos .aside output:before {
-      content: '$ '; }
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      .productos .aside input[type='range'] {
+        overflow: hidden;
+        -webkit-appearance: none;
+        background-color: #9a905d; }
+      .productos .aside input[type='range']::-webkit-slider-runnable-track {
+        height: 10px;
+        -webkit-appearance: none;
+        color: #D74E09;
+        margin-top: -1px; }
+      .productos .aside input[type='range']::-webkit-slider-thumb {
+        width: 10px;
+        -webkit-appearance: none;
+        height: 10px;
+        cursor: ew-resize;
+        background: #434343;
+        box-shadow: -100px 0 0 100px #D74E09; }
+      .productos .aside #botonAplicarBuscadorPorPrecio {
+        border-radius: 2px;
+        background-color: #D74E09;
+        border-color: #D74E09;
+        text-align: center;
+        box-shadow: 0px 0px 0px 3px #ff8243;
+        -webkit-box-shadow: 0px 0px 0px 3px #ff8243;
+        -moz-box-shadow: 0px 0px 0px 3px #ff8243;
+        outline: none; }
+        .productos .aside #botonAplicarBuscadorPorPrecio :focus-visible {
+          outline: none; }
+        .productos .aside #botonAplicarBuscadorPorPrecio:active {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none; } }
   .productos .principal {
     grid-area: principal; }
     .productos .principal .card {
@@ -662,6 +686,38 @@ body {
           position: absolute;
           left: 0px;
           top: 6px; }
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      .bodyDark .productos .aside input[type='range'] {
+        overflow: hidden;
+        -webkit-appearance: none;
+        background-color: grey; }
+      .bodyDark .productos .aside input[type='range']::-webkit-slider-runnable-track {
+        height: 10px;
+        -webkit-appearance: none;
+        color: #D74E09;
+        margin-top: -1px; }
+      .bodyDark .productos .aside input[type='range']::-webkit-slider-thumb {
+        width: 10px;
+        -webkit-appearance: none;
+        height: 10px;
+        cursor: ew-resize;
+        background: #434343;
+        box-shadow: -100px 0 0 100px #5626C4; }
+      .bodyDark .productos .aside #botonAplicarBuscadorPorPrecio {
+        border-radius: 2px;
+        text-align: center;
+        background-color: #06BEE1;
+        border-color: #06BEE1;
+        box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+        -webkit-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+        -moz-box-shadow: 0px 0px 0px 3px rgba(46, 153, 176, 0.75);
+        outline: none; }
+        .bodyDark .productos .aside #botonAplicarBuscadorPorPrecio :focus-visible {
+          outline: none; }
+        .bodyDark .productos .aside #botonAplicarBuscadorPorPrecio:active {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none; } }
   .bodyDark .productos .principal {
     grid-area: principal; }
     .bodyDark .productos .principal .card {

@@ -58,6 +58,60 @@ padding-left: 0.5rem;
 }
 
 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      -webkit-appearance: none;
+      background-color: grey;
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: $naranja;
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: ew-resize;
+      background: #434343;
+      box-shadow: -100px 0 0 100px $violeta
+
+      
+    }
+
+    #botonAplicarBuscadorPorPrecio{
+        border-radius: 2px;
+        text-align: center;
+        background-color: $celeste;
+        border-color: $celeste;
+        box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+        -webkit-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+        -moz-box-shadow: 0px 0px 0px 3px  rgba(46,153,176,0.75);
+        outline: none;
+       
+
+        & :focus-visible{
+            outline: none;
+        }
+
+        
+        &:active {
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+        }
+
+     
+        
+    }
+
+}
+
+
 
     }
 
