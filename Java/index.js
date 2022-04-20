@@ -141,13 +141,15 @@ window.onload = () => {
     if (darkModeStorage != undefined) {
 
         if (darkModeStorage === "si") {
+
+            for (let i = 0; i < 2; i++){
+                logo[i].src = "./Footage/logo2.png"
+            }
+    
             botonCambioPagina.checked = true;
             body[0].classList.add("bodyDark");
         }
-
-
     }
-
 }
 
 
@@ -857,17 +859,24 @@ setInterval(() => {
 
 let botonCambioPagina = document.getElementById("switch");
 let body = document.getElementsByTagName("body");
-
+let logo = document.getElementsByClassName("logo")
 
 botonCambioPagina.onclick = () => {
     if (botonCambioPagina.checked === true) {
 
+        for (let i = 0; i < 2; i++){
+            logo[i].src = "./Footage/logo2.png"
+        }
+
         body[0].classList.add("bodyDark");
+
         guardarStorage("darkMode", "si");
 
 
     } else {
-
+        for (let i = 0; i < 2; i++){
+            logo[i].src = "./Footage/logo.png"
+        }
         body[0].classList.remove("bodyDark");
         localStorage.removeItem("darkMode");
 
@@ -920,4 +929,30 @@ botonMax.oninput = () => {
 botonMin.oninput = () => {
     outputMin.innerText = `${botonMin.value}`;
 
+}
+
+
+// Links a otras secciones
+
+let linksVacios = document.getElementsByClassName("linksVacios");
+
+
+for (let i = 0; i <= linksVacios.length; i++){
+    linksVacios[i].onclick = () =>{
+
+        Swal.fire({
+            title: 'Pronto podrás acceder a estas secciones',
+            confirmButtonText: "Aceptar",
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            },
+            confirmButtonColor: `#D74E09`,
+            color: '#FFFFFF',
+            background: '#D74E09',
+          })
+
+    }
 }

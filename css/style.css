@@ -67,8 +67,9 @@ body {
     .header .navbar #postNavbar {
       border-bottom: solid 1px #D74E09; }
     .header .navbar .navbar-brand .logo {
-      width: 80px;
-      height: auto; }
+      width: 130px;
+      height: auto;
+      margin-left: 100px; }
     .header .navbar #barraInicial {
       align-items: center; }
     .header .navbar .corrido {
@@ -262,6 +263,8 @@ body {
 .footer {
   background-color: #f8f9fa;
   border-top: solid 1px #D74E09; }
+  .footer .logo {
+    width: 130px; }
 
 .productos {
   display: grid;
@@ -397,8 +400,9 @@ body {
     .bodyDark .header .navbar .navbar-brand {
       color: #06BEE1; }
       .bodyDark .header .navbar .navbar-brand .logo {
-        width: 80px;
-        height: auto; }
+        width: 130px;
+        height: auto;
+        margin-left: 100px; }
     .bodyDark .header .navbar .navbar-nav {
       padding-top: 0.5rem;
       font-size: 18px;
@@ -703,3 +707,5 @@ body {
   color: white; }
   .bodyDark .footer a {
     color: white; }
+  .bodyDark .footer .logo {
+    width: 130px; }
